@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/roof_blue_04_top",
+    "down": "box3mod:block/roof_blue_04_bottom",
+    "north": "box3mod:block/roof_blue_04_front",
+    "south": "box3mod:block/roof_blue_04_back",
+    "west": "box3mod:block/roof_blue_04_left",
+    "east": "box3mod:block/roof_blue_04_right"
+  }
+}

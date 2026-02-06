@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "box3mod:block/voxel_biscuit"
+    },
+    "facing=east": {
+      "model": "box3mod:block/voxel_biscuit",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "box3mod:block/voxel_biscuit",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "box3mod:block/voxel_biscuit",
+      "y": 270
+    }
+  }
+}

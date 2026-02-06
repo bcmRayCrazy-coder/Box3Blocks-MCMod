@@ -1,0 +1,36 @@
+package com.box3lab.block;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+
+public class BouncePadBlock extends VoxelBlock {
+
+    public BouncePadBlock(BlockBehaviour.Properties properties) {
+        super(properties);
+    }
+
+    @Override
+    public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
+        super.stepOn(level, pos, state, entity);
+
+        if (entity.getY() < pos.getY() + 0.5D) {
+            return;
+        }
+
+        Vec3 vel = entity.getDeltaMovement();
+
+        // 每次踩上去随机一个 0.7 ~ 1.0 之间的反弹高度
+        double bounce = 0.7D + level.random.nextDouble() * 0.3D;
+
+        // 保留水平速度，只修改 Y 分量
+        if (vel.y < bounce) {
+            vel = new Vec3(vel.x, bounce, vel.z);
+        }
+
+        entity.setDeltaMovement(vel);
+    }
+}

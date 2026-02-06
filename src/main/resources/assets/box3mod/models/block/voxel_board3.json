@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/board3_top",
+    "down": "box3mod:block/board3_bottom",
+    "north": "box3mod:block/board3_front",
+    "south": "box3mod:block/board3_back",
+    "west": "box3mod:block/board3_left",
+    "east": "box3mod:block/board3_right"
+  }
+}

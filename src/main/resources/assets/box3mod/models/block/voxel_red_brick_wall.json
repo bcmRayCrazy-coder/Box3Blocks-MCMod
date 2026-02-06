@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/red_brick_wall_top",
+    "down": "box3mod:block/red_brick_wall_bottom",
+    "north": "box3mod:block/red_brick_wall_front",
+    "south": "box3mod:block/red_brick_wall_back",
+    "west": "box3mod:block/red_brick_wall_left",
+    "east": "box3mod:block/red_brick_wall_right"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/colon_top",
+    "down": "box3mod:block/colon_bottom",
+    "north": "box3mod:block/colon_front",
+    "south": "box3mod:block/colon_back",
+    "west": "box3mod:block/colon_left",
+    "east": "box3mod:block/colon_right"
+  }
+}

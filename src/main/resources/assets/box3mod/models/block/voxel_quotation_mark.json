@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/quotation_mark_top",
+    "down": "box3mod:block/quotation_mark_bottom",
+    "north": "box3mod:block/quotation_mark_front",
+    "south": "box3mod:block/quotation_mark_back",
+    "west": "box3mod:block/quotation_mark_left",
+    "east": "box3mod:block/quotation_mark_right"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/green_leaf_top",
+    "down": "box3mod:block/green_leaf_bottom",
+    "north": "box3mod:block/green_leaf_front",
+    "south": "box3mod:block/green_leaf_back",
+    "west": "box3mod:block/green_leaf_left",
+    "east": "box3mod:block/green_leaf_right"
+  }
+}

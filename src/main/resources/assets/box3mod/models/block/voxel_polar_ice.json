@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/polar_ice_top",
+    "down": "box3mod:block/polar_ice_bottom",
+    "north": "box3mod:block/polar_ice_front",
+    "south": "box3mod:block/polar_ice_back",
+    "west": "box3mod:block/polar_ice_left",
+    "east": "box3mod:block/polar_ice_right"
+  }
+}

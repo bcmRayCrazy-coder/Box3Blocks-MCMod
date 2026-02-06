@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "box3mod:block/voxel_snow"
+    },
+    "facing=east": {
+      "model": "box3mod:block/voxel_snow",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "box3mod:block/voxel_snow",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "box3mod:block/voxel_snow",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/snowman_head_top",
+    "down": "box3mod:block/snowman_head_bottom",
+    "north": "box3mod:block/snowman_head_front",
+    "south": "box3mod:block/snowman_head_back",
+    "west": "box3mod:block/snowman_head_left",
+    "east": "box3mod:block/snowman_head_right"
+  }
+}

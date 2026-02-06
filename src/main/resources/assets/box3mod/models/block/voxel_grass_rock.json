@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/grass_rock_top",
+    "down": "box3mod:block/grass_rock_bottom",
+    "north": "box3mod:block/grass_rock_front",
+    "south": "box3mod:block/grass_rock_back",
+    "west": "box3mod:block/grass_rock_left",
+    "east": "box3mod:block/grass_rock_right"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/bamboo_top",
+    "down": "box3mod:block/bamboo_bottom",
+    "north": "box3mod:block/bamboo_front",
+    "south": "box3mod:block/bamboo_back",
+    "west": "box3mod:block/bamboo_left",
+    "east": "box3mod:block/bamboo_right"
+  }
+}
