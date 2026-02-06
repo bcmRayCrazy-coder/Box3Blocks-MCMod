@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "box3mod:block/roof_purple_top_0",
-    "down": "box3mod:block/roof_purple_bottom_0",
-    "north": "box3mod:block/roof_purple_front_0",
-    "south": "box3mod:block/roof_purple_back_0",
-    "west": "box3mod:block/roof_purple_left_0",
-    "east": "box3mod:block/roof_purple_right_0"
+    "up": "box3mod:block/roof_purple_top",
+    "down": "box3mod:block/roof_purple_bottom",
+    "north": "box3mod:block/roof_purple_front",
+    "south": "box3mod:block/roof_purple_back",
+    "west": "box3mod:block/roof_purple_left",
+    "east": "box3mod:block/roof_purple_right"
   }
 }

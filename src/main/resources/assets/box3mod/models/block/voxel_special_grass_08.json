@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "box3mod:block/special_grass_08_top_0",
-    "down": "box3mod:block/special_grass_08_bottom_0",
-    "north": "box3mod:block/special_grass_08_front_0",
-    "south": "box3mod:block/special_grass_08_back_0",
-    "west": "box3mod:block/special_grass_08_left_0",
-    "east": "box3mod:block/special_grass_08_right_0"
+    "up": "box3mod:block/special_grass_08_top",
+    "down": "box3mod:block/special_grass_08_bottom",
+    "north": "box3mod:block/special_grass_08_front",
+    "south": "box3mod:block/special_grass_08_back",
+    "west": "box3mod:block/special_grass_08_left",
+    "east": "box3mod:block/special_grass_08_right"
   }
 }

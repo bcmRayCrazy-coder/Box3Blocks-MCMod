@@ -47,11 +47,17 @@ def scan_texture_parts():
     """扫描贴图目录，提取所有方块的基础名称（texture_part）。"""
     texture_parts = set()
     for file_path in TEXTURES_DIR.glob("*.png"):
-        # 文件名格式: {texture_part}_{face}_0.png
         parts = file_path.stem.split("_")
-        if len(parts) >= 3 and parts[-1] == "0" and parts[-2] in FACES:
+        if len(parts) >= 2 and parts[-1] in FACES:
+            texture_part = "_".join(parts[:-1])
+            if texture_part:
+                texture_parts.add(texture_part)
+            continue
+
+        if len(parts) >= 3 and parts[-2] in FACES and parts[-1].isdigit():
             texture_part = "_".join(parts[:-2])
-            texture_parts.add(texture_part)
+            if texture_part:
+                texture_parts.add(texture_part)
     return sorted(texture_parts)
 
 
@@ -59,8 +65,9 @@ def check_all_faces_exist(texture_part):
     """检查指定 texture_part 的六个面贴图是否都存在。"""
     missing = []
     for face in FACES:
-        texture_file = TEXTURES_DIR / f"{texture_part}_{face}_0.png"
-        if not texture_file.exists():
+        texture_file = TEXTURES_DIR / f"{texture_part}_{face}.png"
+        legacy_texture_file = TEXTURES_DIR / f"{texture_part}_{face}_0.png"
+        if not texture_file.exists() and not legacy_texture_file.exists():
             missing.append(texture_file)
     return missing
 
@@ -79,12 +86,12 @@ def generate_block_model(texture_part):
     return {
         "parent": "minecraft:block/cube",
         "textures": {
-            "up":    f"{MOD_ID}:block/{texture_part}_top_0",
-            "down":  f"{MOD_ID}:block/{texture_part}_bottom_0",
-            "north": f"{MOD_ID}:block/{texture_part}_front_0",
-            "south": f"{MOD_ID}:block/{texture_part}_back_0",
-            "west":  f"{MOD_ID}:block/{texture_part}_left_0",
-            "east":  f"{MOD_ID}:block/{texture_part}_right_0"
+            "up":    f"{MOD_ID}:block/{texture_part}_top",
+            "down":  f"{MOD_ID}:block/{texture_part}_bottom",
+            "north": f"{MOD_ID}:block/{texture_part}_front",
+            "south": f"{MOD_ID}:block/{texture_part}_back",
+            "west":  f"{MOD_ID}:block/{texture_part}_left",
+            "east":  f"{MOD_ID}:block/{texture_part}_right"
         }
     }
 

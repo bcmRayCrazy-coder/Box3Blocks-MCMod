@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "box3mod:block/sienna_top_0",
-    "down": "box3mod:block/sienna_bottom_0",
-    "north": "box3mod:block/sienna_front_0",
-    "south": "box3mod:block/sienna_back_0",
-    "west": "box3mod:block/sienna_left_0",
-    "east": "box3mod:block/sienna_right_0"
+    "up": "box3mod:block/sienna_top",
+    "down": "box3mod:block/sienna_bottom",
+    "north": "box3mod:block/sienna_front",
+    "south": "box3mod:block/sienna_back",
+    "west": "box3mod:block/sienna_left",
+    "east": "box3mod:block/sienna_right"
   }
 }

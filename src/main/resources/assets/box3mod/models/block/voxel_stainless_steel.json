@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "box3mod:block/stainless_steel_top_0",
-    "down": "box3mod:block/stainless_steel_bottom_0",
-    "north": "box3mod:block/stainless_steel_front_0",
-    "south": "box3mod:block/stainless_steel_back_0",
-    "west": "box3mod:block/stainless_steel_left_0",
-    "east": "box3mod:block/stainless_steel_right_0"
+    "up": "box3mod:block/stainless_steel_top",
+    "down": "box3mod:block/stainless_steel_bottom",
+    "north": "box3mod:block/stainless_steel_front",
+    "south": "box3mod:block/stainless_steel_back",
+    "west": "box3mod:block/stainless_steel_left",
+    "east": "box3mod:block/stainless_steel_right"
   }
 }
