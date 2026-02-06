@@ -1,9 +1,17 @@
 package com.box3lab.register;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.Function;
+
 import com.box3lab.Box3Mod;
-import com.box3lab.block.VoxelBlock;
-import com.box3lab.block.ConveyorBlock;
 import com.box3lab.block.BouncePadBlock;
+import com.box3lab.block.ConveyorBlock;
+import com.box3lab.block.VoxelBlock;
 import com.box3lab.util.BlockIndexData;
 import com.box3lab.util.BlockIndexUtil;
 
@@ -23,16 +31,31 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Locale;
-import java.util.function.Function;
-
 public class ModBlocks {
     public static final Map<String, Block> VOXEL_BLOCKS = new HashMap<>();
+
+    private static SoundType soundTypeForCategory(String category) {
+        if (category == null) {
+            return SoundType.STONE;
+        }
+        String c = category.toLowerCase(Locale.ROOT);
+
+        return switch (c) {
+            case "structure" -> SoundType.STONE;
+            case "nature" -> SoundType.GRASS;
+
+            case "symbol", "number", "letter", "color" -> SoundType.STONE;
+
+            case "wood", "plant", "tree", "leaf", "leaves" -> SoundType.WOOD;
+            case "metal", "machine" -> SoundType.METAL;
+            case "glass" -> SoundType.GLASS;
+            case "wool", "cloth" -> SoundType.WOOL;
+            case "sand" -> SoundType.SAND;
+            case "snow" -> SoundType.SNOW;
+            case "slime" -> SoundType.SLIME_BLOCK;
+            default -> SoundType.STONE;
+        };
+    }
 
     private static String sanitizeCategoryPath(String category) {
         if (category == null || category.isBlank()) {
@@ -139,12 +162,15 @@ public class ModBlocks {
             String texturePart = voxelName.toLowerCase(java.util.Locale.ROOT);
             String registryName = "voxel_" + texturePart;
 
+            String category = data.categoryByName.getOrDefault(texturePart, "");
+            SoundType soundType = soundTypeForCategory(category);
+
             int emissive = BlockIndexUtil.blockEmissiveLight(id);
             int rawLight = emissive == 0 ? 0 : (int) Math.round(15.0 * (0.8 + 0.2 * emissive / 4095.0));
             final int lightLevel = Math.max(0, Math.min(15, rawLight));
 
             boolean solid = BlockIndexUtil.isSolid(id);
-            BlockBehaviour.Properties props = BlockBehaviour.Properties.of().sound(SoundType.STONE)
+            BlockBehaviour.Properties props = BlockBehaviour.Properties.of().sound(soundType)
                     .lightLevel(state -> lightLevel).noTerrainParticles();
             if (!solid) {
                 props = props.noOcclusion();
