@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/cube",
   "textures": {
-    "up": "box3mod:block/P_top_0",
-    "down": "box3mod:block/P_bottom_0",
-    "north": "box3mod:block/P_front_0",
-    "south": "box3mod:block/P_back_0",
-    "west": "box3mod:block/P_left_0",
-    "east": "box3mod:block/P_right_0"
+    "up": "box3mod:block/p_top_0",
+    "down": "box3mod:block/p_bottom_0",
+    "north": "box3mod:block/p_front_0",
+    "south": "box3mod:block/p_back_0",
+    "west": "box3mod:block/p_left_0",
+    "east": "box3mod:block/p_right_0"
   }
 }

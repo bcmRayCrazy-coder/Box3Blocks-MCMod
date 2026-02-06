@@ -14,6 +14,35 @@ TEXTURES_DIR = BASE_DIR / "assets" / MOD_ID / "textures" / "block"
 FACES = ["top", "bottom", "front", "back", "left", "right"]
 
 
+def normalize_texture_filenames_to_lowercase():
+    files = sorted(TEXTURES_DIR.glob("*.png"))
+    if not files:
+        return
+
+    lower_to_paths = {}
+    for p in files:
+        lower_to_paths.setdefault(p.name.lower(), []).append(p)
+
+    collisions = {k: v for k, v in lower_to_paths.items() if len(v) > 1}
+    if collisions:
+        print("⚠️  发现小写重名贴图文件，已跳过重命名这些文件:")
+        for lower_name, paths in sorted(collisions.items()):
+            print(f"  - {lower_name}: {', '.join(x.name for x in paths)}")
+
+    for p in files:
+        lower_name = p.name.lower()
+        if lower_name == p.name:
+            continue
+        if lower_name in collisions:
+            continue
+
+        target = p.with_name(lower_name)
+        if target.exists():
+            print(f"⚠️  目标文件已存在，跳过重命名: {p.name} -> {target.name}")
+            continue
+        p.rename(target)
+
+
 def scan_texture_parts():
     """扫描贴图目录，提取所有方块的基础名称（texture_part）。"""
     texture_parts = set()
@@ -72,6 +101,7 @@ def generate_item_model(texture_part):
 
 def main():
     """脚本入口：扫描贴图目录并为每个方块生成所有 JSON 文件。"""
+    normalize_texture_filenames_to_lowercase()
     texture_parts = scan_texture_parts()
     print(f"发现 {len(texture_parts)} 个方块: {', '.join(texture_parts)}")
     

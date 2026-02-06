@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "box3mod:block/voxel_G"
+      "model": "box3mod:block/voxel_g"
     }
   }
 }

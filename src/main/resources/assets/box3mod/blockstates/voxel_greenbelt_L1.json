@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "box3mod:block/voxel_greenbelt_L1"
+      "model": "box3mod:block/voxel_greenbelt_l1"
     }
   }
 }
