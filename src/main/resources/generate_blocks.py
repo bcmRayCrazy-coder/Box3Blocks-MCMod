@@ -99,11 +99,24 @@ def generate_item_model(texture_part):
     }
 
 
+def pretty_display_name(texture_part: str) -> str:
+    tokens = [t for t in texture_part.split("_") if t]
+    pretty_tokens = []
+    for t in tokens:
+        if t.isalpha():
+            pretty_tokens.append(t[:1].upper() + t[1:])
+        else:
+            pretty_tokens.append(t)
+    return " ".join(pretty_tokens)
+
+
 def main():
     """脚本入口：扫描贴图目录并为每个方块生成所有 JSON 文件。"""
     normalize_texture_filenames_to_lowercase()
     texture_parts = scan_texture_parts()
     print(f"发现 {len(texture_parts)} 个方块: {', '.join(texture_parts)}")
+
+    lang = {}
     
     for texture_part in texture_parts:
         # 检查六个面贴图是否都存在
@@ -114,6 +127,8 @@ def main():
         
         # 生成三种 JSON 文件
         block_name = f"voxel_{texture_part}"
+
+        lang[f"block.{MOD_ID}.{block_name}"] = pretty_display_name(texture_part)
 
         configs = [
             (BASE_DIR / "assets" / MOD_ID / "blockstates" / f"{block_name}.json",
@@ -130,6 +145,12 @@ def main():
                 json.dump(data, f, indent=2)
         
         print(f"✅ Generated: {block_name}")
+
+    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    lang_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(lang_path, "w", encoding="utf-8") as f:
+        json.dump(lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+    print(f"✅ Generated: lang/en_us.json ({len(lang)} entries)")
 
 
 if __name__ == "__main__":
