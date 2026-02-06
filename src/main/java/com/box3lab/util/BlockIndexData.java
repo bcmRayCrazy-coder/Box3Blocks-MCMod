@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 import java.util.Set;
 
 public final class BlockIndexData {
@@ -30,6 +31,7 @@ public final class BlockIndexData {
     public final int[] ids;
     public final String[] names;
     public final int[] emissive;
+    public final Map<String, String> categoryByName;
     public final Set<Integer> notSolidIds;
     public final Map<Integer, FluidInfo> fluidsById;
 
@@ -40,12 +42,14 @@ public final class BlockIndexData {
             int[] ids,
             String[] names,
             int[] emissive,
+            Map<String, String> categoryByName,
             Set<Integer> notSolidIds,
             Map<Integer, FluidInfo> fluidsById
     ) {
         this.ids = ids;
         this.names = names;
         this.emissive = emissive;
+        this.categoryByName = categoryByName;
         this.notSolidIds = notSolidIds;
         this.fluidsById = fluidsById;
 
@@ -93,6 +97,7 @@ public final class BlockIndexData {
             final String name;
             final int id;
             final int emissive;
+            final String category;
             final boolean transparent;
             final boolean fluid;
             final int mass;
@@ -100,10 +105,11 @@ public final class BlockIndexData {
             final int fluidG;
             final int fluidB;
 
-            Entry(String name, int id, int emissive, boolean transparent, boolean fluid, int mass, int fluidR, int fluidG, int fluidB) {
+            Entry(String name, int id, int emissive, String category, boolean transparent, boolean fluid, int mass, int fluidR, int fluidG, int fluidB) {
                 this.name = name;
                 this.id = id;
                 this.emissive = emissive;
+                this.category = category;
                 this.transparent = transparent;
                 this.fluid = fluid;
                 this.mass = mass;
@@ -119,6 +125,7 @@ public final class BlockIndexData {
             JsonObject obj = e.getValue().getAsJsonObject();
 
             int id = obj.has("id") ? obj.get("id").getAsInt() : -1;
+            String category = obj.has("category") ? obj.get("category").getAsString() : "";
             boolean transparent = obj.has("transparent") && obj.get("transparent").getAsBoolean();
             boolean fluid = obj.has("fluid") && obj.get("fluid").getAsBoolean();
             int mass = obj.has("mass") ? obj.get("mass").getAsInt() : 0;
@@ -140,7 +147,7 @@ public final class BlockIndexData {
             }
 
             if (id >= 0) {
-                entries.add(new Entry(name, id, emissivePacked, transparent, fluid, mass, fr, fg, fb));
+                entries.add(new Entry(name, id, emissivePacked, category, transparent, fluid, mass, fr, fg, fb));
             }
         }
 
@@ -149,6 +156,7 @@ public final class BlockIndexData {
         int[] ids = new int[entries.size()];
         String[] names = new String[entries.size()];
         int[] emissive = new int[entries.size()];
+        Map<String, String> categoryByName = new HashMap<>(entries.size() * 2);
 
         Set<Integer> notSolidSet = new HashSet<>();
         Map<Integer, FluidInfo> fluidsById = new HashMap<>();
@@ -158,6 +166,7 @@ public final class BlockIndexData {
             ids[i] = en.id;
             names[i] = en.name;
             emissive[i] = en.emissive;
+            categoryByName.put(en.name.toLowerCase(Locale.ROOT), en.category == null ? "" : en.category);
 
             if (en.transparent || en.fluid) {
                 notSolidSet.add(en.id);
@@ -169,6 +178,6 @@ public final class BlockIndexData {
             }
         }
 
-        return new BlockIndexData(ids, names, emissive, notSolidSet, fluidsById);
+        return new BlockIndexData(ids, names, emissive, categoryByName, notSolidSet, fluidsById);
     }
 }

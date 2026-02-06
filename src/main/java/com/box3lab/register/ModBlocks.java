@@ -4,25 +4,94 @@ import com.box3lab.Box3Mod;
 import com.box3lab.block.VoxelBlock;
 import com.box3lab.util.BlockIndexData;
 import com.box3lab.util.BlockIndexUtil;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class ModBlocks {
     public static final Map<String, Block> VOXEL_BLOCKS = new HashMap<>();
+
+    private static String sanitizeCategoryPath(String category) {
+        if (category == null || category.isBlank()) {
+            return "";
+        }
+        String lower = category.toLowerCase(Locale.ROOT);
+        return lower.replaceAll("[^a-z0-9_\\-]+", "_");
+    }
+
+    private static ItemStack defaultIcon() {
+        Block iconBlock = VOXEL_BLOCKS.get("voxel_stone");
+        if (iconBlock == null && !VOXEL_BLOCKS.isEmpty()) {
+            iconBlock = VOXEL_BLOCKS.values().iterator().next();
+        }
+        return iconBlock == null ? new ItemStack(Items.STONE) : new ItemStack(iconBlock);
+    }
+
+    private static void registerCreativeTabs(BlockIndexData data) {
+        Map<String, List<String>> categoryToRegistryNames = new HashMap<>();
+        for (String rn : VOXEL_BLOCKS.keySet()) {
+            String voxelName = rn.startsWith("voxel_") ? rn.substring("voxel_".length()) : rn;
+            String category = data.categoryByName.getOrDefault(voxelName, "");
+            String categoryPath = sanitizeCategoryPath(category);
+            if (categoryPath != null && !categoryPath.isBlank()) {
+                categoryToRegistryNames.computeIfAbsent(categoryPath, k -> new ArrayList<>()).add(rn);
+            }
+        }
+
+        List<String> categories = new ArrayList<>(categoryToRegistryNames.keySet());
+        categories.sort(Comparator.naturalOrder());
+
+        for (String categoryPath : categories) {
+            List<String> registryNames = categoryToRegistryNames.get(categoryPath);
+            if (registryNames == null || registryNames.isEmpty()) {
+                continue;
+            }
+            registryNames.sort(Comparator.naturalOrder());
+
+            Block categoryIconBlock = VOXEL_BLOCKS.get(registryNames.get(0));
+
+            ResourceKey<CreativeModeTab> key = ResourceKey.create(
+                    BuiltInRegistries.CREATIVE_MODE_TAB.key(),
+                    Identifier.fromNamespaceAndPath(Box3Mod.MOD_ID, "creative_tab_" + categoryPath)
+            );
+            CreativeModeTab tab = FabricItemGroup.builder()
+                    .icon(() -> categoryIconBlock == null ? defaultIcon() : new ItemStack(categoryIconBlock))
+                    .title(Component.translatable("itemGroup." + Box3Mod.MOD_ID + "." + categoryPath))
+                    .displayItems((params, output) -> {
+                        for (String rn : registryNames) {
+                            Block b = VOXEL_BLOCKS.get(rn);
+                            if (b != null) {
+                                output.accept(b.asItem());
+                            }
+                        }
+                    })
+                    .build();
+
+            Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, tab);
+        }
+    }
+
 
     private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         // Create a registry key for the block
@@ -83,11 +152,7 @@ public class ModBlocks {
             VOXEL_BLOCKS.put(registryName, block);
         }
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register((itemGroup) -> {
-            for (Block block : VOXEL_BLOCKS.values()) {
-                itemGroup.accept(block.asItem());
-            }
-        });
+        registerCreativeTabs(data);
     }
 
 }
