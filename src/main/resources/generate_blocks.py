@@ -74,9 +74,13 @@ def check_all_faces_exist(texture_part):
 
 def generate_blockstate(texture_part):
     """生成指定方块的 blockstate JSON 数据结构。"""
+    # 带水平朝向的方块状态，配合 Java 里的 HORIZONTAL_FACING 使用
     return {
         "variants": {
-            "": {"model": f"{MOD_ID}:block/voxel_{texture_part}"}
+            "facing=north": {"model": f"{MOD_ID}:block/voxel_{texture_part}"},
+            "facing=east":  {"model": f"{MOD_ID}:block/voxel_{texture_part}", "y": 90},
+            "facing=south": {"model": f"{MOD_ID}:block/voxel_{texture_part}", "y": 180},
+            "facing=west":  {"model": f"{MOD_ID}:block/voxel_{texture_part}", "y": 270}
         }
     }
 
@@ -153,10 +157,10 @@ def main():
         
         print(f"✅ Generated: {block_name}")
 
-    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
-    lang_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(lang_path, "w", encoding="utf-8") as f:
-        json.dump(lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+    # lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    # lang_path.parent.mkdir(parents=True, exist_ok=True)
+    # with open(lang_path, "w", encoding="utf-8") as f:
+    #     json.dump(lang, f, ensure_ascii=False, indent=2, sort_keys=True)
     print(f"✅ Generated: lang/en_us.json ({len(lang)} entries)")
 
 

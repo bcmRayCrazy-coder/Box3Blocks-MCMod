@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "box3mod:block/voxel_medium_violet_red"
+    },
+    "facing=east": {
+      "model": "box3mod:block/voxel_medium_violet_red",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "box3mod:block/voxel_medium_violet_red",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "box3mod:block/voxel_medium_violet_red",
+      "y": 270
     }
   }
 }

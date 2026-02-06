@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=north": {
       "model": "box3mod:block/voxel_dark_salmon"
+    },
+    "facing=east": {
+      "model": "box3mod:block/voxel_dark_salmon",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "box3mod:block/voxel_dark_salmon",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "box3mod:block/voxel_dark_salmon",
+      "y": 270
     }
   }
 }

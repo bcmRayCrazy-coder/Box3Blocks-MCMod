@@ -3,8 +3,8 @@ package com.box3lab;
 import com.box3lab.register.ModBlocks;
 import net.fabricmc.api.ModInitializer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+// import org.slf4j.Logger;
+// import org.slf4j.LoggerFactory;
 
 public class Box3Mod implements ModInitializer {
 	public static final String MOD_ID = "box3mod";
