@@ -2,6 +2,8 @@ package com.box3lab.register;
 
 import com.box3lab.Box3Mod;
 import com.box3lab.block.VoxelBlock;
+import com.box3lab.block.ConveyorBlock;
+import com.box3lab.block.BouncePadBlock;
 import com.box3lab.util.BlockIndexData;
 import com.box3lab.util.BlockIndexUtil;
 
@@ -143,12 +145,19 @@ public class ModBlocks {
 
             boolean solid = BlockIndexUtil.isSolid(id);
             BlockBehaviour.Properties props = BlockBehaviour.Properties.of().sound(SoundType.STONE)
-                    .lightLevel(state -> lightLevel);
+                    .lightLevel(state -> lightLevel).noTerrainParticles();
             if (!solid) {
                 props = props.noOcclusion();
             }
 
-            Block block = register(registryName, VoxelBlock::new, props, true);
+            Block block;
+            if ("conveyor".equalsIgnoreCase(voxelName)) {
+                block = register(registryName, ConveyorBlock::new, props, true);
+            } else if ("bounce_pad".equalsIgnoreCase(voxelName)) {
+                block = register(registryName, BouncePadBlock::new, props, true);
+            } else {
+                block = register(registryName, VoxelBlock::new, props, true);
+            }
             VOXEL_BLOCKS.put(registryName, block);
         }
 
