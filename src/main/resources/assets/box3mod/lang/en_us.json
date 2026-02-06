@@ -370,5 +370,14 @@
   "block.box3mod.voxel_yellow_green": "Yellow Green",
   "block.box3mod.voxel_yellow_light": "Yellow Light",
   "block.box3mod.voxel_z": "Z",
-  "block.box3mod.voxel_zero": "Zero"
+  "block.box3mod.voxel_zero": "Zero",
+  "itemGroup.box3mod.letter": "Letter",
+  "itemGroup.box3mod.number": "Number",
+  "itemGroup.box3mod.symbol": "Symbol",
+  "itemGroup.box3mod.color": "Color",
+  "itemGroup.box3mod.element": "Element",
+  "itemGroup.box3mod.food": "Food",
+  "itemGroup.box3mod.light": "Light",
+  "itemGroup.box3mod.nature": "Nature",
+  "itemGroup.box3mod.structure": "Structure"
 }
