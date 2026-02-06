@@ -6,6 +6,7 @@
     "north": "box3mod:block/candy_front",
     "south": "box3mod:block/candy_back",
     "west": "box3mod:block/candy_left",
-    "east": "box3mod:block/candy_right"
+    "east": "box3mod:block/candy_right",
+    "particle": "box3mod:block/candy_bottom"
   }
 }

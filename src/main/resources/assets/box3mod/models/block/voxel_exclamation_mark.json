@@ -6,6 +6,7 @@
     "north": "box3mod:block/exclamation_mark_front",
     "south": "box3mod:block/exclamation_mark_back",
     "west": "box3mod:block/exclamation_mark_left",
-    "east": "box3mod:block/exclamation_mark_right"
+    "east": "box3mod:block/exclamation_mark_right",
+    "particle": "box3mod:block/exclamation_mark_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/roof_yellow_front",
     "south": "box3mod:block/roof_yellow_back",
     "west": "box3mod:block/roof_yellow_left",
-    "east": "box3mod:block/roof_yellow_right"
+    "east": "box3mod:block/roof_yellow_right",
+    "particle": "box3mod:block/roof_yellow_bottom"
   }
 }

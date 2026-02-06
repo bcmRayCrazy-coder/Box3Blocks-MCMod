@@ -6,6 +6,7 @@
     "north": "box3mod:block/light_dirt_front",
     "south": "box3mod:block/light_dirt_back",
     "west": "box3mod:block/light_dirt_left",
-    "east": "box3mod:block/light_dirt_right"
+    "east": "box3mod:block/light_dirt_right",
+    "particle": "box3mod:block/light_dirt_bottom"
   }
 }

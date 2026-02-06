@@ -6,6 +6,7 @@
     "north": "box3mod:block/equal_front",
     "south": "box3mod:block/equal_back",
     "west": "box3mod:block/equal_left",
-    "east": "box3mod:block/equal_right"
+    "east": "box3mod:block/equal_right",
+    "particle": "box3mod:block/equal_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/tilde_front",
     "south": "box3mod:block/tilde_back",
     "west": "box3mod:block/tilde_left",
-    "east": "box3mod:block/tilde_right"
+    "east": "box3mod:block/tilde_right",
+    "particle": "box3mod:block/tilde_bottom"
   }
 }

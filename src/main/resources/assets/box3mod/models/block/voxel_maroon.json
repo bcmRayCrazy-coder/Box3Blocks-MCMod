@@ -6,6 +6,7 @@
     "north": "box3mod:block/maroon_front",
     "south": "box3mod:block/maroon_back",
     "west": "box3mod:block/maroon_left",
-    "east": "box3mod:block/maroon_right"
+    "east": "box3mod:block/maroon_right",
+    "particle": "box3mod:block/maroon_bottom"
   }
 }

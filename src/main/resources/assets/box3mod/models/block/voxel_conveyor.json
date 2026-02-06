@@ -6,6 +6,7 @@
     "north": "box3mod:block/conveyor_front",
     "south": "box3mod:block/conveyor_back",
     "west": "box3mod:block/conveyor_left",
-    "east": "box3mod:block/conveyor_right"
+    "east": "box3mod:block/conveyor_right",
+    "particle": "box3mod:block/conveyor_bottom"
   }
 }

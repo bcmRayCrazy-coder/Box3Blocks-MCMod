@@ -6,6 +6,7 @@
     "north": "box3mod:block/sienna_front",
     "south": "box3mod:block/sienna_back",
     "west": "box3mod:block/sienna_left",
-    "east": "box3mod:block/sienna_right"
+    "east": "box3mod:block/sienna_right",
+    "particle": "box3mod:block/sienna_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/bounce_pad_front",
     "south": "box3mod:block/bounce_pad_back",
     "west": "box3mod:block/bounce_pad_left",
-    "east": "box3mod:block/bounce_pad_right"
+    "east": "box3mod:block/bounce_pad_right",
+    "particle": "box3mod:block/bounce_pad_bottom"
   }
 }

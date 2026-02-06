@@ -6,6 +6,7 @@
     "north": "box3mod:block/backslash_front",
     "south": "box3mod:block/backslash_back",
     "west": "box3mod:block/backslash_left",
-    "east": "box3mod:block/backslash_right"
+    "east": "box3mod:block/backslash_right",
+    "particle": "box3mod:block/backslash_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/lab_wire_front",
     "south": "box3mod:block/lab_wire_back",
     "west": "box3mod:block/lab_wire_left",
-    "east": "box3mod:block/lab_wire_right"
+    "east": "box3mod:block/lab_wire_right",
+    "particle": "box3mod:block/lab_wire_bottom"
   }
 }

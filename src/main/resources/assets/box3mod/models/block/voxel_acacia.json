@@ -6,6 +6,7 @@
     "north": "box3mod:block/acacia_front",
     "south": "box3mod:block/acacia_back",
     "west": "box3mod:block/acacia_left",
-    "east": "box3mod:block/acacia_right"
+    "east": "box3mod:block/acacia_right",
+    "particle": "box3mod:block/acacia_bottom"
   }
 }

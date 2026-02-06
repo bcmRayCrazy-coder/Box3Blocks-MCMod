@@ -6,6 +6,7 @@
     "north": "box3mod:block/light_purple_grass__front",
     "south": "box3mod:block/light_purple_grass__back",
     "west": "box3mod:block/light_purple_grass__left",
-    "east": "box3mod:block/light_purple_grass__right"
+    "east": "box3mod:block/light_purple_grass__right",
+    "particle": "box3mod:block/light_purple_grass__bottom"
   }
 }

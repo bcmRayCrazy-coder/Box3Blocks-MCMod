@@ -6,6 +6,7 @@
     "north": "box3mod:block/semicolon_front",
     "south": "box3mod:block/semicolon_back",
     "west": "box3mod:block/semicolon_left",
-    "east": "box3mod:block/semicolon_right"
+    "east": "box3mod:block/semicolon_right",
+    "particle": "box3mod:block/semicolon_bottom"
   }
 }

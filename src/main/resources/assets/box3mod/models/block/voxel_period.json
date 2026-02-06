@@ -6,6 +6,7 @@
     "north": "box3mod:block/period_front",
     "south": "box3mod:block/period_back",
     "west": "box3mod:block/period_left",
-    "east": "box3mod:block/period_right"
+    "east": "box3mod:block/period_right",
+    "particle": "box3mod:block/period_bottom"
   }
 }

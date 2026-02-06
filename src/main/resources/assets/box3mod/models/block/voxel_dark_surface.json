@@ -6,6 +6,7 @@
     "north": "box3mod:block/dark_surface_front",
     "south": "box3mod:block/dark_surface_back",
     "west": "box3mod:block/dark_surface_left",
-    "east": "box3mod:block/dark_surface_right"
+    "east": "box3mod:block/dark_surface_right",
+    "particle": "box3mod:block/dark_surface_bottom"
   }
 }

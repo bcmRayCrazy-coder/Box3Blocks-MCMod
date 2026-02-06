@@ -6,6 +6,7 @@
     "north": "box3mod:block/indigo_light_front",
     "south": "box3mod:block/indigo_light_back",
     "west": "box3mod:block/indigo_light_left",
-    "east": "box3mod:block/indigo_light_right"
+    "east": "box3mod:block/indigo_light_right",
+    "particle": "box3mod:block/indigo_light_bottom"
   }
 }

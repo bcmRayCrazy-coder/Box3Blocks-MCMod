@@ -6,6 +6,7 @@
     "north": "box3mod:block/five_front",
     "south": "box3mod:block/five_back",
     "west": "box3mod:block/five_left",
-    "east": "box3mod:block/five_right"
+    "east": "box3mod:block/five_right",
+    "particle": "box3mod:block/five_bottom"
   }
 }

@@ -95,7 +95,8 @@ def generate_block_model(texture_part):
             "north": f"{MOD_ID}:block/{texture_part}_front",
             "south": f"{MOD_ID}:block/{texture_part}_back",
             "west":  f"{MOD_ID}:block/{texture_part}_left",
-            "east":  f"{MOD_ID}:block/{texture_part}_right"
+            "east":  f"{MOD_ID}:block/{texture_part}_right",
+            "particle": f"{MOD_ID}:block/{texture_part}_bottom"
         }
     }
 
