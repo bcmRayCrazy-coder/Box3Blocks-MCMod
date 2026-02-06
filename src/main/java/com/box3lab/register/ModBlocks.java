@@ -1,6 +1,9 @@
 package com.box3lab.register;
 
 import com.box3lab.Box3Mod;
+import com.box3lab.block.VoxelBlock;
+import com.box3lab.util.BlockIndexStatic;
+import com.box3lab.util.BlockIndexUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -14,9 +17,13 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 public class ModBlocks {
+    public static final Map<String, Block> VOXEL_BLOCKS = new HashMap<>();
+
     private static Block register(String name, Function<BlockBehaviour.Properties, Block> blockFactory, BlockBehaviour.Properties settings, boolean shouldRegisterItem) {
         // Create a registry key for the block
         ResourceKey<Block> blockKey = keyOfBlock(name);
@@ -46,17 +53,39 @@ public class ModBlocks {
     }
     public static void initialize() {
 
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register((itemGroup) -> {
-            itemGroup.accept(ModBlocks.CONDENSED_DIRT.asItem());
-        });
+        for (int i = 0; i < BlockIndexStatic.IDS.length; i++) {
+            int id = BlockIndexStatic.IDS[i];
+            if (id == 0) {
+                continue;
+            }
+            if (BlockIndexUtil.isFluid(id)) {
+                continue;
+            }
 
+            String voxelName = BlockIndexStatic.NAMES[i];
+            String texturePart = voxelName.toLowerCase(java.util.Locale.ROOT);
+            String registryName = "voxel_" + texturePart;
+
+            int emissive = BlockIndexUtil.blockEmissiveLight(id);
+            int rawLight = emissive == 0 ? 0 : (int) Math.round(15.0 * (0.8 + 0.2 * emissive / 4095.0));
+            final int lightLevel = Math.max(0, Math.min(15, rawLight));
+
+            boolean solid = BlockIndexUtil.isSolid(id);
+            BlockBehaviour.Properties props = BlockBehaviour.Properties.of().sound(SoundType.STONE)
+                    .lightLevel(state -> lightLevel);
+            if (!solid) {
+                props = props.noOcclusion();
+            }
+
+            Block block = register(registryName, VoxelBlock::new, props, true);
+            VOXEL_BLOCKS.put(registryName, block);
+        }
+
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.BUILDING_BLOCKS).register((itemGroup) -> {
+            for (Block block : VOXEL_BLOCKS.values()) {
+                itemGroup.accept(block.asItem());
+            }
+        });
     }
 
-
-    public static final Block CONDENSED_DIRT = register(
-            "condensed_dirt",
-            Block::new,
-            BlockBehaviour.Properties.of().sound(SoundType.GRASS),
-            true
-    );
 }

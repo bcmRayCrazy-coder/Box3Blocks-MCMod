@@ -40,7 +40,7 @@ def generate_blockstate(texture_part):
     """生成指定方块的 blockstate JSON 数据结构。"""
     return {
         "variants": {
-            "": {"model": f"{MOD_ID}:block/{texture_part}"}
+            "": {"model": f"{MOD_ID}:block/voxel_{texture_part}"}
         }
     }
 
@@ -65,7 +65,7 @@ def generate_item_model(texture_part):
     return {
         "model": {
             "type": "minecraft:model",
-            "model": f"{MOD_ID}:block/{texture_part}"
+            "model": f"{MOD_ID}:block/voxel_{texture_part}"
         }
     }
 
@@ -83,12 +83,14 @@ def main():
             continue
         
         # 生成三种 JSON 文件
+        block_name = f"voxel_{texture_part}"
+
         configs = [
-            (BASE_DIR / "assets" / MOD_ID / "blockstates" / f"{texture_part}.json",
+            (BASE_DIR / "assets" / MOD_ID / "blockstates" / f"{block_name}.json",
              generate_blockstate(texture_part)),
-            (BASE_DIR / "assets" / MOD_ID / "models" / "block" / f"{texture_part}.json",
+            (BASE_DIR / "assets" / MOD_ID / "models" / "block" / f"{block_name}.json",
              generate_block_model(texture_part)),
-            (BASE_DIR / "assets" / MOD_ID / "items" / f"{texture_part}.json",
+            (BASE_DIR / "assets" / MOD_ID / "items" / f"{block_name}.json",
              generate_item_model(texture_part)),
         ]
         
@@ -97,7 +99,7 @@ def main():
             with open(path, "w") as f:
                 json.dump(data, f, indent=2)
         
-        print(f"✅ Generated: {texture_part}")
+        print(f"✅ Generated: {block_name}")
 
 
 if __name__ == "__main__":
