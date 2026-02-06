@@ -6,6 +6,7 @@
     "north": "box3mod:block/biscuit_front",
     "south": "box3mod:block/biscuit_back",
     "west": "box3mod:block/biscuit_left",
-    "east": "box3mod:block/biscuit_right"
+    "east": "box3mod:block/biscuit_right",
+    "particle": "box3mod:block/biscuit_bottom"
   }
 }

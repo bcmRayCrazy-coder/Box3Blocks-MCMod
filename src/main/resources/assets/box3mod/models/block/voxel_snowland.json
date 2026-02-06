@@ -6,6 +6,7 @@
     "north": "box3mod:block/snowland_front",
     "south": "box3mod:block/snowland_back",
     "west": "box3mod:block/snowland_left",
-    "east": "box3mod:block/snowland_right"
+    "east": "box3mod:block/snowland_right",
+    "particle": "box3mod:block/snowland_bottom"
   }
 }

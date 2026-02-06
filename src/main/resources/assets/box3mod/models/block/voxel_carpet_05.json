@@ -6,6 +6,7 @@
     "north": "box3mod:block/carpet_05_front",
     "south": "box3mod:block/carpet_05_back",
     "west": "box3mod:block/carpet_05_left",
-    "east": "box3mod:block/carpet_05_right"
+    "east": "box3mod:block/carpet_05_right",
+    "particle": "box3mod:block/carpet_05_bottom"
   }
 }

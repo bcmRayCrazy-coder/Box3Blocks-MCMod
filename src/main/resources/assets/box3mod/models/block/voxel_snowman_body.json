@@ -6,6 +6,7 @@
     "north": "box3mod:block/snowman_body_front",
     "south": "box3mod:block/snowman_body_back",
     "west": "box3mod:block/snowman_body_left",
-    "east": "box3mod:block/snowman_body_right"
+    "east": "box3mod:block/snowman_body_right",
+    "particle": "box3mod:block/snowman_body_bottom"
   }
 }

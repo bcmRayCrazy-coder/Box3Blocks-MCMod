@@ -6,6 +6,7 @@
     "north": "box3mod:block/percent_front",
     "south": "box3mod:block/percent_back",
     "west": "box3mod:block/percent_left",
-    "east": "box3mod:block/percent_right"
+    "east": "box3mod:block/percent_right",
+    "particle": "box3mod:block/percent_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/television_front",
     "south": "box3mod:block/television_back",
     "west": "box3mod:block/television_left",
-    "east": "box3mod:block/television_right"
+    "east": "box3mod:block/television_right",
+    "particle": "box3mod:block/television_bottom"
   }
 }

@@ -6,6 +6,7 @@
     "north": "box3mod:block/peru_front",
     "south": "box3mod:block/peru_back",
     "west": "box3mod:block/peru_left",
-    "east": "box3mod:block/peru_right"
+    "east": "box3mod:block/peru_right",
+    "particle": "box3mod:block/peru_bottom"
   }
 }

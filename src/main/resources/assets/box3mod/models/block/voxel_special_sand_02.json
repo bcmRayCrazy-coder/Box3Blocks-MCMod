@@ -6,6 +6,7 @@
     "north": "box3mod:block/special_sand_02_front",
     "south": "box3mod:block/special_sand_02_back",
     "west": "box3mod:block/special_sand_02_left",
-    "east": "box3mod:block/special_sand_02_right"
+    "east": "box3mod:block/special_sand_02_right",
+    "particle": "box3mod:block/special_sand_02_bottom"
   }
 }

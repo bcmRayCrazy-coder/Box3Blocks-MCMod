@@ -6,6 +6,7 @@
     "north": "box3mod:block/light_volcanic_rock_front",
     "south": "box3mod:block/light_volcanic_rock_back",
     "west": "box3mod:block/light_volcanic_rock_left",
-    "east": "box3mod:block/light_volcanic_rock_right"
+    "east": "box3mod:block/light_volcanic_rock_right",
+    "particle": "box3mod:block/light_volcanic_rock_bottom"
   }
 }

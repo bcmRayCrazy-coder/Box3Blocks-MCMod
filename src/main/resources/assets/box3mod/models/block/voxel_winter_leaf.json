@@ -6,6 +6,7 @@
     "north": "box3mod:block/winter_leaf_front",
     "south": "box3mod:block/winter_leaf_back",
     "west": "box3mod:block/winter_leaf_left",
-    "east": "box3mod:block/winter_leaf_right"
+    "east": "box3mod:block/winter_leaf_right",
+    "particle": "box3mod:block/winter_leaf_bottom"
   }
 }

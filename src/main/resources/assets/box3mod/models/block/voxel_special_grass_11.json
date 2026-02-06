@@ -6,6 +6,7 @@
     "north": "box3mod:block/special_grass_11_front",
     "south": "box3mod:block/special_grass_11_back",
     "west": "box3mod:block/special_grass_11_left",
-    "east": "box3mod:block/special_grass_11_right"
+    "east": "box3mod:block/special_grass_11_right",
+    "particle": "box3mod:block/special_grass_11_bottom"
   }
 }

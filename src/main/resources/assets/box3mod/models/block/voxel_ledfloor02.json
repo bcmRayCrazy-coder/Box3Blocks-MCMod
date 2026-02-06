@@ -6,6 +6,7 @@
     "north": "box3mod:block/ledfloor02_front",
     "south": "box3mod:block/ledfloor02_back",
     "west": "box3mod:block/ledfloor02_left",
-    "east": "box3mod:block/ledfloor02_right"
+    "east": "box3mod:block/ledfloor02_right",
+    "particle": "box3mod:block/ledfloor02_bottom"
   }
 }

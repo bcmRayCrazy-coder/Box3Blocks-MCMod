@@ -371,13 +371,13 @@
   "block.box3mod.voxel_yellow_light": "黄灯",
   "block.box3mod.voxel_z": "Z",
   "block.box3mod.voxel_zero": "零",
-  "itemGroup.box3mod.letter": "字母",
-  "itemGroup.box3mod.number": "数字",
-  "itemGroup.box3mod.symbol": "符号",
-  "itemGroup.box3mod.color": "颜色",
-  "itemGroup.box3mod.element": "元素",
-  "itemGroup.box3mod.food": "食物",
-  "itemGroup.box3mod.light": "灯光",
-  "itemGroup.box3mod.nature": "自然",
-  "itemGroup.box3mod.structure": "建筑"
+  "itemGroup.box3mod.letter": "Box3:字母",
+  "itemGroup.box3mod.number": "Box3:数字",
+  "itemGroup.box3mod.symbol": "Box3:符号",
+  "itemGroup.box3mod.color": "Box3:颜色",
+  "itemGroup.box3mod.element": "Box3:元素",
+  "itemGroup.box3mod.food": "Box3:食物",
+  "itemGroup.box3mod.light": "Box3:灯光",
+  "itemGroup.box3mod.nature": "Box3:自然",
+  "itemGroup.box3mod.structure": "Box3:建筑"
 }

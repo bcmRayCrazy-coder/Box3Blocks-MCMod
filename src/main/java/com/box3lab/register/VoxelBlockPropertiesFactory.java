@@ -10,8 +10,7 @@ public final class VoxelBlockPropertiesFactory {
     public static BlockBehaviour.Properties create(boolean solid, SoundType soundType, int lightLevel) {
         BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
                 .sound(soundType)
-                .lightLevel(state -> lightLevel)
-                .noTerrainParticles();
+                .lightLevel(state -> lightLevel);
 
         if (!solid) {
             props = props.noOcclusion();

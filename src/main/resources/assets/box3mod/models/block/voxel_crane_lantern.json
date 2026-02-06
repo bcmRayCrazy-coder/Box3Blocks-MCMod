@@ -6,6 +6,7 @@
     "north": "box3mod:block/crane_lantern_front",
     "south": "box3mod:block/crane_lantern_back",
     "west": "box3mod:block/crane_lantern_left",
-    "east": "box3mod:block/crane_lantern_right"
+    "east": "box3mod:block/crane_lantern_right",
+    "particle": "box3mod:block/crane_lantern_bottom"
   }
 }

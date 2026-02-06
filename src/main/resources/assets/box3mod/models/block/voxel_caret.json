@@ -6,6 +6,7 @@
     "north": "box3mod:block/caret_front",
     "south": "box3mod:block/caret_back",
     "west": "box3mod:block/caret_left",
-    "east": "box3mod:block/caret_right"
+    "east": "box3mod:block/caret_right",
+    "particle": "box3mod:block/caret_bottom"
   }
 }

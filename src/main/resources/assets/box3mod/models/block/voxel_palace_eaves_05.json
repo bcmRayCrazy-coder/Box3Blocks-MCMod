@@ -6,6 +6,7 @@
     "north": "box3mod:block/palace_eaves_05_front",
     "south": "box3mod:block/palace_eaves_05_back",
     "west": "box3mod:block/palace_eaves_05_left",
-    "east": "box3mod:block/palace_eaves_05_right"
+    "east": "box3mod:block/palace_eaves_05_right",
+    "particle": "box3mod:block/palace_eaves_05_bottom"
   }
 }
