@@ -2,7 +2,7 @@ package com.box3lab.register;
 
 import com.box3lab.Box3Mod;
 import com.box3lab.block.VoxelBlock;
-import com.box3lab.util.BlockIndexStatic;
+import com.box3lab.util.BlockIndexData;
 import com.box3lab.util.BlockIndexUtil;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.core.Registry;
@@ -53,8 +53,10 @@ public class ModBlocks {
     }
     public static void initialize() {
 
-        for (int i = 0; i < BlockIndexStatic.IDS.length; i++) {
-            int id = BlockIndexStatic.IDS[i];
+        BlockIndexData data = BlockIndexData.get();
+
+        for (int i = 0; i < data.ids.length; i++) {
+            int id = data.ids[i];
             if (id == 0) {
                 continue;
             }
@@ -62,7 +64,7 @@ public class ModBlocks {
                 continue;
             }
 
-            String voxelName = BlockIndexStatic.NAMES[i];
+            String voxelName = data.names[i];
             String texturePart = voxelName.toLowerCase(java.util.Locale.ROOT);
             String registryName = "voxel_" + texturePart;
 
