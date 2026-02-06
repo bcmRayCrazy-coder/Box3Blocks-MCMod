@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "box3mod:block/fan"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/light_volcanic_rock_top_0",
+    "down": "box3mod:block/light_volcanic_rock_bottom_0",
+    "north": "box3mod:block/light_volcanic_rock_front_0",
+    "south": "box3mod:block/light_volcanic_rock_back_0",
+    "west": "box3mod:block/light_volcanic_rock_left_0",
+    "east": "box3mod:block/light_volcanic_rock_right_0"
+  }
+}

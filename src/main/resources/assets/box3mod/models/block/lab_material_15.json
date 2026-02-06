@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "box3mod:block/lab_material_15_top_0",
+    "down": "box3mod:block/lab_material_15_bottom_0",
+    "north": "box3mod:block/lab_material_15_front_0",
+    "south": "box3mod:block/lab_material_15_back_0",
+    "west": "box3mod:block/lab_material_15_left_0",
+    "east": "box3mod:block/lab_material_15_right_0"
+  }
+}
