@@ -2,6 +2,7 @@ package com.box3lab;
 
 import com.box3lab.register.ModBlocks;
 import com.box3lab.util.BlockIndexUtil;
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;

@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.voxel;
 
 import java.util.HashMap;
 import java.util.Locale;

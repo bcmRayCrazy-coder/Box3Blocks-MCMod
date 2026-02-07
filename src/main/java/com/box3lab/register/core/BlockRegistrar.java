@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.core;
 
 import java.util.function.Function;
 

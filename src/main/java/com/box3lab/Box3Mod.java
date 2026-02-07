@@ -1,6 +1,7 @@
 package com.box3lab;
 
 import com.box3lab.register.ModBlocks;
+
 import net.fabricmc.api.ModInitializer;
 
 // import org.slf4j.Logger;

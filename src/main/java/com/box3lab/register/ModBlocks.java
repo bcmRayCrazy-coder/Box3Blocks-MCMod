@@ -31,25 +31,25 @@ public class ModBlocks {
             String registryName = "voxel_" + texturePart;
 
             String category = data.categoryByName.getOrDefault(texturePart, "");
-            SoundType soundType = CategorySoundTypes.soundTypeForCategory(category);
+            SoundType soundType = com.box3lab.register.sound.CategorySoundTypes.soundTypeForCategory(category);
 
             int emissive = BlockIndexUtil.blockEmissiveLight(id);
-            final int lightLevel = VoxelLightLevelMapper.lightLevelFromEmissivePacked(emissive);
+            final int lightLevel = com.box3lab.register.voxel.VoxelLightLevelMapper.lightLevelFromEmissivePacked(emissive);
 
             boolean solid = BlockIndexUtil.isSolid(id);
-            var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
+            var props = com.box3lab.register.voxel.VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
 
-            Block block = BlockRegistrar.register(
+            Block block = com.box3lab.register.core.BlockRegistrar.register(
                     Box3Mod.MOD_ID,
                     registryName,
-                    VoxelBlockFactories.factoryFor(texturePart),
+                    com.box3lab.register.voxel.VoxelBlockFactories.factoryFor(texturePart),
                     props,
                     true
             );
             VOXEL_BLOCKS.put(registryName, block);
         }
 
-        CreativeTabRegistrar.registerCreativeTabs(Box3Mod.MOD_ID, VOXEL_BLOCKS, data);
+        com.box3lab.register.creative.CreativeTabRegistrar.registerCreativeTabs(Box3Mod.MOD_ID, VOXEL_BLOCKS, data);
     }
 
 }
