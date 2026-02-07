@@ -45,13 +45,12 @@ public class ModBlocks {
             boolean solid = BlockIndexUtil.isSolid(id);
             var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
 
-            Block block =BlockRegistrar.register(
+            Block block = BlockRegistrar.register(
                     Box3Mod.MOD_ID,
                     registryName,
                     VoxelBlockFactories.factoryFor(texturePart),
                     props,
-                    true
-            );
+                    true);
             VOXEL_BLOCKS.put(registryName, block);
         }
 
