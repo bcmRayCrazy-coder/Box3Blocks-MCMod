@@ -19,6 +19,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.ItemLike;
 
 public final class CreativeTabRegistrar {
     private CreativeTabRegistrar() {
@@ -75,6 +76,15 @@ public final class CreativeTabRegistrar {
                             Block b = blocks.get(rn);
                             if (b != null) {
                                 output.accept(b.asItem());
+                            }
+                        }
+
+                        List<ItemLike> extras = CreativeTabExtras.extras().get(categoryPath);
+                        if (extras != null) {
+                            for (ItemLike extra : extras) {
+                                if (extra != null) {
+                                    output.accept(extra);
+                                }
                             }
                         }
                     })

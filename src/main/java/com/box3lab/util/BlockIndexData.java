@@ -141,9 +141,17 @@ public final class BlockIndexData {
 
             int fr = 0, fg = 0, fb = 0;
             if (obj.has("fluidColor") && obj.get("fluidColor").isJsonArray() && obj.getAsJsonArray("fluidColor").size() >= 3) {
-                fr = obj.getAsJsonArray("fluidColor").get(0).getAsInt();
-                fg = obj.getAsJsonArray("fluidColor").get(1).getAsInt();
-                fb = obj.getAsJsonArray("fluidColor").get(2).getAsInt();
+                double r = obj.getAsJsonArray("fluidColor").get(0).getAsDouble();
+                double g = obj.getAsJsonArray("fluidColor").get(1).getAsDouble();
+                double b = obj.getAsJsonArray("fluidColor").get(2).getAsDouble();
+
+                fr = (int) Math.round((r <= 1.0 ? r * 255.0 : r));
+                fg = (int) Math.round((g <= 1.0 ? g * 255.0 : g));
+                fb = (int) Math.round((b <= 1.0 ? b * 255.0 : b));
+
+                fr = Math.max(0, Math.min(255, fr));
+                fg = Math.max(0, Math.min(255, fg));
+                fb = Math.max(0, Math.min(255, fb));
             }
 
             if (id >= 0) {
