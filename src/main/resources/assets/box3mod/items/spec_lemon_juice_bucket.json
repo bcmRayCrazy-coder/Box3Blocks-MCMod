@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "box3mod:item/spec_lemon_juice_bucket"
+  "model": {
+    "type": "minecraft:model",
+    "model": "box3mod:item/spec_lemon_juice_bucket"
   }
 }

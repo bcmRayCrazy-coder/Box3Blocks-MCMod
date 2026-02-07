@@ -1,6 +1,5 @@
 {
-  "parent": "minecraft:block/cube",
   "textures": {
-    "particle": "box3mod:block/spec_orange_juice_block"
+    "particle": "minecraft:block/water_still"
   }
 }

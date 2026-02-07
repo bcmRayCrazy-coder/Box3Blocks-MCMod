@@ -122,11 +122,15 @@ def generate_fluid_blockstate(name):
 
 
 def generate_fluid_block_model(name):
-    """生成流体方块的模型 JSON（纯白 cube）。"""
+    """生成流体方块的模型 JSON。
+
+    对于这些体素流体，我们实际的渲染是通过 VoxelFluidRenderHandler
+    使用原版水的 still/flow 贴图完成的，方块模型本身只需提供粒子用的
+    贴图即可。
+    """
     return {
-        "parent": "minecraft:block/cube",
         "textures": {
-            "particle": f"{MOD_ID}:block/spec_{name}_block"
+            "particle": "minecraft:block/water_still",
         }
     }
 
@@ -147,6 +151,21 @@ def generate_fluid_bucket_model(name):
         "parent": "minecraft:item/generated",
         "textures": {
             "layer0": f"{MOD_ID}:item/spec_{name}_bucket"
+        }
+    }
+
+
+def generate_fluid_bucket_item_def(name):
+    """生成流体桶在 assets/<modid>/items/ 下的物品定义 JSON。
+
+    本模组的物品系统期望顶层有一个 "model" 字段，里面通过
+    type = "minecraft:model" 引用真正的模型资源。这里引用我们在
+    models/item/ 里生成的桶模型。
+    """
+    return {
+        "model": {
+            "type": "minecraft:model",
+            "model": f"{MOD_ID}:item/spec_{name}_bucket",
         }
     }
 
@@ -187,13 +206,19 @@ def generate_fluid_resources():
         with open(block_model_path, "w", encoding="utf-8") as f:
             json.dump(generate_fluid_block_model(name), f, indent=2)
 
-        # 3. item model (bucket)
+        # 3. item model (bucket) - 真正的渲染模型
         bucket_model_path = BASE_DIR / "assets" / MOD_ID / "models" / "item" / f"spec_{name}_bucket.json"
         bucket_model_path.parent.mkdir(parents=True, exist_ok=True)
         with open(bucket_model_path, "w", encoding="utf-8") as f:
             json.dump(generate_fluid_bucket_model(name), f, indent=2)
 
-        # 4. textures: bucket (纯色)
+        # 4. item definition (bucket) - 顶层 item 描述，指向上面的模型
+        bucket_item_def_path = BASE_DIR / "assets" / MOD_ID / "items" / f"spec_{name}_bucket.json"
+        bucket_item_def_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(bucket_item_def_path, "w", encoding="utf-8") as f:
+            json.dump(generate_fluid_bucket_item_def(name), f, indent=2)
+
+        # 5. textures: bucket (纯色)
         fluid_color = obj.get("fluidColor", [1, 1, 1])
         rgb = tuple(int(c * 255) if c <= 1 else int(c) for c in fluid_color[:3])
         bucket_tex_path = BASE_DIR / "assets" / MOD_ID / "textures" / "item" / f"spec_{name}_bucket.png"
