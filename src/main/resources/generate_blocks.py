@@ -1,6 +1,6 @@
 import json
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageDraw
 
 # 模组 ID，用于生成资源路径前缀
 MOD_ID = "box3mod"
@@ -171,8 +171,17 @@ def generate_fluid_bucket_item_def(name):
 
 
 def generate_solid_color_image(path, rgb):
-    """生成纯色 PNG 图片（16x16）。"""
+    """生成带简单水纹的 PNG 图片（16x16）。"""
     img = Image.new("RGB", (16, 16), rgb)
+
+    draw = ImageDraw.Draw(img)
+    darker = tuple(max(0, int(c * 0.8)) for c in rgb)
+
+    for y in range(0, 16, 4):
+        for x in range(16):
+            if (x + y // 2) % 2 == 0:
+                draw.point((x, y), fill=darker)
+
     path.parent.mkdir(parents=True, exist_ok=True)
     img.save(path)
 
@@ -190,6 +199,10 @@ def generate_fluid_resources():
     lang = {}
     for name, obj in data.items():
         if not obj.get("fluid", False):
+            continue
+
+        # air 只是一个占位流体，不需要对应的桶物品和资源
+        if name == "air":
             continue
 
         print(f"🧪 生成流体资源: {name}")

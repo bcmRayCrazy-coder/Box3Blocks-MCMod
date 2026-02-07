@@ -78,6 +78,10 @@ public final class ModFluids {
                 continue;
             }
 
+            if ("air".equals(name)) {
+                continue;
+            }
+
             String category = data.categoryByName.getOrDefault(name, "");
             String categoryPath = sanitizeCategoryPath(category);
 
