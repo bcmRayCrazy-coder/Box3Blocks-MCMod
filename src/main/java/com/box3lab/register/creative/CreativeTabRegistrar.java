@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.creative;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import com.box3lab.util.BlockIndexData;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Registry;
@@ -17,6 +19,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.ItemLike;
 
 public final class CreativeTabRegistrar {
     private CreativeTabRegistrar() {
@@ -38,7 +41,7 @@ public final class CreativeTabRegistrar {
         return iconBlock == null ? new ItemStack(Items.STONE) : new ItemStack(iconBlock);
     }
 
-    public static void registerCreativeTabs(String modId, Map<String, Block> blocks, com.box3lab.util.BlockIndexData data) {
+    public static void registerCreativeTabs(String modId, Map<String, Block> blocks, BlockIndexData data) {
         Map<String, List<String>> categoryToRegistryNames = new HashMap<>();
         for (String rn : blocks.keySet()) {
             String voxelName = rn.startsWith("voxel_") ? rn.substring("voxel_".length()) : rn;
@@ -73,6 +76,15 @@ public final class CreativeTabRegistrar {
                             Block b = blocks.get(rn);
                             if (b != null) {
                                 output.accept(b.asItem());
+                            }
+                        }
+
+                        List<ItemLike> extras = CreativeTabExtras.extras().get(categoryPath);
+                        if (extras != null) {
+                            for (ItemLike extra : extras) {
+                                if (extra != null) {
+                                    output.accept(extra);
+                                }
                             }
                         }
                     })

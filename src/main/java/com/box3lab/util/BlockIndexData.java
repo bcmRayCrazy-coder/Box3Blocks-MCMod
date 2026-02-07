@@ -20,11 +20,13 @@ public final class BlockIndexData {
         public final int id;
         public final int mass;
         public final long info;
+        public final double fluidExtinction;
 
-        public FluidInfo(int id, int mass, long info) {
+        public FluidInfo(int id, int mass, long info, double fluidExtinction) {
             this.id = id;
             this.mass = mass;
             this.info = info;
+            this.fluidExtinction = fluidExtinction;
         }
     }
 
@@ -104,8 +106,9 @@ public final class BlockIndexData {
             final int fluidR;
             final int fluidG;
             final int fluidB;
+            final double fluidExtinction;
 
-            Entry(String name, int id, int emissive, String category, boolean transparent, boolean fluid, int mass, int fluidR, int fluidG, int fluidB) {
+            Entry(String name, int id, int emissive, String category, boolean transparent, boolean fluid, int mass, int fluidR, int fluidG, int fluidB, double fluidExtinction) {
                 this.name = name;
                 this.id = id;
                 this.emissive = emissive;
@@ -116,6 +119,7 @@ public final class BlockIndexData {
                 this.fluidR = fluidR;
                 this.fluidG = fluidG;
                 this.fluidB = fluidB;
+                this.fluidExtinction = fluidExtinction;
             }
         }
 
@@ -141,13 +145,26 @@ public final class BlockIndexData {
 
             int fr = 0, fg = 0, fb = 0;
             if (obj.has("fluidColor") && obj.get("fluidColor").isJsonArray() && obj.getAsJsonArray("fluidColor").size() >= 3) {
-                fr = obj.getAsJsonArray("fluidColor").get(0).getAsInt();
-                fg = obj.getAsJsonArray("fluidColor").get(1).getAsInt();
-                fb = obj.getAsJsonArray("fluidColor").get(2).getAsInt();
+                double r = obj.getAsJsonArray("fluidColor").get(0).getAsDouble();
+                double g = obj.getAsJsonArray("fluidColor").get(1).getAsDouble();
+                double b = obj.getAsJsonArray("fluidColor").get(2).getAsDouble();
+
+                fr = (int) Math.round((r <= 1.0 ? r * 255.0 : r));
+                fg = (int) Math.round((g <= 1.0 ? g * 255.0 : g));
+                fb = (int) Math.round((b <= 1.0 ? b * 255.0 : b));
+
+                fr = Math.max(0, Math.min(255, fr));
+                fg = Math.max(0, Math.min(255, fg));
+                fb = Math.max(0, Math.min(255, fb));
+            }
+
+            double fluidExtinction = 0.0;
+            if (obj.has("fluidExtinction")) {
+                fluidExtinction = obj.get("fluidExtinction").getAsDouble();
             }
 
             if (id >= 0) {
-                entries.add(new Entry(name, id, emissivePacked, category, transparent, fluid, mass, fr, fg, fb));
+                entries.add(new Entry(name, id, emissivePacked, category, transparent, fluid, mass, fr, fg, fb, fluidExtinction));
             }
         }
 
@@ -174,7 +191,7 @@ public final class BlockIndexData {
             if (en.fluid) {
                 int a = 255;
                 long info = (en.fluidR & 255L) | ((en.fluidG & 255L) << 8) | ((en.fluidB & 255L) << 16) | ((a & 255L) << 24);
-                fluidsById.put(en.id, new FluidInfo(en.id, en.mass, info));
+                fluidsById.put(en.id, new FluidInfo(en.id, en.mass, info, en.fluidExtinction));
             }
         }
 

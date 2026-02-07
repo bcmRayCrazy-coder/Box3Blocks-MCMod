@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.voxel;
 
 public final class VoxelLightLevelMapper {
     private VoxelLightLevelMapper() {

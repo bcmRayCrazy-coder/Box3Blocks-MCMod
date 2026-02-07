@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.voxel;
 
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;

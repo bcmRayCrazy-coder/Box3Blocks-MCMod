@@ -45,4 +45,5 @@ public class VoxelBlock extends Block {
     public boolean isCollisionShapeFullBlock(BlockState state, BlockGetter level, BlockPos pos) {
         return super.isCollisionShapeFullBlock(state, level, pos);
     }
+
 }

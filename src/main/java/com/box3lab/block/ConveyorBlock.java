@@ -18,9 +18,8 @@ public class ConveyorBlock extends VoxelBlock {
     public void stepOn(Level level, BlockPos pos, BlockState state, Entity entity) {
         super.stepOn(level, pos, state, entity);
 
-        // 当前传送带的朝向
         Direction facing = state.getValue(HORIZONTAL_FACING);
-        double speed = 0.06D; // 传送带推动强度，可以按需要调整
+        double speed = 0.06D;
 
         Vec3 vel = entity.getDeltaMovement();
         switch (facing) {

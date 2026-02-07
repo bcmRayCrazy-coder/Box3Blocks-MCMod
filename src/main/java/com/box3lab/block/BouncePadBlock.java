@@ -23,10 +23,8 @@ public class BouncePadBlock extends VoxelBlock {
 
         Vec3 vel = entity.getDeltaMovement();
 
-        // 每次踩上去随机一个 0.7 ~ 1.0 之间的反弹高度
         double bounce = 0.7D + level.random.nextDouble() * 0.3D;
 
-        // 保留水平速度，只修改 Y 分量
         if (vel.y < bounce) {
             vel = new Vec3(vel.x, bounce, vel.z);
         }

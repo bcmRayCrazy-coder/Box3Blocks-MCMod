@@ -1,4 +1,4 @@
-package com.box3lab.register;
+package com.box3lab.register.sound;
 
 import java.util.Locale;
 
@@ -17,7 +17,9 @@ public final class CategorySoundTypes {
         return switch (c) {
             case "structure" -> SoundType.STONE;
             case "nature" -> SoundType.GRASS;
+
             case "symbol", "number", "letter", "color" -> SoundType.STONE;
+
             case "wood", "plant", "tree", "leaf", "leaves" -> SoundType.WOOD;
             case "metal", "machine" -> SoundType.METAL;
             case "glass" -> SoundType.GLASS;
