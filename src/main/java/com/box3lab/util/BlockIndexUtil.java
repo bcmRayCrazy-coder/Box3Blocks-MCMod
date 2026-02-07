@@ -52,12 +52,10 @@ public final class BlockIndexUtil {
 
     public static boolean isSolid(int blockId) {
         int id = normalizeId(blockId);
-        // JS 原函数名 isSoild，但语义是“是否实心方块”，这里提供 isSolid
         return !BlockIndexData.get().notSolidIds.contains(id);
     }
 
     public static boolean isSoild(int blockId) {
-        // 兼容 JS 的拼写
         return isSolid(blockId);
     }
 
