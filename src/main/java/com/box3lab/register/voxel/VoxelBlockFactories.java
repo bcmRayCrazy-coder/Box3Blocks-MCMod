@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import com.box3lab.block.BouncePadBlock;
 import com.box3lab.block.ConveyorBlock;
+import com.box3lab.block.SpiderWebBlock;
 import com.box3lab.block.VoxelBlock;
 
 import net.minecraft.world.level.block.Block;
@@ -19,6 +20,7 @@ public final class VoxelBlockFactories {
     static {
         register("conveyor", ConveyorBlock::new);
         register("bounce_pad", BouncePadBlock::new);
+        register("spiderweb", SpiderWebBlock::new);
     }
 
     private VoxelBlockFactories() {
