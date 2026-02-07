@@ -16,7 +16,6 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.core.registries.Registries;
 
 import com.box3lab.register.creative.CreativeTabExtras;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -87,7 +86,6 @@ public final class ModFluids {
             Identifier flowingId = Identifier.fromNamespaceAndPath(Box3Mod.MOD_ID, "flowing_" + base);
 
             ResourceKey<Block> fluidBlockKey = keyOfBlock(base + "_block");
-            ResourceKey<Item> fluidBlockItemKey = keyOfItem(base + "_block");
             ResourceKey<Item> bucketKey = keyOfItem(base + "_bucket");
 
             final FlowingFluid[] stillRef = new FlowingFluid[1];
@@ -113,19 +111,12 @@ public final class ModFluids {
                     new LiquidBlock(stillRef[0], BlockBehaviour.Properties.of().noCollision().strength(100.0F).setId(fluidBlockKey))
             );
 
-            Item blockItem = Registry.register(
-                    BuiltInRegistries.ITEM,
-                    fluidBlockItemKey,
-                    new BlockItem(blockRef[0], new Item.Properties().setId(fluidBlockItemKey).useBlockDescriptionPrefix())
-            );
-
             bucketRef[0] = Registry.register(
                     BuiltInRegistries.ITEM,
                     bucketKey,
                     new BucketItem(stillRef[0], new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET).setId(bucketKey))
             );
 
-            CreativeTabExtras.add(categoryPath, blockItem);
             CreativeTabExtras.add(categoryPath, bucketRef[0]);
 
             int tint = tintFromPackedRgba(entry.getValue().info);

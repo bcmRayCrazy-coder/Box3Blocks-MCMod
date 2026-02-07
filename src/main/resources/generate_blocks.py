@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from PIL import Image
 
 # 模组 ID，用于生成资源路径前缀
 MOD_ID = "box3mod"
@@ -111,8 +112,113 @@ def generate_item_model(texture_part):
     }
 
 
-def pretty_display_name(texture_part: str) -> str:
-    tokens = [t for t in texture_part.split("_") if t]
+def generate_fluid_blockstate(name):
+    """生成流体方块的 blockstate JSON。"""
+    return {
+        "variants": {
+            "": {"model": f"{MOD_ID}:block/spec_{name}_block"}
+        }
+    }
+
+
+def generate_fluid_block_model(name):
+    """生成流体方块的模型 JSON（纯白 cube）。"""
+    return {
+        "parent": "minecraft:block/cube",
+        "textures": {
+            "particle": f"{MOD_ID}:block/spec_{name}_block"
+        }
+    }
+
+
+def generate_fluid_item_model(name):
+    """生成流体方块物品模型 JSON。"""
+    return {
+        "model": {
+            "type": "minecraft:model",
+            "model": f"{MOD_ID}:block/spec_{name}_block"
+        }
+    }
+
+
+def generate_fluid_bucket_model(name):
+    """生成流体桶物品模型 JSON（指向通用桶模板）。"""
+    return {
+        "parent": "minecraft:item/generated",
+        "textures": {
+            "layer0": f"{MOD_ID}:item/spec_{name}_bucket"
+        }
+    }
+
+
+def generate_solid_color_image(path, rgb):
+    """生成纯色 PNG 图片（16x16）。"""
+    img = Image.new("RGB", (16, 16), rgb)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    img.save(path)
+
+
+def generate_fluid_resources():
+    """为 block-spec.json 里 fluid: true 的条目生成资源文件（只保留方块和桶，不生成方块物品）。"""
+    spec_path = BASE_DIR / "block-spec.json"
+    if not spec_path.exists():
+        print("⚠️  block-spec.json 不存在，跳过流体资源生成")
+        return
+
+    with open(spec_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    lang = {}
+    for name, obj in data.items():
+        if not obj.get("fluid", False):
+            continue
+
+        print(f"🧪 生成流体资源: {name}")
+
+        # 1. blockstate（用于世界里的流体方块）
+        blockstate_path = BASE_DIR / "assets" / MOD_ID / "blockstates" / f"spec_{name}_block.json"
+        blockstate_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(blockstate_path, "w", encoding="utf-8") as f:
+            json.dump(generate_fluid_blockstate(name), f, indent=2)
+
+        # 2. block model（用于世界里的流体方块）
+        block_model_path = BASE_DIR / "assets" / MOD_ID / "models" / "block" / f"spec_{name}_block.json"
+        block_model_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(block_model_path, "w", encoding="utf-8") as f:
+            json.dump(generate_fluid_block_model(name), f, indent=2)
+
+        # 3. item model (bucket)
+        bucket_model_path = BASE_DIR / "assets" / MOD_ID / "models" / "item" / f"spec_{name}_bucket.json"
+        bucket_model_path.parent.mkdir(parents=True, exist_ok=True)
+        with open(bucket_model_path, "w", encoding="utf-8") as f:
+            json.dump(generate_fluid_bucket_model(name), f, indent=2)
+
+        # 4. textures: bucket (纯色)
+        fluid_color = obj.get("fluidColor", [1, 1, 1])
+        rgb = tuple(int(c * 255) if c <= 1 else int(c) for c in fluid_color[:3])
+        bucket_tex_path = BASE_DIR / "assets" / MOD_ID / "textures" / "item" / f"spec_{name}_bucket.png"
+        generate_solid_color_image(bucket_tex_path, rgb)
+
+        # lang
+        lang[f"item.{MOD_ID}.spec_{name}_bucket"] = f"{pretty_display_name(name)} Bucket"
+
+    # 写 lang
+    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    lang_path.parent.mkdir(parents=True, exist_ok=True)
+    if lang_path.exists():
+        with open(lang_path, "r", encoding="utf-8") as f:
+            existing_lang = json.load(f)
+    else:
+        existing_lang = {}
+    existing_lang.update(lang)
+    with open(lang_path, "w", encoding="utf-8") as f:
+        json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+
+    print(f"✅ 流体资源生成完成，共 {len(lang)} 条目")
+
+
+def pretty_display_name(name: str) -> str:
+    tokens = [t for t in name.split("_") if t]
     pretty_tokens = []
     for t in tokens:
         if t.isalpha():
@@ -158,11 +264,21 @@ def main():
         
         print(f"✅ Generated: {block_name}")
 
-    # lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
-    # lang_path.parent.mkdir(parents=True, exist_ok=True)
-    # with open(lang_path, "w", encoding="utf-8") as f:
-    #     json.dump(lang, f, ensure_ascii=False, indent=2, sort_keys=True)
-    print(f"✅ Generated: lang/en_us.json ({len(lang)} entries)")
+    # 生成流体资源
+    generate_fluid_resources()
+
+    # 合并 lang
+    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    lang_path.parent.mkdir(parents=True, exist_ok=True)
+    if lang_path.exists():
+        with open(lang_path, "r", encoding="utf-8") as f:
+            existing_lang = json.load(f)
+    else:
+        existing_lang = {}
+    existing_lang.update(lang)
+    with open(lang_path, "w", encoding="utf-8") as f:
+        json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+    print(f"✅ Generated: lang/en_us.json ({len(existing_lang)} entries)")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "particle": "box3mod:block/spec_coffee_block"
+  }
+}
