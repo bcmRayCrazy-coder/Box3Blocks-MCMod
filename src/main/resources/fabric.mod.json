@@ -2,15 +2,16 @@
   "schemaVersion": 1,
   "id": "box3mod",
   "version": "${version}",
-  "name": "神奇代码岛方块集",
-  "description": "导入神奇代码岛中的384个方块到我的世界。",
+  "name": "神奇代码岛方块包",
+  "description": "Box3方块模组为Minecraft添加384款独特装饰方块，包含字母、符号、颜色及发光方块。所有方块均整理于创造模式标签页中。",
   "authors": ["神岛实验室"],
   "contact": {
     "homepage": "https://box3lab.com/",
-    "github": "https://github.com/box3lab/Fabric-mcMod",
+    "curseforge": "https://legacy.curseforge.com/minecraft/mc-mods/box3-blocks-mod",
+    "sources": "https://github.com/box3lab/Fabric-mcMod",
     "issues": "https://github.com/box3lab/Fabric-mcMod/issues/new"
   },
-  "license": "CC0-1.0",
+  "license": "Apache License 2.0",
   "icon": "assets/box3mod/icon.png",
   "environment": "*",
   "entrypoints": {
@@ -26,7 +27,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.18.4",
-    "minecraft": "~1.21.11",
+    "minecraft": ">=1.21.1",
     "java": ">=21",
     "fabric-api": "*"
   }
