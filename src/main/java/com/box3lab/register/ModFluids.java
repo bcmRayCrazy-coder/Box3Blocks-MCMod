@@ -33,11 +33,13 @@ public final class ModFluids {
         public final FlowingFluid still;
         public final FlowingFluid flowing;
         public final int tint;
+        public final double fluidExtinction;
 
-        public FluidRenderInfo(FlowingFluid still, FlowingFluid flowing, int tint) {
+        public FluidRenderInfo(FlowingFluid still, FlowingFluid flowing, int tint, double fluidExtinction) {
             this.still = still;
             this.flowing = flowing;
             this.tint = tint;
+            this.fluidExtinction = fluidExtinction;
         }
     }
 
@@ -96,13 +98,13 @@ public final class ModFluids {
             stillRef[0] = (FlowingFluid) Registry.register(
                     BuiltInRegistries.FLUID,
                     stillId,
-                    new VoxelSpecFluid.Still(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0])
+                    new VoxelSpecFluid.Still(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0], entry.getValue().fluidExtinction)
             );
 
             flowingRef[0] = (FlowingFluid) Registry.register(
                     BuiltInRegistries.FLUID,
                     flowingId,
-                    new VoxelSpecFluid.Flowing(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0])
+                    new VoxelSpecFluid.Flowing(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0], entry.getValue().fluidExtinction)
             );
 
             blockRef[0] = Registry.register(
@@ -127,7 +129,7 @@ public final class ModFluids {
             CreativeTabExtras.add(categoryPath, bucketRef[0]);
 
             int tint = tintFromPackedRgba(entry.getValue().info);
-            SPEC_FLUIDS.put(name, new FluidRenderInfo(stillRef[0], flowingRef[0], tint));
+            SPEC_FLUIDS.put(name, new FluidRenderInfo(stillRef[0], flowingRef[0], tint, entry.getValue().fluidExtinction));
         }
     }
 }

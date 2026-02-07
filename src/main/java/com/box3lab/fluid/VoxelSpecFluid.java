@@ -22,12 +22,14 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     private final Supplier<? extends Fluid> flowing;
     private final Supplier<? extends Item> bucket;
     private final Supplier<? extends Block> block;
+    private final double fluidExtinction;
 
-    protected VoxelSpecFluid(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
+    protected VoxelSpecFluid(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
         this.still = still;
         this.flowing = flowing;
         this.bucket = bucket;
         this.block = block;
+        this.fluidExtinction = fluidExtinction;
     }
 
     @Override
@@ -99,8 +101,8 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     }
 
     public static final class Flowing extends VoxelSpecFluid {
-        public Flowing(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
-            super(still, flowing, bucket, block);
+        public Flowing(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
+            super(still, flowing, bucket, block, fluidExtinction);
         }
 
         @Override
@@ -115,8 +117,8 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     }
 
     public static final class Still extends VoxelSpecFluid {
-        public Still(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
-            super(still, flowing, bucket, block);
+        public Still(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
+            super(still, flowing, bucket, block, fluidExtinction);
         }
 
         @Override

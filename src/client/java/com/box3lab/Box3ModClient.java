@@ -1,5 +1,6 @@
 package com.box3lab;
 
+import com.box3lab.client.VoxelFluidRenderHandler;
 import com.box3lab.register.ModBlocks;
 import com.box3lab.register.ModFluids;
 import com.box3lab.util.BlockIndexUtil;
@@ -7,7 +8,6 @@ import com.box3lab.util.BlockIndexUtil;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.level.block.Block;
@@ -32,7 +32,7 @@ public class Box3ModClient implements ClientModInitializer {
 			FluidRenderHandlerRegistry.INSTANCE.register(
 					info.still,
 					info.flowing,
-					new SimpleFluidRenderHandler(stillTex, flowTex, info.tint)
+					new VoxelFluidRenderHandler(stillTex, flowTex, info.tint, info.fluidExtinction)
 			);
 		}
 	}
