@@ -2,10 +2,8 @@ package com.box3lab.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.Rotation;
@@ -48,8 +46,4 @@ public class VoxelBlock extends Block {
         return super.isCollisionShapeFullBlock(state, level, pos);
     }
 
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'entityInside'");
-    }
 }

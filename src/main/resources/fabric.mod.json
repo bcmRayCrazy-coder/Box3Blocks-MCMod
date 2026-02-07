@@ -1,38 +1,33 @@
 {
-	"schemaVersion": 1,
-	"id": "box3mod",
-	"version": "${version}",
-	"name": "Box3Mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
-	"authors": [
-		"Me!"
-	],
-	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
-	},
-	"license": "CC0-1.0",
-	"icon": "assets/box3mod/icon.png",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"com.box3lab.Box3Mod"
-		],
-		"client": [
-			"com.box3lab.Box3ModClient"
-		]
-	},
-	"mixins": [
-		"box3mod.mixins.json",
-		{
-			"config": "box3mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
-	"depends": {
-		"fabricloader": ">=0.18.4",
-		"minecraft": "~1.21.11",
-		"java": ">=21",
-		"fabric-api": "*"
-	}
+  "schemaVersion": 1,
+  "id": "box3mod",
+  "version": "${version}",
+  "name": "神奇代码岛方块集",
+  "description": "导入神奇代码岛中的384个方块到我的世界。",
+  "authors": ["神岛实验室"],
+  "contact": {
+    "homepage": "https://box3lab.com/",
+    "github": "https://github.com/box3lab/Fabric-mcMod",
+    "issues": "https://github.com/box3lab/Fabric-mcMod/issues/new"
+  },
+  "license": "CC0-1.0",
+  "icon": "assets/box3mod/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.box3lab.Box3Mod"],
+    "client": ["com.box3lab.Box3ModClient"]
+  },
+  "mixins": [
+    "box3mod.mixins.json",
+    {
+      "config": "box3mod.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=0.18.4",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
 }
