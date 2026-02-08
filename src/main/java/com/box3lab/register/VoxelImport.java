@@ -48,7 +48,6 @@ public final class VoxelImport {
             int idx = indices[i];
             int id = data[i];
 
-            // 可选：忽略 barrier（空气墙）方块
             if (ignoreBarrier && BlockIdResolver.isBarrierId(id)) {
                 continue;
             }
