@@ -22,14 +22,13 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     private final Supplier<? extends Fluid> flowing;
     private final Supplier<? extends Item> bucket;
     private final Supplier<? extends Block> block;
-    private final double fluidExtinction;
 
-    protected VoxelSpecFluid(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
+    protected VoxelSpecFluid(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing,
+            Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
         this.still = still;
         this.flowing = flowing;
         this.bucket = bucket;
         this.block = block;
-        this.fluidExtinction = fluidExtinction;
     }
 
     @Override
@@ -49,7 +48,8 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
 
     @Override
     protected BlockState createLegacyBlock(FluidState state) {
-        return block.get().defaultBlockState().setValue(net.minecraft.world.level.block.LiquidBlock.LEVEL, getLegacyLevel(state));
+        return block.get().defaultBlockState().setValue(net.minecraft.world.level.block.LiquidBlock.LEVEL,
+                getLegacyLevel(state));
     }
 
     @Override
@@ -90,7 +90,8 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     }
 
     @Override
-    public boolean canBeReplacedWith(FluidState state, BlockGetter level, BlockPos pos, Fluid fluid, Direction direction) {
+    public boolean canBeReplacedWith(FluidState state, BlockGetter level, BlockPos pos, Fluid fluid,
+            Direction direction) {
         return false;
     }
 
@@ -101,8 +102,9 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     }
 
     public static final class Flowing extends VoxelSpecFluid {
-        public Flowing(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
-            super(still, flowing, bucket, block, fluidExtinction);
+        public Flowing(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing,
+                Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
+            super(still, flowing, bucket, block);
         }
 
         @Override
@@ -117,8 +119,9 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
     }
 
     public static final class Still extends VoxelSpecFluid {
-        public Still(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing, Supplier<? extends Item> bucket, Supplier<? extends Block> block, double fluidExtinction) {
-            super(still, flowing, bucket, block, fluidExtinction);
+        public Still(Supplier<? extends Fluid> still, Supplier<? extends Fluid> flowing,
+                Supplier<? extends Item> bucket, Supplier<? extends Block> block) {
+            super(still, flowing, bucket, block);
         }
 
         @Override

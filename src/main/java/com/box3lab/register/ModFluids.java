@@ -100,31 +100,32 @@ public final class ModFluids {
             stillRef[0] = (FlowingFluid) Registry.register(
                     BuiltInRegistries.FLUID,
                     stillId,
-                    new VoxelSpecFluid.Still(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0], entry.getValue().fluidExtinction)
-            );
+                    new VoxelSpecFluid.Still(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0],
+                            () -> blockRef[0]));
 
             flowingRef[0] = (FlowingFluid) Registry.register(
                     BuiltInRegistries.FLUID,
                     flowingId,
-                    new VoxelSpecFluid.Flowing(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0], () -> blockRef[0], entry.getValue().fluidExtinction)
-            );
+                    new VoxelSpecFluid.Flowing(() -> stillRef[0], () -> flowingRef[0], () -> bucketRef[0],
+                            () -> blockRef[0]));
 
             blockRef[0] = Registry.register(
                     BuiltInRegistries.BLOCK,
                     fluidBlockKey,
-                    new LiquidBlock(stillRef[0], BlockBehaviour.Properties.of().noCollision().strength(100.0F).setId(fluidBlockKey))
-            );
+                    new LiquidBlock(stillRef[0],
+                            BlockBehaviour.Properties.of().noCollision().strength(100.0F).setId(fluidBlockKey)));
 
             bucketRef[0] = Registry.register(
                     BuiltInRegistries.ITEM,
                     bucketKey,
-                    new BucketItem(stillRef[0], new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET).setId(bucketKey))
-            );
+                    new BucketItem(stillRef[0],
+                            new Item.Properties().stacksTo(1).craftRemainder(Items.BUCKET).setId(bucketKey)));
 
             CreativeTabExtras.add(categoryPath, bucketRef[0]);
 
             int tint = tintFromPackedRgba(entry.getValue().info);
-            SPEC_FLUIDS.put(name, new FluidRenderInfo(stillRef[0], flowingRef[0], tint, entry.getValue().fluidExtinction));
+            SPEC_FLUIDS.put(name,
+                    new FluidRenderInfo(stillRef[0], flowingRef[0], tint, entry.getValue().fluidExtinction));
         }
     }
 }

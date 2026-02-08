@@ -390,5 +390,17 @@
   "itemGroup.box3mod.food": "Box3:食物",
   "itemGroup.box3mod.light": "Box3:灯光",
   "itemGroup.box3mod.nature": "Box3:自然",
-  "itemGroup.box3mod.structure": "Box3:建筑"
+  "itemGroup.box3mod.structure": "Box3:建筑",
+  "command.box3mod.box3import.usage": "用法：/box3import <文件名>（从 config/box3mod/<文件名>.json 读取），会在你的当前位置生成建筑",
+  "command.box3mod.box3import.success": "已从 config/box3mod/%s 导入建筑",
+  "command.box3mod.box3import.progress": "[Box3] 正在导入 %s... %s%%",
+  "command.box3mod.box3import.failure": "导入失败：%s",
+  "command.box3mod.box3import.config_invalid": "配置文件读取失败，请检查文件是否存在且格式正确。",
+  "command.box3mod.box3import.config_missing": "配置文件不存在：%s",
+  "command.box3mod.box3import.config_read_failed": "读取配置失败：%s",
+  "command.box3mod.block_id.missing_file": "无法找到 block-id.json 文件。",
+  "command.box3mod.block_id.read_failed": "读取 block-id.json 失败。",
+  "command.box3mod.block_id.no_mapping_for_id": "未找到 ID %s 对应的方块映射。",
+  "command.box3mod.block_id.missing_fluid_block": "未找到流体方块：%s，使用水方块代替。",
+  "command.box3mod.block_id.missing_registered_block": "未找到注册的方块：%s。"
 }

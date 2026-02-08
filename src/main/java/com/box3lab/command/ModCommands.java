@@ -1,0 +1,72 @@
+package com.box3lab.command;
+
+import com.box3lab.register.VoxelImport;
+import com.mojang.brigadier.arguments.BoolArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+
+import static net.minecraft.commands.Commands.argument;
+import static net.minecraft.commands.Commands.literal;
+
+public final class ModCommands {
+    private ModCommands() {
+    }
+
+    public static void register() {
+        CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(
+                    literal("box3import")
+                            .executes(context -> showHelp(context.getSource()))
+                            .then(argument("fileName", StringArgumentType.word())
+                                    .executes(context -> executeBox3Import(
+                                            context.getSource(),
+                                            StringArgumentType.getString(context, "fileName"),
+                                            false,
+                                            false))
+                                    .then(argument("ignoreBarrier", BoolArgumentType.bool())
+                                            .executes(context -> executeBox3Import(
+                                                    context.getSource(),
+                                                    StringArgumentType.getString(context, "fileName"),
+                                                    BoolArgumentType.getBool(context, "ignoreBarrier"),
+                                                    false))
+                                            .then(argument("useVanillaWater", BoolArgumentType.bool())
+                                                    .executes(context -> executeBox3Import(
+                                                            context.getSource(),
+                                                            StringArgumentType.getString(context, "fileName"),
+                                                            BoolArgumentType.getBool(context, "ignoreBarrier"),
+                                                            BoolArgumentType.getBool(context, "useVanillaWater")))))));
+        });
+    }
+
+    private static int showHelp(CommandSourceStack source) {
+        source.sendSuccess(
+                () -> Component.translatable("command.box3mod.box3import.usage"),
+                false);
+        return 1;
+    }
+
+    private static int executeBox3Import(CommandSourceStack source, String fileName,
+            boolean ignoreBarrier, boolean useVanillaWater) {
+        ServerLevel level = source.getServer().overworld();
+        try {
+            ServerPlayer player = source.getPlayer();
+            VoxelImport.apply(null, level, fileName,
+                    player != null ? player.position() : new BlockPos(0, 0, 0).getCenter(),
+                    player,
+                    ignoreBarrier,
+                    useVanillaWater);
+
+            source.sendSuccess(
+                    () -> Component.translatable("command.box3mod.box3import.success", fileName + ".json"),
+                    false);
+        } catch (Exception e) {
+            source.sendFailure(Component.translatable("command.box3mod.box3import.failure", e.getMessage()));
+        }
+        return 1;
+    }
+}

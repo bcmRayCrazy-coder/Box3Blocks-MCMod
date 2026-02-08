@@ -237,22 +237,22 @@ def generate_fluid_resources():
         bucket_tex_path = BASE_DIR / "assets" / MOD_ID / "textures" / "item" / f"spec_{name}_bucket.png"
         generate_solid_color_image(bucket_tex_path, rgb)
 
-        # lang
-        lang[f"item.{MOD_ID}.spec_{name}_bucket"] = f"{pretty_display_name(name)} Bucket"
+        # # lang
+        # lang[f"item.{MOD_ID}.spec_{name}_bucket"] = f"{pretty_display_name(name)} Bucket"
 
     # 写 lang
-    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
-    lang_path.parent.mkdir(parents=True, exist_ok=True)
-    if lang_path.exists():
-        with open(lang_path, "r", encoding="utf-8") as f:
-            existing_lang = json.load(f)
-    else:
-        existing_lang = {}
-    existing_lang.update(lang)
-    with open(lang_path, "w", encoding="utf-8") as f:
-        json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+    # lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    # lang_path.parent.mkdir(parents=True, exist_ok=True)
+    # if lang_path.exists():
+    #     with open(lang_path, "r", encoding="utf-8") as f:
+    #         existing_lang = json.load(f)
+    # else:
+    #     existing_lang = {}
+    # existing_lang.update(lang)
+    # with open(lang_path, "w", encoding="utf-8") as f:
+    #     json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
 
-    print(f"✅ 流体资源生成完成，共 {len(lang)} 条目")
+    # print(f"✅ 流体资源生成完成，共 {len(lang)} 条目")
 
 
 def pretty_display_name(name: str) -> str:
@@ -273,6 +273,11 @@ def main():
     print(f"发现 {len(texture_parts)} 个方块: {', '.join(texture_parts)}")
 
     lang = {}
+    block_id_mapping = {}  # 新增：ID 到注册 key 的映射
+    
+    # 读取 block-spec.json 获取 ID 信息
+    with open(BASE_DIR / "block-spec.json", "r", encoding="utf-8") as f:
+        block_spec = json.load(f)
     
     for texture_part in texture_parts:
         # 检查六个面贴图是否都存在
@@ -305,18 +310,38 @@ def main():
     # 生成流体资源
     generate_fluid_resources()
 
+    # 处理 block-spec.json 中的所有方块（包括流体）来生成 ID 映射
+    for name, props in block_spec.items():
+        block_id = props.get("id")
+        if block_id is not None:
+            if props.get("fluid", False):
+                # 流体方块使用 spec_ 前缀
+                if name != "air":  # 排除 air
+                    block_id_mapping[str(block_id)] = f"spec_{name}_block"
+            else:
+                # 普通方块使用 voxel_ 前缀
+                block_id_mapping[str(block_id)] = f"voxel_{name}"
+
+    # 生成 block-id.json 文件
+    block_id_path = BASE_DIR / "block-id.json"
+    with open(block_id_path, "w", encoding="utf-8") as f:
+        # 按 ID 排序
+        sorted_mapping = dict(sorted(block_id_mapping.items(), key=lambda x: int(x[0])))
+        json.dump(sorted_mapping, f, indent=2, ensure_ascii=False)
+    print(f"✅ Generated: block-id.json ({len(sorted_mapping)} entries)")
+
     # 合并 lang
-    lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
-    lang_path.parent.mkdir(parents=True, exist_ok=True)
-    if lang_path.exists():
-        with open(lang_path, "r", encoding="utf-8") as f:
-            existing_lang = json.load(f)
-    else:
-        existing_lang = {}
-    existing_lang.update(lang)
-    with open(lang_path, "w", encoding="utf-8") as f:
-        json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
-    print(f"✅ Generated: lang/en_us.json ({len(existing_lang)} entries)")
+    # lang_path = BASE_DIR / "assets" / MOD_ID / "lang" / "en_us.json"
+    # lang_path.parent.mkdir(parents=True, exist_ok=True)
+    # if lang_path.exists():
+    #     with open(lang_path, "r", encoding="utf-8") as f:
+    #         existing_lang = json.load(f)
+    # else:
+    #     existing_lang = {}
+    # existing_lang.update(lang)
+    # with open(lang_path, "w", encoding="utf-8") as f:
+    #     json.dump(existing_lang, f, ensure_ascii=False, indent=2, sort_keys=True)
+    # print(f"✅ Generated: lang/en_us.json ({len(existing_lang)} entries)")
 
 
 if __name__ == "__main__":
