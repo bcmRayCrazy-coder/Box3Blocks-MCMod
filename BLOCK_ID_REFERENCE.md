@@ -1,8 +1,12 @@
-# Box3Mod 方块ID对照表
+# Box3 方块 ID 参考
 
-| ID  | 注册Key                       | 中文名称                | 英文名称                | 类型 | 分类      |
+本文档包含 Box3 模组中数字方块 ID 与其对应注册表键之间的映射关系。
+
+## 方块 ID 映射
+
+| ID  | 注册表键                      | 中文名称                | 英文名称                | 类型 | 分类      |
 | --- | ----------------------------- | ----------------------- | ----------------------- | ---- | --------- |
-| 0   | spec_air_block                | 空气                    | Air                     | 流体 |           |
+| 0   | spec_air_block                | Air                     | Air                     | 流体 | element   |
 | 1   | voxel_add                     | Add                     | Add                     | 方块 | symbol    |
 | 2   | voxel_subtract                | Subtract                | Subtract                | 方块 | symbol    |
 | 3   | voxel_multiply                | Multiply                | Multiply                | 方块 | symbol    |
@@ -10,42 +14,42 @@
 | 5   | voxel_equal                   | Equal                   | Equal                   | 方块 | symbol    |
 | 6   | voxel_exclamation_mark        | Exclamation Mark        | Exclamation Mark        | 方块 | symbol    |
 | 7   | voxel_question_mark           | Question Mark           | Question Mark           | 方块 | symbol    |
-| 8   | voxel_zero                    | Zero                    | Zero                    | 方块 | number    |
-| 9   | voxel_one                     | One                     | One                     | 方块 | number    |
-| 10  | voxel_two                     | Two                     | Two                     | 方块 | number    |
-| 11  | voxel_three                   | Three                   | Three                   | 方块 | number    |
-| 12  | voxel_four                    | Four                    | Four                    | 方块 | number    |
-| 13  | voxel_five                    | Five                    | Five                    | 方块 | number    |
-| 14  | voxel_six                     | Six                     | Six                     | 方块 | number    |
-| 15  | voxel_seven                   | Seven                   | Seven                   | 方块 | number    |
-| 16  | voxel_eight                   | Eight                   | Eight                   | 方块 | number    |
-| 17  | voxel_nine                    | Nine                    | Nine                    | 方块 | number    |
-| 18  | voxel_A                       | A                       | A                       | 方块 | letter    |
-| 19  | voxel_B                       | B                       | B                       | 方块 | letter    |
-| 20  | voxel_C                       | C                       | C                       | 方块 | letter    |
-| 21  | voxel_D                       | D                       | D                       | 方块 | letter    |
-| 22  | voxel_E                       | E                       | E                       | 方块 | letter    |
-| 23  | voxel_F                       | F                       | F                       | 方块 | letter    |
-| 24  | voxel_G                       | G                       | G                       | 方块 | letter    |
-| 25  | voxel_H                       | H                       | H                       | 方块 | letter    |
-| 26  | voxel_I                       | I                       | I                       | 方块 | letter    |
-| 27  | voxel_J                       | J                       | J                       | 方块 | letter    |
-| 28  | voxel_K                       | K                       | K                       | 方块 | letter    |
-| 29  | voxel_L                       | L                       | L                       | 方块 | letter    |
-| 30  | voxel_M                       | M                       | M                       | 方块 | letter    |
-| 31  | voxel_N                       | N                       | N                       | 方块 | letter    |
-| 32  | voxel_O                       | O                       | O                       | 方块 | letter    |
-| 33  | voxel_P                       | P                       | P                       | 方块 | letter    |
-| 34  | voxel_Q                       | Q                       | Q                       | 方块 | letter    |
-| 35  | voxel_R                       | R                       | R                       | 方块 | letter    |
-| 36  | voxel_S                       | S                       | S                       | 方块 | letter    |
-| 37  | voxel_T                       | T                       | T                       | 方块 | letter    |
-| 38  | voxel_U                       | U                       | U                       | 方块 | letter    |
-| 39  | voxel_V                       | V                       | V                       | 方块 | letter    |
-| 40  | voxel_W                       | W                       | W                       | 方块 | letter    |
-| 41  | voxel_X                       | X                       | X                       | 方块 | letter    |
-| 42  | voxel_Y                       | Y                       | Y                       | 方块 | letter    |
-| 43  | voxel_Z                       | Z                       | Z                       | 方块 | letter    |
+| 8   | voxel_zero                    | Zero                    | Zero                    | 方块 | symbol    |
+| 9   | voxel_one                     | One                     | One                     | 方块 | symbol    |
+| 10  | voxel_two                     | Two                     | Two                     | 方块 | symbol    |
+| 11  | voxel_three                   | Three                   | Three                   | 方块 | symbol    |
+| 12  | voxel_four                    | Four                    | Four                    | 方块 | symbol    |
+| 13  | voxel_five                    | Five                    | Five                    | 方块 | symbol    |
+| 14  | voxel_six                     | Six                     | Six                     | 方块 | symbol    |
+| 15  | voxel_seven                   | Seven                   | Seven                   | 方块 | symbol    |
+| 16  | voxel_eight                   | Eight                   | Eight                   | 方块 | symbol    |
+| 17  | voxel_nine                    | Nine                    | Nine                    | 方块 | symbol    |
+| 18  | voxel_A                       | A                       | A                       | 方块 | symbol    |
+| 19  | voxel_B                       | B                       | B                       | 方块 | symbol    |
+| 20  | voxel_C                       | C                       | C                       | 方块 | symbol    |
+| 21  | voxel_D                       | D                       | D                       | 方块 | symbol    |
+| 22  | voxel_E                       | E                       | E                       | 方块 | symbol    |
+| 23  | voxel_F                       | F                       | F                       | 方块 | symbol    |
+| 24  | voxel_G                       | G                       | G                       | 方块 | symbol    |
+| 25  | voxel_H                       | H                       | H                       | 方块 | symbol    |
+| 26  | voxel_I                       | I                       | I                       | 方块 | symbol    |
+| 27  | voxel_J                       | J                       | J                       | 方块 | symbol    |
+| 28  | voxel_K                       | K                       | K                       | 方块 | symbol    |
+| 29  | voxel_L                       | L                       | L                       | 方块 | symbol    |
+| 30  | voxel_M                       | M                       | M                       | 方块 | symbol    |
+| 31  | voxel_N                       | N                       | N                       | 方块 | symbol    |
+| 32  | voxel_O                       | O                       | O                       | 方块 | symbol    |
+| 33  | voxel_P                       | P                       | P                       | 方块 | symbol    |
+| 34  | voxel_Q                       | Q                       | Q                       | 方块 | symbol    |
+| 35  | voxel_R                       | R                       | R                       | 方块 | symbol    |
+| 36  | voxel_S                       | S                       | S                       | 方块 | symbol    |
+| 37  | voxel_T                       | T                       | T                       | 方块 | symbol    |
+| 38  | voxel_U                       | U                       | U                       | 方块 | symbol    |
+| 39  | voxel_V                       | V                       | V                       | 方块 | symbol    |
+| 40  | voxel_W                       | W                       | W                       | 方块 | symbol    |
+| 41  | voxel_X                       | X                       | X                       | 方块 | symbol    |
+| 42  | voxel_Y                       | Y                       | Y                       | 方块 | symbol    |
+| 43  | voxel_Z                       | Z                       | Z                       | 方块 | symbol    |
 | 44  | voxel_cadet_blue              | Cadet Blue              | Cadet Blue              | 方块 | color     |
 | 45  | voxel_sky_blue                | Sky Blue                | Sky Blue                | 方块 | color     |
 | 46  | voxel_powder_blue             | Powder Blue             | Powder Blue             | 方块 | color     |
@@ -80,8 +84,8 @@
 | 75  | voxel_gold_trim_brick         | Gold Trim Brick         | Gold Trim Brick         | 方块 | structure |
 | 76  | voxel_red_brick               | Red Brick               | Red Brick               | 方块 | structure |
 | 77  | voxel_quartz_brick            | Quartz Brick            | Quartz Brick            | 方块 | structure |
-| 78  | voxel_lantern_01              | Lantern 01              | Lantern 01              | 方块 | structure |
-| 79  | voxel_lantern_02              | Lantern 02              | Lantern 02              | 方块 | structure |
+| 78  | voxel_lantern_01              | Lantern 01              | Lantern 01              | 方块 | light     |
+| 79  | voxel_lantern_02              | Lantern 02              | Lantern 02              | 方块 | light     |
 | 80  | voxel_window                  | Window                  | Window                  | 方块 | structure |
 | 81  | voxel_cross_window            | Cross Window            | Cross Window            | 方块 | structure |
 | 82  | voxel_geometric_window_01     | Geometric Window 01     | Geometric Window 01     | 方块 | structure |
@@ -94,11 +98,11 @@
 | 89  | voxel_wooden_box              | Wooden Box              | Wooden Box              | 方块 | structure |
 | 90  | voxel_board_01                | Board 01                | Board 01                | 方块 | structure |
 | 91  | voxel_board_02                | Board 02                | Board 02                | 方块 | structure |
-| 92  | voxel_stripe_01               | Stripe 01               | Stripe 01               | 方块 | color     |
-| 93  | voxel_stripe_02               | Stripe 02               | Stripe 02               | 方块 | color     |
-| 94  | voxel_stripe_03               | Stripe 03               | Stripe 03               | 方块 | color     |
-| 95  | voxel_stripe_04               | Stripe 04               | Stripe 04               | 方块 | color     |
-| 96  | voxel_stripe_05               | Stripe 05               | Stripe 05               | 方块 | color     |
+| 92  | voxel_stripe_01               | Stripe 01               | Stripe 01               | 方块 | structure |
+| 93  | voxel_stripe_02               | Stripe 02               | Stripe 02               | 方块 | structure |
+| 94  | voxel_stripe_03               | Stripe 03               | Stripe 03               | 方块 | structure |
+| 95  | voxel_stripe_04               | Stripe 04               | Stripe 04               | 方块 | structure |
+| 96  | voxel_stripe_05               | Stripe 05               | Stripe 05               | 方块 | structure |
 | 97  | voxel_carpet_01               | Carpet 01               | Carpet 01               | 方块 | structure |
 | 98  | voxel_carpet_02               | Carpet 02               | Carpet 02               | 方块 | structure |
 | 99  | voxel_carpet_03               | Carpet 03               | Carpet 03               | 方块 | structure |
@@ -148,21 +152,21 @@
 | 143 | voxel_green_light             | Green Light             | Green Light             | 方块 | light     |
 | 144 | voxel_indigo_light            | Indigo Light            | Indigo Light            | 方块 | light     |
 | 145 | voxel_blue_light              | Blue Light              | Blue Light              | 方块 | light     |
-| 146 | voxel_purple                  | Purple                  | Purple                  | 方块 | light     |
+| 146 | voxel_purple                  | Purple                  | Purple                  | 方块 | color     |
 | 147 | voxel_pink_light              | Pink Light              | Pink Light              | 方块 | light     |
 | 148 | voxel_mint_green_light        | Mint Green Light        | Mint Green Light        | 方块 | light     |
 | 149 | voxel_white_light             | White Light             | White Light             | 方块 | light     |
 | 150 | voxel_warm_yellow_light       | Warm Yellow Light       | Warm Yellow Light       | 方块 | light     |
 | 151 | voxel_black_glass             | Black Glass             | Black Glass             | 方块 | structure |
 | 152 | voxel_red_glass               | Red Glass               | Red Glass               | 方块 | structure |
-| 153 | voxel_palace_lamp             | Palace Lamp             | Palace Lamp             | 方块 | structure |
+| 153 | voxel_palace_lamp             | Palace Lamp             | Palace Lamp             | 方块 | light     |
 | 154 | voxel_board_03                | Board 03                | Board 03                | 方块 | structure |
 | 155 | voxel_board_04                | Board 04                | Board 04                | 方块 | structure |
 | 156 | voxel_board_05                | Board 05                | Board 05                | 方块 | structure |
 | 157 | voxel_board_06                | Board 06                | Board 06                | 方块 | structure |
 | 158 | voxel_dark_grass              | Dark Grass              | Dark Grass              | 方块 | nature    |
-| 159 | voxel_greenbelt_L             | Greenbelt L             | Greenbelt L             | 方块 | structure |
-| 160 | voxel_greenbelt_L1            | Greenbelt L1            | Greenbelt L1            | 方块 | structure |
+| 159 | voxel_greenbelt_L             | Greenbelt L             | Greenbelt L             | 方块 | nature    |
+| 160 | voxel_greenbelt_L1            | Greenbelt L1            | Greenbelt L1            | 方块 | nature    |
 | 161 | voxel_stone_brick_01          | Stone Brick 01          | Stone Brick 01          | 方块 | structure |
 | 162 | voxel_stone_brick_02          | Stone Brick 02          | Stone Brick 02          | 方块 | structure |
 | 163 | voxel_dark_stone              | Dark Stone              | Dark Stone              | 方块 | nature    |
@@ -184,7 +188,7 @@
 | 179 | voxel_rock                    | Rock                    | Rock                    | 方块 | nature    |
 | 180 | voxel_palace_cloud            | Palace Cloud            | Palace Cloud            | 方块 | structure |
 | 181 | voxel_blue                    | Blue                    | Blue                    | 方块 | color     |
-| 182 | spec_water_block              | 水                      | Water                   | 流体 | nature    |
+| 182 | spec_water_block              | Water                   | Water                   | 流体 | element   |
 | 183 | voxel_turquoise               | Turquoise               | Turquoise               | 方块 | color     |
 | 184 | voxel_dark_orchid             | Dark Orchid             | Dark Orchid             | 方块 | color     |
 | 185 | voxel_medium_orchid           | Medium Orchid           | Medium Orchid           | 方块 | color     |
@@ -204,42 +208,42 @@
 | 199 | voxel_ice                     | Ice                     | Ice                     | 方块 | nature    |
 | 200 | voxel_crane_roof_01           | Crane Roof 01           | Crane Roof 01           | 方块 | structure |
 | 201 | voxel_crane_roof_02           | Crane Roof 02           | Crane Roof 02           | 方块 | structure |
-| 202 | voxel_crane_lantern           | Crane Lantern           | Crane Lantern           | 方块 | structure |
+| 202 | voxel_crane_lantern           | Crane Lantern           | Crane Lantern           | 方块 | light     |
 | 203 | voxel_roof_grey               | Roof Grey               | Roof Grey               | 方块 | structure |
 | 204 | voxel_palace_window           | Palace Window           | Palace Window           | 方块 | structure |
 | 205 | voxel_woodstone_12            | Woodstone 12            | Woodstone 12            | 方块 | structure |
-| 206 | spec_strawberry_juice_block   | 草莓汁                  | Strawberry Juice        | 流体 | food      |
-| 207 | spec_lime_juice_block         | 青柠汁                  | Lime Juice              | 流体 | food      |
-| 208 | spec_blueberry_juice_block    | 蓝莓汁                  | Blueberry Juice         | 流体 | food      |
-| 209 | spec_lemon_juice_block        | 柠檬汁                  | Lemon Juice             | 流体 | food      |
-| 210 | spec_grape_juice_block        | 葡萄汁                  | Grape Juice             | 流体 | food      |
-| 211 | spec_orange_juice_block       | 橙汁                    | Orange Juice            | 流体 | food      |
-| 212 | spec_milk_block               | 牛奶                    | Milk                    | 流体 | food      |
-| 213 | spec_soy_sauce_block          | 酱油                    | Soy Sauce               | 流体 | food      |
-| 214 | spec_coffee_block             | 咖啡                    | Coffee                  | 流体 | food      |
-| 215 | spec_peach_juice_block        | 桃汁                    | Peach Juice             | 流体 | food      |
-| 216 | voxel_board0                  | Board0                  | Board0                  | 方块 | structure |
-| 217 | voxel_board1                  | Board1                  | Board1                  | 方块 | structure |
-| 218 | voxel_board2                  | Board2                  | Board2                  | 方块 | structure |
-| 219 | voxel_board3                  | Board3                  | Board3                  | 方块 | structure |
-| 220 | voxel_board4                  | Board4                  | Board4                  | 方块 | structure |
-| 221 | voxel_board5                  | Board5                  | Board5                  | 方块 | structure |
-| 222 | voxel_board6                  | Board6                  | Board6                  | 方块 | structure |
-| 223 | voxel_board7                  | Board7                  | Board7                  | 方块 | structure |
-| 224 | voxel_board8                  | Board8                  | Board8                  | 方块 | structure |
-| 225 | voxel_board9                  | Board9                  | Board9                  | 方块 | structure |
-| 226 | voxel_board10                 | Board10                 | Board10                 | 方块 | structure |
-| 227 | voxel_board11                 | Board11                 | Board11                 | 方块 | structure |
-| 228 | voxel_board12                 | Board12                 | Board12                 | 方块 | structure |
-| 229 | voxel_board13                 | Board13                 | Board13                 | 方块 | structure |
-| 230 | voxel_board14                 | Board14                 | Board14                 | 方块 | structure |
-| 231 | voxel_board15                 | Board15                 | Board15                 | 方块 | structure |
-| 232 | voxel_lava01                  | Lava01                  | Lava01                  | 方块 | nature    |
-| 233 | voxel_lava02                  | Lava02                  | Lava02                  | 方块 | nature    |
+| 206 | spec_strawberry_juice_block   | Strawberry Juice        | Strawberry Juice        | 流体 | drink     |
+| 207 | spec_lime_juice_block         | Lime Juice              | Lime Juice              | 流体 | drink     |
+| 208 | spec_blueberry_juice_block    | Blueberry Juice         | Blueberry Juice         | 流体 | drink     |
+| 209 | spec_lemon_juice_block        | Lemon Juice             | Lemon Juice             | 流体 | drink     |
+| 210 | spec_grape_juice_block        | Grape Juice             | Grape Juice             | 流体 | drink     |
+| 211 | spec_orange_juice_block       | Orange Juice            | Orange Juice            | 流体 | drink     |
+| 212 | spec_milk_block               | Milk                    | Milk                    | 流体 | drink     |
+| 213 | spec_soy_sauce_block          | Soy Sauce               | Soy Sauce               | 流体 | drink     |
+| 214 | spec_coffee_block             | Coffee                  | Coffee                  | 流体 | drink     |
+| 215 | spec_peach_juice_block        | Peach Juice             | Peach Juice             | 流体 | drink     |
+| 216 | voxel_board0                  | Board 0                 | Board 0                 | 方块 | structure |
+| 217 | voxel_board1                  | Board 1                 | Board 1                 | 方块 | structure |
+| 218 | voxel_board2                  | Board 2                 | Board 2                 | 方块 | structure |
+| 219 | voxel_board3                  | Board 3                 | Board 3                 | 方块 | structure |
+| 220 | voxel_board4                  | Board 4                 | Board 4                 | 方块 | structure |
+| 221 | voxel_board5                  | Board 5                 | Board 5                 | 方块 | structure |
+| 222 | voxel_board6                  | Board 6                 | Board 6                 | 方块 | structure |
+| 223 | voxel_board7                  | Board 7                 | Board 7                 | 方块 | structure |
+| 224 | voxel_board8                  | Board 8                 | Board 8                 | 方块 | structure |
+| 225 | voxel_board9                  | Board 9                 | Board 9                 | 方块 | structure |
+| 226 | voxel_board10                 | Board 10                | Board 10                | 方块 | structure |
+| 227 | voxel_board11                 | Board 11                | Board 11                | 方块 | structure |
+| 228 | voxel_board12                 | Board 12                | Board 12                | 方块 | structure |
+| 229 | voxel_board13                 | Board 13                | Board 13                | 方块 | structure |
+| 230 | voxel_board14                 | Board 14                | Board 14                | 方块 | structure |
+| 231 | voxel_board15                 | Board 15                | Board 15                | 方块 | structure |
+| 232 | voxel_lava01                  | Lava 01                 | Lava 01                 | 方块 | nature    |
+| 233 | voxel_lava02                  | Lava 02                 | Lava 02                 | 方块 | nature    |
 | 234 | voxel_windygrass              | Windygrass              | Windygrass              | 方块 | nature    |
 | 235 | voxel_conveyor                | Conveyor                | Conveyor                | 方块 | structure |
-| 236 | voxel_ledfloor01              | Ledfloor01              | Ledfloor01              | 方块 | structure |
-| 237 | voxel_ledfloor02              | Ledfloor02              | Ledfloor02              | 方块 | structure |
+| 236 | voxel_ledfloor01              | LED Floor 01            | LED Floor 01            | 方块 | light     |
+| 237 | voxel_ledfloor02              | LED Floor 02            | LED Floor 02            | 方块 | light     |
 | 238 | voxel_yellow_grass            | Yellow Grass            | Yellow Grass            | 方块 | nature    |
 | 239 | voxel_express_box             | Express Box             | Express Box             | 方块 | structure |
 | 240 | voxel_television              | Television              | Television              | 方块 | structure |
@@ -276,19 +280,19 @@
 | 271 | voxel_pumpkin                 | Pumpkin                 | Pumpkin                 | 方块 | nature    |
 | 272 | voxel_spiderweb               | Spiderweb               | Spiderweb               | 方块 | nature    |
 | 273 | voxel_bat_window              | Bat Window              | Bat Window              | 方块 | structure |
-| 274 | voxel_pumpkin_lantern         | Pumpkin Lantern         | Pumpkin Lantern         | 方块 | structure |
+| 274 | voxel_pumpkin_lantern         | Pumpkin Lantern         | Pumpkin Lantern         | 方块 | light     |
 | 275 | voxel_candy                   | Candy                   | Candy                   | 方块 | food      |
 | 276 | voxel_bear_footprint          | Bear Footprint          | Bear Footprint          | 方块 | nature    |
 | 277 | voxel_red_gift                | Red Gift                | Red Gift                | 方块 | structure |
 | 278 | voxel_blue_gift               | Blue Gift               | Blue Gift               | 方块 | structure |
 | 279 | voxel_snowman_head            | Snowman Head            | Snowman Head            | 方块 | structure |
 | 280 | voxel_snowman_body            | Snowman Body            | Snowman Body            | 方块 | structure |
-| 281 | voxel_star_lamp               | Star Lamp               | Star Lamp               | 方块 | structure |
-| 282 | voxel_snowflake_lamp          | Snowflake Lamp          | Snowflake Lamp          | 方块 | structure |
-| 283 | voxel_blue_decorative_light   | Blue Decorative Light   | Blue Decorative Light   | 方块 | structure |
-| 284 | voxel_green_decorative_light  | Green Decorative Light  | Green Decorative Light  | 方块 | structure |
-| 285 | voxel_red_decorative_light    | Red Decorative Light    | Red Decorative Light    | 方块 | structure |
-| 286 | voxel_yellow_decorative_light | Yellow Decorative Light | Yellow Decorative Light | 方块 | structure |
+| 281 | voxel_star_lamp               | Star Lamp               | Star Lamp               | 方块 | light     |
+| 282 | voxel_snowflake_lamp          | Snowflake Lamp          | Snowflake Lamp          | 方块 | light     |
+| 283 | voxel_blue_decorative_light   | Blue Decorative Light   | Blue Decorative Light   | 方块 | light     |
+| 284 | voxel_green_decorative_light  | Green Decorative Light  | Green Decorative Light  | 方块 | light     |
+| 285 | voxel_red_decorative_light    | Red Decorative Light    | Red Decorative Light    | 方块 | light     |
+| 286 | voxel_yellow_decorative_light | Yellow Decorative Light | Yellow Decorative Light | 方块 | light     |
 | 287 | voxel_bamboo                  | Bamboo                  | Bamboo                  | 方块 | nature    |
 | 288 | voxel_fu                      | Fu                      | Fu                      | 方块 | structure |
 | 289 | voxel_traditional_window      | Traditional Window      | Traditional Window      | 方块 | structure |
@@ -297,9 +301,9 @@
 | 292 | voxel_air_duct                | Air Duct                | Air Duct                | 方块 | structure |
 | 293 | voxel_button                  | Button                  | Button                  | 方块 | structure |
 | 294 | voxel_fan                     | Fan                     | Fan                     | 方块 | structure |
-| 295 | voxel_lab_lamp_01             | Lab Lamp 01             | Lab Lamp 01             | 方块 | structure |
-| 296 | voxel_lab_lamp_02             | Lab Lamp 02             | Lab Lamp 02             | 方块 | structure |
-| 297 | voxel_lab_lamp_03             | Lab Lamp 03             | Lab Lamp 03             | 方块 | structure |
+| 295 | voxel_lab_lamp_01             | Lab Lamp 01             | Lab Lamp 01             | 方块 | light     |
+| 296 | voxel_lab_lamp_02             | Lab Lamp 02             | Lab Lamp 02             | 方块 | light     |
+| 297 | voxel_lab_lamp_03             | Lab Lamp 03             | Lab Lamp 03             | 方块 | light     |
 | 298 | voxel_lab_material_01         | Lab Material 01         | Lab Material 01         | 方块 | structure |
 | 299 | voxel_lab_material_02         | Lab Material 02         | Lab Material 02         | 方块 | structure |
 | 300 | voxel_lab_material_03         | Lab Material 03         | Lab Material 03         | 方块 | structure |
