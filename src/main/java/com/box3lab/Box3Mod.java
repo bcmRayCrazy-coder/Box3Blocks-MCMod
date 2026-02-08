@@ -1,5 +1,6 @@
 package com.box3lab;
 
+import com.box3lab.command.ModCommands;
 import com.box3lab.register.ModBlocks;
 import com.box3lab.register.ModFluids;
 
@@ -23,6 +24,8 @@ public class Box3Mod implements ModInitializer {
 		// Proceed with mild caution.
 		ModFluids.initialize();
 		ModBlocks.initialize();
+		ModCommands.register();
+
 		// LOGGER.info("Hello Fabric world!");
 	}
 }
