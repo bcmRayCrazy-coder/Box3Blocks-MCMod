@@ -40,7 +40,7 @@
   - `/box3import <fileName> <ignoreBarrier> <useVanillaWater>`  
     当 `useVanillaWater = true` 时，所有流体统一替换为MC原版水方块。
 
-📋 **完整方块列表**：查看 [block_id_reference.md](block_id_reference.md) 获取所有方块的ID、注册Key和中英文名称对照表。
+📋 **完整方块列表**：查看 [block_id.md](block_id.md) 获取所有方块的ID、注册Key和中英文名称对照表。
 
 ## 📄 许可证
 
