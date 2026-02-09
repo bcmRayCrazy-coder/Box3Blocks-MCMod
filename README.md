@@ -46,14 +46,14 @@
 
 - **屏障可见性切换 `/box3barrier`**：
   - `/box3barrier`：查看当前屏障是否可见。
-  - `/box3barrier true` / `/box3barrier false`：开启/关闭屏障显示（屏障始终有碰撞，只是是否渲染）。
+  - `/box3barrier <bool>`：开启/关闭屏障显示（屏障始终有碰撞，只是是否渲染）。
   - `/box3barrier toggle`：在开启/关闭之间快速切换。状态会保存到本地配置文件，下次进入世界自动沿用。
 
 📋 **完整方块列表**：查看 [block_id.md](block_id.md) 获取所有方块的 ID、注册 Key 和中英文名称对照表。
 
 ## 📄 许可证
 
-本项目采用 Apache License 2.0 许可证。
+本项目采用 [Apache License 2.0](LICENSE) 许可证。
 
 ## 🙏 致谢
 
