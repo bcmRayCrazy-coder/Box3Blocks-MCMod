@@ -29,22 +29,31 @@
 
 ### 🏗 导入神奇代码岛建筑
 
-- **JSON 地图导入**：支持从 `minecraft/config/box3mod/` 目录中的 JSON 文件导入方块地图。
+- **地形文件导入**：支持从 `minecraft/config/box3mod/` 目录中的压缩地形文件（`.gz`）导入方块地图。
 - **建筑迁移**：可将神奇代码岛中的建筑结构迁移到 Minecraft 世界中，保持方块外观一致。
-- **获取建筑文件**：访问 https://box3lab.com/build2mc 获取神奇代码岛建筑的JSON文件。
-- **指令参数**：
+- **获取建筑文件**：访问 https://box3lab.com/build2mc 获取神奇代码岛建筑的地形文件（`.gz`）。
+- **导入指令**：
+  - `/box3import`  
+    列出 `config/box3mod/` 目录下所有可导入的地形文件（`.gz`）。
   - `/box3import <fileName>`  
-    从 `config/box3mod/<fileName>.json` 导入建筑。
+    从 `config/box3mod/<fileName>.gz` 导入建筑（命令中不需要带后缀，会自动补 `.gz`）。
   - `/box3import <fileName> <ignoreBarrier>`  
-    当 `ignoreBarrier = true` 时，跳过透明屏障方块（不会在世界中放置这些方块）。
+    当 `ignoreBarrier = true` 时，跳过屏障方块（不会在世界中放置这些方块）。
   - `/box3import <fileName> <ignoreBarrier> <useVanillaWater>`  
-    当 `useVanillaWater = true` 时，所有流体统一替换为MC原版水方块。
+    当 `useVanillaWater = true` 时，所有流体统一替换为 MC 原版水方块。
 
-📋 **完整方块列表**：查看 [block_id.md](block_id.md) 获取所有方块的ID、注册Key和中英文名称对照表。
+### 🔍 屏障可见性切换
+
+- **屏障可见性切换 `/box3barrier`**：
+  - `/box3barrier`：查看当前屏障是否可见。
+  - `/box3barrier <bool>`：开启/关闭屏障显示（屏障始终有碰撞，只是是否渲染）。
+  - `/box3barrier toggle`：在开启/关闭之间快速切换。状态会保存到本地配置文件，下次进入世界自动沿用。
+
+📋 **完整方块列表**：查看 [block_id.md](block_id.md) 获取所有方块的 ID、注册 Key 和中英文名称对照表。
 
 ## 📄 许可证
 
-本项目采用 Apache License 2.0 许可证。
+本项目采用 [Apache License 2.0](LICENSE) 许可证。
 
 ## 🙏 致谢
 

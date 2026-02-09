@@ -393,7 +393,7 @@
   "itemGroup.box3mod.structure": "Box3:建筑",
   "command.box3mod.box3import.usage": "用法：/box3import <文件名>（从 config/box3mod/<文件名>.json 读取），会在你的当前位置生成建筑",
   "command.box3mod.box3import.success": "已从 config/box3mod/%s 导入建筑",
-  "command.box3mod.box3import.progress": "[Box3] 正在导入 %s... %s%%",
+  "command.box3mod.box3import.progress": "正在导入 %s... %s%%",
   "command.box3mod.box3import.failure": "导入失败：%s",
   "command.box3mod.box3import.config_invalid": "配置文件读取失败，请检查文件是否存在且格式正确。",
   "command.box3mod.box3import.config_missing": "配置文件不存在：%s",
@@ -402,5 +402,11 @@
   "command.box3mod.block_id.read_failed": "读取 block-id.json 失败。",
   "command.box3mod.block_id.no_mapping_for_id": "未找到 ID %s 对应的方块映射。",
   "command.box3mod.block_id.missing_fluid_block": "未找到流体方块：%s，使用水方块代替。",
-  "command.box3mod.block_id.missing_registered_block": "未找到注册的方块：%s。"
+  "command.box3mod.block_id.missing_registered_block": "未找到注册的方块：%s。",
+  "command.box3mod.box3import.list.empty": "在 %s 中没有找到可用的地形文件（不包括 %s）",
+  "command.box3mod.box3import.list.success": "%s 中可用的地形文件：%s",
+  "command.box3mod.box3import.list.error": "列出 %s 中的地形文件失败：%s",
+  "command.box3mod.box3barrier.status": "屏障可见状态：%s",
+  "command.box3mod.box3barrier.set": "屏障可见状态已设置为：%s",
+  "command.box3mod.box3barrier.toggled": "屏障可见状态已切换为：%s（重新进入世界以完全生效）"
 }

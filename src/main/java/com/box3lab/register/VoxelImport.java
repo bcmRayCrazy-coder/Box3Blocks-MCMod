@@ -1,9 +1,12 @@
 package com.box3lab.register;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.zip.GZIPInputStream;
 
 import com.box3lab.util.BlockIdResolver;
 import com.google.gson.JsonArray;
@@ -17,6 +20,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.Vec3;
 
 public final class VoxelImport {
@@ -34,6 +38,7 @@ public final class VoxelImport {
         int[] dir = toIntArray(cfg.getAsJsonArray("dir"));
         int[] indices = toIntArray(cfg.getAsJsonArray("indices"));
         int[] data = toIntArray(cfg.getAsJsonArray("data"));
+        int[] rot = toIntArray(cfg.getAsJsonArray("rot"));
 
         int total = Math.min(indices.length, data.length);
         int lastProgress = -1;
@@ -55,7 +60,7 @@ public final class VoxelImport {
             int x = idx % shape[0];
             int y = (idx / shape[0]) % shape[1];
             int z = idx / (shape[0] * shape[1]);
-
+            int r = rot.length > i ? rot[i] : 0;
             int wx = origin[0] + dir[0] * x;
             int wy = origin[1] + dir[1] * y;
             int wz = origin[2] + dir[2] * z;
@@ -63,7 +68,14 @@ public final class VoxelImport {
             if (world instanceof ServerLevel level) {
                 BlockPos pos = new BlockPos(wx, wy, wz);
                 Block block = BlockIdResolver.getBlockById(id, useVanillaWater);
-                level.setBlock(pos, block.defaultBlockState(), 3);
+                Rotation rotation = switch (r & 3) {
+                    case 1 -> Rotation.CLOCKWISE_90;
+                    case 2 -> Rotation.CLOCKWISE_180;
+                    case 3 -> Rotation.COUNTERCLOCKWISE_90;
+                    default -> Rotation.NONE;
+                };
+
+                level.setBlock(pos, block.defaultBlockState().rotate(rotation), 3);
 
                 if (player != null) {
                     int progress = (i + 1) * 100 / total;
@@ -81,7 +93,7 @@ public final class VoxelImport {
         Path configPath = FabricLoader.getInstance()
                 .getConfigDir()
                 .resolve("box3mod")
-                .resolve(mapName.endsWith(".json") ? mapName : mapName + ".json");
+                .resolve(mapName.endsWith(".gz") ? mapName : mapName + ".gz");
 
         if (!Files.exists(configPath)) {
             System.err.println(Component
@@ -90,13 +102,28 @@ public final class VoxelImport {
             return null;
         }
 
-        try (Reader reader = Files.newBufferedReader(configPath)) {
-            return JsonParser.parseReader(reader).getAsJsonObject();
+        try {
+            String json = readGzipJson(configPath.toString());
+            return JsonParser.parseString(json).getAsJsonObject();
         } catch (IOException | JsonParseException e) {
             System.err.println(Component
                     .translatable("command.box3mod.box3import.config_read_failed", configPath.toString())
                     .getString());
             return null;
+        }
+    }
+
+    private static String readGzipJson(String path) throws IOException {
+        try (FileInputStream fis = new FileInputStream(path);
+                GZIPInputStream gis = new GZIPInputStream(fis);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+
+            byte[] buffer = new byte[8192];
+            int n;
+            while ((n = gis.read(buffer)) > 0) {
+                baos.write(buffer, 0, n);
+            }
+            return baos.toString(StandardCharsets.UTF_8);
         }
     }
 

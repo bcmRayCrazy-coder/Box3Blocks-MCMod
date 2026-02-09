@@ -5,8 +5,10 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.box3lab.block.BarrierVoxelBlock;
 import com.box3lab.block.BouncePadBlock;
 import com.box3lab.block.ConveyorBlock;
+import com.box3lab.block.GlassVoxelBlock;
 import com.box3lab.block.SpiderWebBlock;
 import com.box3lab.block.VoxelBlock;
 
@@ -21,6 +23,7 @@ public final class VoxelBlockFactories {
         register("conveyor", ConveyorBlock::new);
         register("bounce_pad", BouncePadBlock::new);
         register("spiderweb", SpiderWebBlock::new);
+        register("barrier", BarrierVoxelBlock::new);
     }
 
     private VoxelBlockFactories() {
@@ -33,12 +36,22 @@ public final class VoxelBlockFactories {
         FACTORIES.put(texturePart.toLowerCase(Locale.ROOT), factory);
     }
 
-    public static Function<BlockBehaviour.Properties, Block> factoryFor(String texturePart) {
+    public static Function<BlockBehaviour.Properties, Block> factoryFor(String texturePart, boolean transparent) {
         if (texturePart == null) {
             return DEFAULT_FACTORY;
         }
 
-        Function<BlockBehaviour.Properties, Block> factory = FACTORIES.get(texturePart.toLowerCase(Locale.ROOT));
-        return factory == null ? DEFAULT_FACTORY : factory;
+        String key = texturePart.toLowerCase(Locale.ROOT);
+
+        Function<BlockBehaviour.Properties, Block> factory = FACTORIES.get(key);
+        if (factory != null) {
+            return factory;
+        }
+
+        if (transparent) {
+            return GlassVoxelBlock::new;
+        }
+
+        return DEFAULT_FACTORY;
     }
 }

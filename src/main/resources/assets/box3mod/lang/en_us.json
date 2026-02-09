@@ -405,7 +405,7 @@
   "itemGroup.box3mod.structure": "Box3:Structures",
   "command.box3mod.box3import.usage": "Usage: /box3import <fileName> (reads from config/box3mod/<fileName>.json),It will generate a building at your current location. ",
   "command.box3mod.box3import.success": "Imported building from config/box3mod/%s",
-  "command.box3mod.box3import.progress": "[Box3] Importing %s... %s%%",
+  "command.box3mod.box3import.progress": "Importing %s... %s%%",
   "command.box3mod.box3import.failure": "Import failed: %s",
   "command.box3mod.box3import.config_invalid": "Config file is invalid, please check it exists and has correct format.",
   "command.box3mod.box3import.config_missing": "Config file does not exist: %s",
@@ -414,5 +414,11 @@
   "command.box3mod.block_id.read_failed": "Failed to read block-id.json.",
   "command.box3mod.block_id.no_mapping_for_id": "No block-id.json mapping found for ID %s.",
   "command.box3mod.block_id.missing_fluid_block": "Missing fluid block for %s, using water instead.",
-  "command.box3mod.block_id.missing_registered_block": "Missing registered voxel block: %s."
+  "command.box3mod.block_id.missing_registered_block": "Missing registered voxel block: %s.",
+  "command.box3mod.box3import.list.empty": "No Terrain files found in %s (excluding %s)",
+  "command.box3mod.box3import.list.success": "Available Terrain files in %s: %s",
+  "command.box3mod.box3import.list.error": "Failed to list Terrain files in %s: %s",
+  "command.box3mod.box3barrier.status": "Barrier visible: %s",
+  "command.box3mod.box3barrier.set": "Barrier visibility set to: %s",
+  "command.box3mod.box3barrier.toggled": "Barrier visibility toggled to: %s (re-enter the world to fully apply)"
 }
