@@ -7,6 +7,7 @@ import java.util.function.Function;
 
 import com.box3lab.block.BouncePadBlock;
 import com.box3lab.block.ConveyorBlock;
+import com.box3lab.block.GlassVoxelBlock;
 import com.box3lab.block.SpiderWebBlock;
 import com.box3lab.block.VoxelBlock;
 
@@ -38,7 +39,17 @@ public final class VoxelBlockFactories {
             return DEFAULT_FACTORY;
         }
 
-        Function<BlockBehaviour.Properties, Block> factory = FACTORIES.get(texturePart.toLowerCase(Locale.ROOT));
-        return factory == null ? DEFAULT_FACTORY : factory;
+        String key = texturePart.toLowerCase(Locale.ROOT);
+
+        Function<BlockBehaviour.Properties, Block> factory = FACTORIES.get(key);
+        if (factory != null) {
+            return factory;
+        }
+
+        if (key.endsWith("glass")) {
+            return GlassVoxelBlock::new;
+        }
+
+        return DEFAULT_FACTORY;
     }
 }

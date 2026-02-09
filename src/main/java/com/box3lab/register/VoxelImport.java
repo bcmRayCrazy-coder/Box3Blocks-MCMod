@@ -1,9 +1,12 @@
 package com.box3lab.register;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.zip.GZIPInputStream;
 
 import com.box3lab.util.BlockIdResolver;
 import com.google.gson.JsonArray;
@@ -90,7 +93,7 @@ public final class VoxelImport {
         Path configPath = FabricLoader.getInstance()
                 .getConfigDir()
                 .resolve("box3mod")
-                .resolve(mapName.endsWith(".json") ? mapName : mapName + ".json");
+                .resolve(mapName.endsWith(".gz") ? mapName : mapName + ".gz");
 
         if (!Files.exists(configPath)) {
             System.err.println(Component
@@ -99,13 +102,28 @@ public final class VoxelImport {
             return null;
         }
 
-        try (Reader reader = Files.newBufferedReader(configPath)) {
-            return JsonParser.parseReader(reader).getAsJsonObject();
+        try {
+            String json = readGzipJson(configPath.toString());
+            return JsonParser.parseString(json).getAsJsonObject();
         } catch (IOException | JsonParseException e) {
             System.err.println(Component
                     .translatable("command.box3mod.box3import.config_read_failed", configPath.toString())
                     .getString());
             return null;
+        }
+    }
+
+    private static String readGzipJson(String path) throws IOException {
+        try (FileInputStream fis = new FileInputStream(path);
+                GZIPInputStream gis = new GZIPInputStream(fis);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+
+            byte[] buffer = new byte[8192];
+            int n;
+            while ((n = gis.read(buffer)) > 0) {
+                baos.write(buffer, 0, n);
+            }
+            return baos.toString(StandardCharsets.UTF_8);
         }
     }
 
