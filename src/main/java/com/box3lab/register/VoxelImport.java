@@ -17,6 +17,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.Vec3;
 
 public final class VoxelImport {
@@ -34,6 +35,7 @@ public final class VoxelImport {
         int[] dir = toIntArray(cfg.getAsJsonArray("dir"));
         int[] indices = toIntArray(cfg.getAsJsonArray("indices"));
         int[] data = toIntArray(cfg.getAsJsonArray("data"));
+        int[] rot = toIntArray(cfg.getAsJsonArray("rot"));
 
         int total = Math.min(indices.length, data.length);
         int lastProgress = -1;
@@ -55,7 +57,7 @@ public final class VoxelImport {
             int x = idx % shape[0];
             int y = (idx / shape[0]) % shape[1];
             int z = idx / (shape[0] * shape[1]);
-
+            int r = rot.length > i ? rot[i] : 0;
             int wx = origin[0] + dir[0] * x;
             int wy = origin[1] + dir[1] * y;
             int wz = origin[2] + dir[2] * z;
@@ -63,7 +65,14 @@ public final class VoxelImport {
             if (world instanceof ServerLevel level) {
                 BlockPos pos = new BlockPos(wx, wy, wz);
                 Block block = BlockIdResolver.getBlockById(id, useVanillaWater);
-                level.setBlock(pos, block.defaultBlockState(), 3);
+                Rotation rotation = switch (r & 3) {
+                    case 1 -> Rotation.CLOCKWISE_90;
+                    case 2 -> Rotation.CLOCKWISE_180;
+                    case 3 -> Rotation.COUNTERCLOCKWISE_90;
+                    default -> Rotation.NONE;
+                };
+
+                level.setBlock(pos, block.defaultBlockState().rotate(rotation), 3);
 
                 if (player != null) {
                     int progress = (i + 1) * 100 / total;
