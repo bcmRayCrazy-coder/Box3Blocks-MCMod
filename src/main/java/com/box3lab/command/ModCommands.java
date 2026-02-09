@@ -1,7 +1,11 @@
 package com.box3lab.command;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.box3lab.block.BarrierVoxelBlock;
 import com.box3lab.register.VoxelImport;
+import com.box3lab.util.Box3ImportFiles;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 
@@ -23,7 +27,7 @@ public final class ModCommands {
                 CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> {
                         dispatcher.register(
                                         literal("box3import")
-                                                        .executes(context -> showHelp(context.getSource()))
+                                                        .executes(context -> listBox3ImportFiles(context.getSource()))
                                                         .then(argument("fileName", StringArgumentType.word())
                                                                         .executes(context -> executeBox3Import(
                                                                                         context.getSource(),
@@ -72,10 +76,33 @@ public final class ModCommands {
                 });
         }
 
-        private static int showHelp(CommandSourceStack source) {
-                source.sendSuccess(
-                                () -> Component.translatable("command.box3mod.box3import.usage"),
-                                false);
+        private static int listBox3ImportFiles(CommandSourceStack source) {
+                var dir = Box3ImportFiles.getImportDir();
+
+                try {
+                        List<String> files = Box3ImportFiles.listJsonFiles();
+
+                        if (files.isEmpty()) {
+                                source.sendSuccess(
+                                                () -> Component.translatable(
+                                                                "command.box3mod.box3import.list.empty",
+                                                                dir.toString()),
+                                                false);
+                        } else {
+                                String joined = String.join(", ", files);
+                                source.sendSuccess(
+                                                () -> Component.translatable(
+                                                                "command.box3mod.box3import.list.success",
+                                                                dir.toString(), joined),
+                                                false);
+                        }
+                } catch (IOException e) {
+                        source.sendFailure(
+                                        Component.translatable(
+                                                        "command.box3mod.box3import.list.error",
+                                                        dir.toString(), e.getMessage()));
+                }
+
                 return 1;
         }
 

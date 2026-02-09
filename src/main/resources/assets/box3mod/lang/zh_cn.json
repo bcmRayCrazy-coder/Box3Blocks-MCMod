@@ -403,6 +403,9 @@
   "command.box3mod.block_id.no_mapping_for_id": "未找到 ID %s 对应的方块映射。",
   "command.box3mod.block_id.missing_fluid_block": "未找到流体方块：%s，使用水方块代替。",
   "command.box3mod.block_id.missing_registered_block": "未找到注册的方块：%s。",
+  "command.box3mod.box3import.list.empty": "在 %s 中没有找到可用的地形文件（不包括 %s）",
+  "command.box3mod.box3import.list.success": "%s 中可用的地形文件：%s",
+  "command.box3mod.box3import.list.error": "列出 %s 中的地形文件失败：%s",
   "command.box3mod.box3barrier.status": "屏障可见状态：%s",
   "command.box3mod.box3barrier.set": "屏障可见状态已设置为：%s",
   "command.box3mod.box3barrier.toggled": "屏障可见状态已切换为：%s（重新进入世界以完全生效）"
