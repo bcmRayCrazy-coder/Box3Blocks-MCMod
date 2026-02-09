@@ -43,12 +43,13 @@ public class ModBlocks {
             final int lightLevel = VoxelLightLevelMapper.lightLevelFromEmissivePacked(emissive);
 
             boolean solid = BlockIndexUtil.isSolid(id);
+            boolean transparent = !solid;
             var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
 
             Block block = BlockRegistrar.register(
                     Box3Mod.MOD_ID,
                     registryName,
-                    VoxelBlockFactories.factoryFor(texturePart),
+                    VoxelBlockFactories.factoryFor(texturePart, transparent),
                     props,
                     true);
             VOXEL_BLOCKS.put(registryName, block);
