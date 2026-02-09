@@ -1,5 +1,10 @@
 # 神奇代码岛方块MC模组
 
+![Modrinth Downloads](https://img.shields.io/modrinth/dt/iG3hRUix?logo=modrinth)
+![CurseForge Downloads](https://img.shields.io/curseforge/dt/1456138?logo=curseforge)
+
+[简体中文](README.md) | [English](README_en.md)
+
 导入神奇代码岛的384个方块到我的世界，让你在MC中也能使用熟悉的方块进行创作，还支持将神奇代码岛中的建筑结构完整迁移到Minecraft世界中，保持原汁原味的建造风格。
 
 ## 📦 安装要求
@@ -59,4 +64,7 @@
 
 - 神奇代码岛提供的方块，神岛实验室开发模组
 - FabricMC 团队提供的 Fabric 模组加载器
-- Minecraft 社区的支持和反馈
+
+## 星历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=box3lab/Box3Blocks-MCMod&type=date&legend=top-left)](https://www.star-history.com/#box3lab/Box3Blocks-MCMod&type=date&legend=top-left)
