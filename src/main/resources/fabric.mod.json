@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "box3mod",
   "version": "${version}",
-  "name": "神奇代码岛方块包",
+  "name": "Box3Blocks（神岛材质包）",
   "description": "Box3 方块模组为 Minecraft 添加 384 款独特装饰方块，涵盖字母、符号、色块与发光方块，并统一整理至创造模式标签页。同时支持将神奇代码岛中的建筑一键迁移到 Minecraft 中。",
   "authors": ["神岛实验室"],
   "contact": {
