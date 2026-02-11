@@ -421,5 +421,6 @@
   "command.box3mod.box3import.list.error": "Failed to list Terrain files in %s: %s",
   "command.box3mod.box3barrier.status": "Barrier visible: %s",
   "command.box3mod.box3barrier.set": "Barrier visibility set to: %s",
-  "command.box3mod.box3barrier.toggled": "Barrier visibility toggled to: %s (re-enter the world to fully apply)"
+  "command.box3mod.box3barrier.toggled": "Barrier visibility toggled to: %s (re-enter the world to fully apply)",
+  "item.box3mod.model_destroyer": "Model Destroyer"
 }

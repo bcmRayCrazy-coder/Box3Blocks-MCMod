@@ -9,7 +9,6 @@ public final class ModItems {
         // Register all model-based display items discovered from resource packs
         ModelItemRegistrar.registerAll();
 
-        // In the future, you can add more item registrars here, e.g.:
-        // ExtraItemsRegistrar.registerAll();
+        ModelToolRegistrar.registerAll();
     }
 }
