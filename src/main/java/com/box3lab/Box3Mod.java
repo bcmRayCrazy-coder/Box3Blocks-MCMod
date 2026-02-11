@@ -3,6 +3,7 @@ package com.box3lab;
 import com.box3lab.command.ModCommands;
 import com.box3lab.register.ModBlocks;
 import com.box3lab.register.ModFluids;
+import com.box3lab.register.ModItems;
 
 import net.fabricmc.api.ModInitializer;
 
@@ -24,6 +25,7 @@ public class Box3Mod implements ModInitializer {
 		// Proceed with mild caution.
 		ModFluids.initialize();
 		ModBlocks.initialize();
+		ModItems.initialize();
 		ModCommands.register();
 
 		// LOGGER.info("Hello Fabric world!");

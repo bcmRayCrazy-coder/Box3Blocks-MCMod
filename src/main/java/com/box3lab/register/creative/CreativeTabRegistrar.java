@@ -21,6 +21,8 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.ItemLike;
 
+import static com.box3lab.register.ModelItemRegistrar.DEFAULT_TAB;
+
 public final class CreativeTabRegistrar {
     private CreativeTabRegistrar() {
     }
@@ -66,8 +68,7 @@ public final class CreativeTabRegistrar {
 
             ResourceKey<CreativeModeTab> key = ResourceKey.create(
                     BuiltInRegistries.CREATIVE_MODE_TAB.key(),
-                    Identifier.fromNamespaceAndPath(modId, "creative_tab_" + categoryPath)
-            );
+                    Identifier.fromNamespaceAndPath(modId, "creative_tab_" + categoryPath));
             CreativeModeTab tab = FabricItemGroup.builder()
                     .icon(() -> categoryIconBlock == null ? defaultIcon(blocks) : new ItemStack(categoryIconBlock))
                     .title(Component.translatable("itemGroup." + modId + "." + categoryPath))
@@ -92,5 +93,40 @@ public final class CreativeTabRegistrar {
 
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, tab);
         }
+    }
+
+    public static void registerModelTab(String modId) {
+        String categoryPath = sanitizeCategoryPath(DEFAULT_TAB);
+        if (categoryPath.isBlank()) {
+            return;
+        }
+        if (BuiltInRegistries.CREATIVE_MODE_TAB
+                .containsKey(Identifier.fromNamespaceAndPath(modId, "creative_tab_" + categoryPath))) {
+            return;
+        }
+
+        List<ItemLike> extras = CreativeTabExtras.extras().get(categoryPath);
+        if (extras == null || extras.isEmpty()) {
+            return;
+        }
+
+        ItemLike iconItem = extras.get(0);
+        ResourceKey<CreativeModeTab> key = ResourceKey.create(
+                BuiltInRegistries.CREATIVE_MODE_TAB.key(),
+                Identifier.fromNamespaceAndPath(modId, "creative_tab_" + categoryPath));
+
+        CreativeModeTab tab = FabricItemGroup.builder()
+                .icon(() -> new ItemStack(iconItem))
+                .title(Component.translatable("itemGroup." + modId + "." + categoryPath))
+                .displayItems((params, output) -> {
+                    for (ItemLike extra : extras) {
+                        if (extra != null) {
+                            output.accept(extra);
+                        }
+                    }
+                })
+                .build();
+
+        Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, key, tab);
     }
 }

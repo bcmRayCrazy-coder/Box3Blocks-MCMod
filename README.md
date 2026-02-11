@@ -1,11 +1,11 @@
-# 神奇代码岛方块MC模组
+# Box3Blocks（神岛材质包）-- Minecraft Mod
 
 ![Modrinth Downloads](https://img.shields.io/modrinth/dt/iG3hRUix?logo=modrinth)
 ![CurseForge Downloads](https://img.shields.io/curseforge/dt/1456138?logo=curseforge)
 
 [简体中文](README.md) | [English](README_en.md)
 
-导入神奇代码岛的384个方块到我的世界，让你在MC中也能使用熟悉的方块进行创作，还支持将神奇代码岛中的建筑结构完整迁移到Minecraft世界中，保持原汁原味的建造风格。
+导入神奇代码岛的384个方块到我的世界，让你在MC中也能使用熟悉的方块进行创作，还支持将神奇代码岛中的建筑/模型结构完整迁移到Minecraft世界中，保持原汁原味的建造风格。
 
 ## 📦 安装要求
 
@@ -46,6 +46,14 @@
     当 `ignoreBarrier = true` 时，跳过屏障方块（不会在世界中放置这些方块）。
   - `/box3import <fileName> <ignoreBarrier> <useVanillaWater>`  
     当 `useVanillaWater = true` 时，所有流体统一替换为 MC 原版水方块。
+
+### 🧩 导入神奇代码岛的模型物品
+
+- **资源文件导入**：支持从 `minecraft/resourcepacks/` 目录文件导入资源包。
+- **资源包加载模型**：将模型放入资源包即可自动注册到创造模式。
+- **模型物品标签页**：`Box3:模型` 标签页用于管理模型物品。
+- **模型销毁器**：右键模型可删除（道具名：模型销毁器）。
+- **生成模型资源包**：访问 https://box3lab.com/mc-resource-pack 获取适用于本模组的资源包文件。
 
 ### 🔍 屏障可见性切换
 
