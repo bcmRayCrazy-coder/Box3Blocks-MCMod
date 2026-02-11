@@ -422,5 +422,5 @@
   "command.box3mod.box3barrier.status": "Barrier visible: %s",
   "command.box3mod.box3barrier.set": "Barrier visibility set to: %s",
   "command.box3mod.box3barrier.toggled": "Barrier visibility toggled to: %s (re-enter the world to fully apply)",
-  "item.box3mod.model_destroyer": "Model Destroyer"
+  "item.box3mod.model_destroyer": "Model destruction bucket"
 }
