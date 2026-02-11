@@ -1,4 +1,4 @@
-# Box3 Blocks Minecraft Mod
+# Box3Blocks（神岛材质包）-- Minecraft Mod
 
 ![Modrinth Downloads](https://img.shields.io/modrinth/dt/iG3hRUix?logo=modrinth)
 ![CurseForge Downloads](https://img.shields.io/curseforge/dt/1456138?logo=curseforge)
@@ -49,6 +49,14 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
   - `/box3import <fileName> <ignoreBarrier> <useVanillaWater>`  
     When `useVanillaWater = true`, all fluids are replaced with vanilla Minecraft water blocks.
 
+### 🧩 Importing Box3 Model Items
+
+- **Resource file import**: Supports importing resource packs from the `minecraft/resourcepacks/` directory.
+- **Resource pack model loading**: Put models into a resource pack to auto-register them in Creative.
+- **Model creative tab**: `Box3:Models` tab for model items.
+- **Model Destroyer**: Right-click a model to delete it (item name: Model Destroyer).
+- **Generate model resource pack**: Visit https://box3lab.com/mc-resource-pack to get a pack compatible with this mod.
+
 ### 🔍 Barrier Visibility Toggle
 
 - **Barrier visibility command `/box3barrier`**:
@@ -68,7 +76,7 @@ This project is licensed under the [Apache License 2.0](LICENSE).
 
 ## 🙏 Acknowledgements
 
-- Blocks provided by Box3 (Magic Code Island), and the mod developed by Box3 Lab
+- Blocks provided by Box3, and the mod developed by Box3Lab
 - FabricMC team for the Fabric mod loader
 
 ## Star History

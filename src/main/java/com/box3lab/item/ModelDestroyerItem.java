@@ -23,7 +23,6 @@ public class ModelDestroyerItem extends Item {
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         if (!(level instanceof ServerLevel serverLevel)) {
-            // 客户端或非服务端世界，直接视为成功但不执行删除逻辑
             return InteractionResult.SUCCESS;
         }
 
