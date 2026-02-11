@@ -15,6 +15,7 @@ import java.util.zip.ZipFile;
 import com.box3lab.Box3Mod;
 import com.box3lab.item.ModelDisplayItem;
 import com.box3lab.register.creative.CreativeTabExtras;
+import com.box3lab.register.creative.CreativeTabRegistrar;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Registry;
@@ -26,7 +27,7 @@ import net.minecraft.world.item.Item;
 
 public final class ModItems {
     private static final String ITEMS_DIR_PREFIX = "assets/" + Box3Mod.MOD_ID + "/items/";
-    private static final String DEFAULT_TAB = "structure";
+    private static final String DEFAULT_TAB = "models";
 
     private ModItems() {
     }
@@ -52,6 +53,8 @@ public final class ModItems {
             Registry.register(BuiltInRegistries.ITEM, key, item);
             CreativeTabExtras.add(DEFAULT_TAB, item);
         }
+
+        CreativeTabRegistrar.registerModelTab(Box3Mod.MOD_ID);
     }
 
     private static Set<String> discoverModelItemPaths() {
