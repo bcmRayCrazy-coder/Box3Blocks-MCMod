@@ -43,7 +43,14 @@ public class ModBlocks {
 
             boolean solid = BlockIndexUtil.isSolid(id);
             boolean transparent = !solid;
-            var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
+
+            int index = data.indexById.get(id);
+            float hardness = data.blockHardness[index];
+            float resistance = data.blockResistance[index];
+            float friction = data.blockFriction[index];
+
+            var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel, hardness, resistance,
+                    friction);
 
             Block block = BlockRegistrar.register(
                     Box3.MOD_ID,
