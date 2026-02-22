@@ -12,7 +12,7 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.box3lab.Box3Mod;
+import com.box3lab.Box3;
 import com.box3lab.item.ModelDisplayItem;
 import com.box3lab.register.creative.CreativeTabExtras;
 import com.box3lab.register.creative.CreativeTabRegistrar;
@@ -26,7 +26,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.Item;
 
 public final class ModelItemRegistrar {
-    private static final String ITEMS_DIR_PREFIX = "assets/" + Box3Mod.MOD_ID + "/items/";
+    private static final String ITEMS_DIR_PREFIX = "assets/" + Box3.MOD_ID + "/items/";
     public static final String DEFAULT_TAB = "models";
 
     private ModelItemRegistrar() {
@@ -39,7 +39,7 @@ public final class ModelItemRegistrar {
         }
 
         for (String path : itemPaths) {
-            Identifier id = Identifier.tryBuild(Box3Mod.MOD_ID, path);
+            Identifier id = Identifier.tryBuild(Box3.MOD_ID, path);
             if (id == null) {
                 continue;
             }
@@ -54,7 +54,7 @@ public final class ModelItemRegistrar {
             CreativeTabExtras.add(DEFAULT_TAB, item);
         }
 
-        CreativeTabRegistrar.registerModelTab(Box3Mod.MOD_ID);
+        CreativeTabRegistrar.registerModelTab(Box3.MOD_ID);
     }
 
     private static Set<String> discoverModelItemPaths() {
@@ -84,7 +84,7 @@ public final class ModelItemRegistrar {
     }
 
     private static void scanDirectoryPack(Path packDir, Set<String> out) {
-        Path itemsDir = packDir.resolve("assets").resolve(Box3Mod.MOD_ID).resolve("items");
+        Path itemsDir = packDir.resolve("assets").resolve(Box3.MOD_ID).resolve("items");
         if (!Files.isDirectory(itemsDir)) {
             return;
         }

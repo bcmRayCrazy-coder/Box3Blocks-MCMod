@@ -8,7 +8,7 @@ import java.util.List;
 
 import net.fabricmc.loader.api.FabricLoader;
 
-import static com.box3lab.Box3Mod.MOD_ID;
+import static com.box3lab.Box3.MOD_ID;
 
 public final class Box3ImportFiles {
 

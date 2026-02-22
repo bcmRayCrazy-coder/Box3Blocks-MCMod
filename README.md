@@ -34,14 +34,14 @@
 
 ### 🏗 导入神奇代码岛建筑
 
-- **地形文件导入**：支持从 `config/box3mod/` 目录中的压缩地形文件（`.gz`）导入方块地图。
+- **地形文件导入**：支持从 `config/box3/` 目录中的压缩地形文件（`.gz`）导入方块地图。
 - **建筑迁移**：可将神奇代码岛中的建筑结构迁移到 Minecraft 世界中，保持方块外观一致。
 - **获取建筑文件**：访问 https://box3lab.com/build2mc 获取神奇代码岛建筑的地形文件（`.gz`）。
 - **导入指令**：
   - `/box3import`  
-    列出 `config/box3mod/` 目录下所有可导入的地形文件（`.gz`）。
+    列出 `config/box3/` 目录下所有可导入的地形文件（`.gz`）。
   - `/box3import <fileName>`  
-    从 `config/box3mod/<fileName>.gz` 导入建筑（命令中不需要带后缀，会自动补 `.gz`）。
+    从 `config/box3/<fileName>.gz` 导入建筑（命令中不需要带后缀，会自动补 `.gz`）。
   - `/box3import <fileName> <ignoreBarrier>`  
     当 `ignoreBarrier = true` 时，跳过屏障方块（不会在世界中放置这些方块）。
   - `/box3import <fileName> <ignoreBarrier> <ignoreWater>`  

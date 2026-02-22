@@ -3,7 +3,7 @@ package com.box3lab.register;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.box3lab.Box3Mod;
+import com.box3lab.Box3;
 import com.box3lab.register.core.BlockRegistrar;
 import com.box3lab.register.creative.CreativeTabRegistrar;
 import com.box3lab.register.sound.CategorySoundTypes;
@@ -46,7 +46,7 @@ public class ModBlocks {
             var props = VoxelBlockPropertiesFactory.create(solid, soundType, lightLevel);
 
             Block block = BlockRegistrar.register(
-                    Box3Mod.MOD_ID,
+                    Box3.MOD_ID,
                     texturePart,
                     VoxelBlockFactories.factoryFor(texturePart, transparent),
                     props,
@@ -54,7 +54,7 @@ public class ModBlocks {
             BLOCKS.put(texturePart, block);
         }
 
-        CreativeTabRegistrar.registerCreativeTabs(Box3Mod.MOD_ID, BLOCKS, data);
+        CreativeTabRegistrar.registerCreativeTabs(Box3.MOD_ID, BLOCKS, data);
     }
 
 }

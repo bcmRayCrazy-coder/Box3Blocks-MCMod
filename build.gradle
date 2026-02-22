@@ -22,7 +22,7 @@ loom {
 	splitEnvironmentSourceSets()
 
 	mods {
-		"box3mod" {
+		"box3" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}
