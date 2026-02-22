@@ -36,7 +36,7 @@ public final class CreativeTabRegistrar {
     }
 
     private static ItemStack defaultIcon(Map<String, Block> blocks) {
-        Block iconBlock = blocks.get("voxel_stone");
+        Block iconBlock = blocks.get("stone");
         if (iconBlock == null && !blocks.isEmpty()) {
             iconBlock = blocks.values().iterator().next();
         }
@@ -46,7 +46,7 @@ public final class CreativeTabRegistrar {
     public static void registerCreativeTabs(String modId, Map<String, Block> blocks, BlockIndexData data) {
         Map<String, List<String>> categoryToRegistryNames = new HashMap<>();
         for (String rn : blocks.keySet()) {
-            String voxelName = rn.startsWith("voxel_") ? rn.substring("voxel_".length()) : rn;
+            String voxelName = rn;
             String category = data.categoryByName.getOrDefault(voxelName, "");
             String categoryPath = sanitizeCategoryPath(category);
             if (categoryPath != null && !categoryPath.isBlank()) {

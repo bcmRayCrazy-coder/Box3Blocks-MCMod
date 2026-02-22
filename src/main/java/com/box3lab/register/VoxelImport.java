@@ -3,6 +3,10 @@ package com.box3lab.register;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,10 +27,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.Vec3;
 
+import static com.box3lab.Box3Mod.MOD_ID;
+
 public final class VoxelImport {
 
     public static void apply(Object voxels, Object world, String mapName, Vec3 customOrigin,
-            ServerPlayer player, boolean ignoreBarrier, boolean useVanillaWater) throws Exception {
+            ServerPlayer player, boolean ignoreBarrier, boolean ignoreWater) throws Exception {
         JsonObject cfg = loadConfig(mapName);
         if (cfg == null) {
             throw new Exception(Component
@@ -67,7 +73,7 @@ public final class VoxelImport {
 
             if (world instanceof ServerLevel level) {
                 BlockPos pos = new BlockPos(wx, wy, wz);
-                Block block = BlockIdResolver.getBlockById(id, useVanillaWater);
+                Block block = BlockIdResolver.getBlockById(id, ignoreWater);
                 Rotation rotation = switch (r & 3) {
                     case 1 -> Rotation.CLOCKWISE_90;
                     case 2 -> Rotation.CLOCKWISE_180;
@@ -90,9 +96,22 @@ public final class VoxelImport {
     }
 
     private static JsonObject loadConfig(String mapName) {
+        if (mapName.startsWith("http://") || mapName.startsWith("https://")) {
+            try {
+                String json = readGzipJsonFromUrl(mapName);
+                return JsonParser.parseString(json).getAsJsonObject();
+            } catch (IOException | JsonParseException e) {
+                System.err.println(Component
+                        .translatable("command.box3mod.box3import.config_read_failed", mapName)
+                        .getString());
+                return null;
+            }
+        }
+
+        // 否则仍然从本地 config 目录读取
         Path configPath = FabricLoader.getInstance()
                 .getConfigDir()
-                .resolve("box3mod")
+                .resolve(MOD_ID)
                 .resolve(mapName.endsWith(".gz") ? mapName : mapName + ".gz");
 
         if (!Files.exists(configPath)) {
@@ -116,6 +135,26 @@ public final class VoxelImport {
     private static String readGzipJson(String path) throws IOException {
         try (FileInputStream fis = new FileInputStream(path);
                 GZIPInputStream gis = new GZIPInputStream(fis);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+
+            byte[] buffer = new byte[8192];
+            int n;
+            while ((n = gis.read(buffer)) > 0) {
+                baos.write(buffer, 0, n);
+            }
+            return baos.toString(StandardCharsets.UTF_8);
+        }
+    }
+
+    private static String readGzipJsonFromUrl(String urlString) throws IOException {
+        URI uri = URI.create(urlString);
+        URL url = uri.toURL();
+        URLConnection connection = url.openConnection();
+        connection.setConnectTimeout(10_000);
+        connection.setReadTimeout(30_000);
+
+        try (InputStream is = connection.getInputStream();
+                GZIPInputStream gis = new GZIPInputStream(is);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
 
             byte[] buffer = new byte[8192];
