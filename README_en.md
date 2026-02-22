@@ -5,7 +5,7 @@
 
 [简体中文](README.md) | [English](README_en.md)
 
-Import 384 blocks from the Box3 (Magic Code Island) platform into Minecraft, so you can build with the same familiar blocks inside MC.  
+Import 373 blocks from the Box3 (Magic Code Island) platform into Minecraft, so you can build with the same familiar blocks inside MC.  
 You can also migrate structures from Box3 directly into your Minecraft world, preserving the original building style.
 
 ## 📦 Requirements
@@ -21,7 +21,7 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
 
 ### 🎨 Rich Block Library
 
-- **384 blocks**: including letters, numbers, symbols, colors, elements, etc.
+- **373 blocks**: including letters, numbers, symbols, colors, elements, etc.
 - **9 creative tabs**: organized for easy search and use
   - Box3: Letters – A-Z letter blocks
   - Box3: Numbers – 0-9 number blocks
@@ -35,7 +35,7 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
 
 ### 🏗 Importing Box3 Structures
 
-- **Terrain file import**: supports importing compressed terrain files (`.gz`) from the `minecraft/config/box3mod/` directory into your world.
+- **Terrain file import**: supports importing compressed terrain files (`.gz`) from the `config/box3mod/` directory into your world.
 - **Structure migration**: migrate structures from Box3 into Minecraft while keeping the same block appearance.
 - **Get terrain files**: visit https://box3lab.com/build2mc to download Box3 building terrain files (`.gz`).
 - **Import commands**:
@@ -46,12 +46,12 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
     (You don’t need to type the `.gz` extension in the command.)
   - `/box3import <fileName> <ignoreBarrier>`  
     When `ignoreBarrier = true`, barrier blocks will be skipped (they will not be placed in the world).
-  - `/box3import <fileName> <ignoreBarrier> <useVanillaWater>`  
-    When `useVanillaWater = true`, all fluids are replaced with vanilla Minecraft water blocks.
+  - `/box3import <fileName> <ignoreBarrier> <ignoreWater>`  
+    When `ignoreWater = true`, all fluids are uniformly replaced with air.
 
 ### 🧩 Importing Box3 Model Items
 
-- **Resource file import**: Supports importing resource packs from the `minecraft/resourcepacks/` directory.
+- **Resource file import**: Supports importing resource packs from the `resourcepacks/` directory.
 - **Resource pack model loading**: Put models into a resource pack to auto-register them in Creative.
 - **Model creative tab**: `Box3:Models` tab for model items.
 - **Model Destroyer**: Right-click a model to delete it (item name: Model Destroyer).
