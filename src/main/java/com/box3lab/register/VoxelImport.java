@@ -32,7 +32,7 @@ import static com.box3lab.Box3Mod.MOD_ID;
 public final class VoxelImport {
 
     public static void apply(Object voxels, Object world, String mapName, Vec3 customOrigin,
-            ServerPlayer player, boolean ignoreBarrier, boolean useVanillaWater) throws Exception {
+            ServerPlayer player, boolean ignoreBarrier, boolean ignoreWater) throws Exception {
         JsonObject cfg = loadConfig(mapName);
         if (cfg == null) {
             throw new Exception(Component
@@ -73,7 +73,7 @@ public final class VoxelImport {
 
             if (world instanceof ServerLevel level) {
                 BlockPos pos = new BlockPos(wx, wy, wz);
-                Block block = BlockIdResolver.getBlockById(id, useVanillaWater);
+                Block block = BlockIdResolver.getBlockById(id, ignoreWater);
                 Rotation rotation = switch (r & 3) {
                     case 1 -> Rotation.CLOCKWISE_90;
                     case 2 -> Rotation.CLOCKWISE_180;

@@ -65,7 +65,7 @@ public final class ModCommands {
                                                                                                                         context,
                                                                                                                         "ignoreBarrier"),
                                                                                                         false))
-                                                                                        .then(argument("useVanillaWater",
+                                                                                        .then(argument("ignoreWater",
                                                                                                         BoolArgumentType.bool())
                                                                                                         .executes(context -> executeBox3Import(
                                                                                                                         context.getSource(),
@@ -77,7 +77,7 @@ public final class ModCommands {
                                                                                                                                         "ignoreBarrier"),
                                                                                                                         BoolArgumentType.getBool(
                                                                                                                                         context,
-                                                                                                                                        "useVanillaWater")))))));
+                                                                                                                                        "ignoreWater")))))));
 
                         dispatcher.register(
                                         literal("box3barrier")

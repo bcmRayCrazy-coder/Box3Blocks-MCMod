@@ -2,7 +2,6 @@ package com.box3lab;
 
 import com.box3lab.command.ModCommands;
 import com.box3lab.register.ModBlocks;
-import com.box3lab.register.ModFluids;
 import com.box3lab.register.ModItems;
 
 import net.fabricmc.api.ModInitializer;
@@ -23,7 +22,6 @@ public class Box3Mod implements ModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-		ModFluids.initialize();
 		ModBlocks.initialize();
 		ModItems.initialize();
 		ModCommands.register();

@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 
 public class ModBlocks {
-    public static final Map<String, Block> VOXEL_BLOCKS = new HashMap<>();
+    public static final Map<String, Block> BLOCKS = new HashMap<>();
 
     public static void initialize() {
 
@@ -34,7 +34,6 @@ public class ModBlocks {
 
             String voxelName = data.names[i];
             String texturePart = voxelName.toLowerCase(java.util.Locale.ROOT);
-            String registryName = "voxel_" + texturePart;
 
             String category = data.categoryByName.getOrDefault(texturePart, "");
             SoundType soundType = CategorySoundTypes.soundTypeForCategory(category);
@@ -48,14 +47,14 @@ public class ModBlocks {
 
             Block block = BlockRegistrar.register(
                     Box3Mod.MOD_ID,
-                    registryName,
+                    texturePart,
                     VoxelBlockFactories.factoryFor(texturePart, transparent),
                     props,
                     true);
-            VOXEL_BLOCKS.put(registryName, block);
+            BLOCKS.put(texturePart, block);
         }
 
-        CreativeTabRegistrar.registerCreativeTabs(Box3Mod.MOD_ID, VOXEL_BLOCKS, data);
+        CreativeTabRegistrar.registerCreativeTabs(Box3Mod.MOD_ID, BLOCKS, data);
     }
 
 }

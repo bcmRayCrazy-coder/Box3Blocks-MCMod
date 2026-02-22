@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "box3mod:item/spec_coffee_bucket"
-  }
-}
