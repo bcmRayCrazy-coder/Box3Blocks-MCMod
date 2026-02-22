@@ -12,13 +12,12 @@ import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.CommandSourceStack;
+import static net.minecraft.commands.Commands.argument;
+import static net.minecraft.commands.Commands.literal;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-
-import static net.minecraft.commands.Commands.argument;
-import static net.minecraft.commands.Commands.literal;
 
 public final class ModCommands {
         private ModCommands() {
@@ -125,17 +124,20 @@ public final class ModCommands {
         }
 
         private static String resolveMapName(String fileName) {
-                if (fileName != null && fileName.startsWith("box3lab-") && fileName.length() > 2) {
-                        String suffix = fileName.substring(2);
-                        boolean allDigits = true;
-                        for (int i = 0; i < suffix.length(); i++) {
-                                if (!Character.isDigit(suffix.charAt(i))) {
-                                        allDigits = false;
-                                        break;
+                if (fileName != null && fileName.startsWith("Box3Build-")) {
+
+                        String suffix = fileName.substring("Box3Build-".length());
+                        if (!suffix.isEmpty()) {
+                                boolean allDigits = true;
+                                for (int i = 0; i < suffix.length(); i++) {
+                                        if (!Character.isDigit(suffix.charAt(i))) {
+                                                allDigits = false;
+                                                break;
+                                        }
                                 }
-                        }
-                        if (allDigits) {
-                                return "https://box3lab.com/mc/terrain/" + suffix + ".gz";
+                                if (allDigits) {
+                                        return "https://static.pgaot.com/MC/Build/" + suffix + ".gz";
+                                }
                         }
                 }
                 return fileName;
