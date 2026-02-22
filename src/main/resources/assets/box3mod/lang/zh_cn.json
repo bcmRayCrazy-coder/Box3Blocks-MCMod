@@ -393,7 +393,7 @@
   "itemGroup.box3mod.structure": "Box3:建筑",
   "itemGroup.box3mod.models": "Box3:模型",
   "command.box3mod.box3import.usage": "用法：/box3import <文件名>（从 config/box3mod/<文件名>.json 读取），会在你的当前位置生成建筑",
-  "command.box3mod.box3import.success": "已从 config/box3mod/%s 导入建筑",
+  "command.box3mod.box3import.success": "已从 %s 导入建筑",
   "command.box3mod.box3import.progress": "正在导入 %s... %s%%",
   "command.box3mod.box3import.failure": "导入失败：%s",
   "command.box3mod.box3import.config_invalid": "配置文件读取失败，请检查文件是否存在且格式正确。",

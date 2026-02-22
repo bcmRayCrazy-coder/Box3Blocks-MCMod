@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.MapColor;
 
 public final class ModFluids {
     private ModFluids() {
@@ -113,7 +114,7 @@ public final class ModFluids {
                     BuiltInRegistries.BLOCK,
                     fluidBlockKey,
                     new LiquidBlock(stillRef[0],
-                            BlockBehaviour.Properties.of().noCollision().strength(100.0F).setId(fluidBlockKey)));
+                            BlockBehaviour.Properties.of().noCollision().strength(100.0F).setId(fluidBlockKey) .mapColor(MapColor.COLOR_BLUE)));
 
             bucketRef[0] = Registry.register(
                     BuiltInRegistries.ITEM,
