@@ -124,20 +124,10 @@ public final class ModCommands {
         }
 
         private static String resolveMapName(String fileName) {
-                if (fileName != null && fileName.startsWith("Box3Build-")) {
-
-                        String suffix = fileName.substring("Box3Build-".length());
+                if (fileName != null && fileName.startsWith("Box3-")) {
+                        String suffix = fileName.substring("Box3-".length());
                         if (!suffix.isEmpty()) {
-                                boolean allDigits = true;
-                                for (int i = 0; i < suffix.length(); i++) {
-                                        if (!Character.isDigit(suffix.charAt(i))) {
-                                                allDigits = false;
-                                                break;
-                                        }
-                                }
-                                if (allDigits) {
-                                        return "https://static.pgaot.com/MC/Build/" + suffix + ".gz";
-                                }
+                                return "https://static.pgaot.com/mc/build/" + suffix + ".gz";
                         }
                 }
                 return fileName;
