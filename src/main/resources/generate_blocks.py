@@ -50,13 +50,13 @@ def scan_texture_parts():
     for file_path in TEXTURES_DIR.glob("*.png"):
         parts = file_path.stem.split("_")
         if len(parts) >= 2 and parts[-1] in FACES:
-            texture_part = "_".join(parts[:-1])
+            texture_part = "_".join(parts[:-1]).lower()
             if texture_part:
                 texture_parts.add(texture_part)
             continue
 
         if len(parts) >= 3 and parts[-2] in FACES and parts[-1].isdigit():
-            texture_part = "_".join(parts[:-2])
+            texture_part = "_".join(parts[:-2]).lower()
             if texture_part:
                 texture_parts.add(texture_part)
     return sorted(texture_parts)

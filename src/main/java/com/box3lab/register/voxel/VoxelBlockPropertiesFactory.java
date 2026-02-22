@@ -2,6 +2,7 @@ package com.box3lab.register.voxel;
 
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 
 public final class VoxelBlockPropertiesFactory {
     private VoxelBlockPropertiesFactory() {
@@ -10,6 +11,7 @@ public final class VoxelBlockPropertiesFactory {
     public static BlockBehaviour.Properties create(boolean solid, SoundType soundType, int lightLevel) {
         BlockBehaviour.Properties props = BlockBehaviour.Properties.of()
                 .sound(soundType)
+                .mapColor(MapColor.COLOR_CYAN)
                 .lightLevel(state -> lightLevel);
 
         if (!solid) {
