@@ -5,10 +5,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
+import com.box3lab.register.ModBlocks;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-
-import com.box3lab.register.ModBlocks;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.level.block.Block;
@@ -29,7 +28,7 @@ public final class BlockIdResolver {
         try (InputStream is = BlockIdResolver.class.getClassLoader().getResourceAsStream("block-id.json")) {
             if (is == null) {
                 throw new RuntimeException(Component
-                        .translatable("command.box3mod.block_id.missing_file")
+                        .translatable("command.box3.block_id.missing_file")
                         .getString());
             }
             try (InputStreamReader reader = new InputStreamReader(is, StandardCharsets.UTF_8)) {
@@ -37,7 +36,7 @@ public final class BlockIdResolver {
             }
         } catch (Exception e) {
             throw new RuntimeException(
-                    Component.translatable("command.box3mod.block_id.read_failed").getString(),
+                    Component.translatable("command.box3.block_id.read_failed").getString(),
                     e);
         }
     }
@@ -52,7 +51,7 @@ public final class BlockIdResolver {
         String idStr = String.valueOf(id);
         if (!blockIdMapping.has(idStr)) {
             System.err.println(Component
-                    .translatable("command.box3mod.block_id.no_mapping_for_id", idStr)
+                    .translatable("command.box3.block_id.no_mapping_for_id", idStr)
                     .getString());
             return Blocks.STONE;
         }
@@ -82,7 +81,7 @@ public final class BlockIdResolver {
         Block block = ModBlocks.BLOCKS.get(normalizedKey);
         if (block == null) {
             System.err.println(Component
-                    .translatable("command.box3mod.block_id.missing_registered_block", registryKey)
+                    .translatable("command.box3.block_id.missing_registered_block", registryKey)
                     .getString());
             return Blocks.STONE;
         }

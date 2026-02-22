@@ -102,21 +102,21 @@ public final class ModCommands {
                         if (files.isEmpty()) {
                                 source.sendSuccess(
                                                 () -> Component.translatable(
-                                                                "command.box3mod.box3import.list.empty",
+                                                                "command.box3.box3import.list.empty",
                                                                 dir.toString()),
                                                 false);
                         } else {
                                 String joined = String.join(", ", files);
                                 source.sendSuccess(
                                                 () -> Component.translatable(
-                                                                "command.box3mod.box3import.list.success",
+                                                                "command.box3.box3import.list.success",
                                                                 dir.toString(), joined),
                                                 false);
                         }
                 } catch (IOException e) {
                         source.sendFailure(
                                         Component.translatable(
-                                                        "command.box3mod.box3import.list.error",
+                                                        "command.box3.box3import.list.error",
                                                         dir.toString(), e.getMessage()));
                 }
 
@@ -127,7 +127,7 @@ public final class ModCommands {
                 if (fileName != null && fileName.startsWith("Box3-")) {
                         String suffix = fileName.substring("Box3-".length());
                         if (!suffix.isEmpty()) {
-                                return "https://static.pgaot.com/mc/build/" + suffix + ".gz";
+                                return "https://box3lab.com/mc/build/" + suffix + ".gz";
                         }
                 }
                 return fileName;
@@ -146,12 +146,12 @@ public final class ModCommands {
                                         useVanillaWater);
 
                         source.sendSuccess(
-                                        () -> Component.translatable("command.box3mod.box3import.success",
+                                        () -> Component.translatable("command.box3.box3import.success",
                                                         mapName),
                                         false);
                 } catch (Exception e) {
                         source.sendFailure(
-                                        Component.translatable("command.box3mod.box3import.failure", e.getMessage()));
+                                        Component.translatable("command.box3.box3import.failure", e.getMessage()));
                 }
                 return 1;
         }
@@ -159,7 +159,7 @@ public final class ModCommands {
         private static int showBarrierStatus(CommandSourceStack source) {
                 boolean visible = BarrierVoxelBlock.isVisible();
                 source.sendSuccess(
-                                () -> Component.translatable("command.box3mod.box3barrier.status",
+                                () -> Component.translatable("command.box3.box3barrier.status",
                                                 String.valueOf(visible)),
                                 false);
                 return 1;
@@ -168,7 +168,7 @@ public final class ModCommands {
         private static int setBarrierVisible(CommandSourceStack source, boolean value) {
                 BarrierVoxelBlock.setVisible(value);
                 source.sendSuccess(
-                                () -> Component.translatable("command.box3mod.box3barrier.set", String.valueOf(value)),
+                                () -> Component.translatable("command.box3.box3barrier.set", String.valueOf(value)),
                                 false);
                 return 1;
         }
@@ -178,7 +178,7 @@ public final class ModCommands {
                 boolean next = !current;
                 BarrierVoxelBlock.setVisible(next);
                 source.sendSuccess(
-                                () -> Component.translatable("command.box3mod.box3barrier.toggled",
+                                () -> Component.translatable("command.box3.box3barrier.toggled",
                                                 String.valueOf(next)),
                                 false);
                 return 1;

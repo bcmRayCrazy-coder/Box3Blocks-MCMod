@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 # 模组 ID，用于生成资源路径前缀
-MOD_ID = "box3mod"
+MOD_ID = "box3"
 
 # 当前 py 文件目录
 BASE_DIR = Path(__file__).parent

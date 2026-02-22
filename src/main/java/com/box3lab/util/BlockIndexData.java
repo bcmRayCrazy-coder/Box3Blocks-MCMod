@@ -33,6 +33,9 @@ public final class BlockIndexData {
     public final int[] ids;
     public final String[] names;
     public final int[] emissive;
+    public final float[] blockHardness;
+    public final float[] blockResistance;
+    public final float[] blockFriction;
     public final Map<String, String> categoryByName;
     public final Set<Integer> notSolidIds;
     public final Map<Integer, FluidInfo> fluidsById;
@@ -44,13 +47,18 @@ public final class BlockIndexData {
             int[] ids,
             String[] names,
             int[] emissive,
+            float[] blockHardness,
+            float[] blockResistance,
+            float[] blockFriction,
             Map<String, String> categoryByName,
             Set<Integer> notSolidIds,
-            Map<Integer, FluidInfo> fluidsById
-    ) {
+            Map<Integer, FluidInfo> fluidsById) {
         this.ids = ids;
         this.names = names;
         this.emissive = emissive;
+        this.blockHardness = blockHardness;
+        this.blockResistance = blockResistance;
+        this.blockFriction = blockFriction;
         this.categoryByName = categoryByName;
         this.notSolidIds = notSolidIds;
         this.fluidsById = fluidsById;
@@ -107,8 +115,13 @@ public final class BlockIndexData {
             final int fluidG;
             final int fluidB;
             final double fluidExtinction;
+            final float hardness;
+            final float resistance;
+            final float friction;
 
-            Entry(String name, int id, int emissive, String category, boolean transparent, boolean fluid, int mass, int fluidR, int fluidG, int fluidB, double fluidExtinction) {
+            Entry(String name, int id, int emissive, String category, boolean transparent, boolean fluid, int mass,
+                    int fluidR, int fluidG, int fluidB, double fluidExtinction, float hardness, float resistance,
+                    float friction) {
                 this.name = name;
                 this.id = id;
                 this.emissive = emissive;
@@ -120,6 +133,9 @@ public final class BlockIndexData {
                 this.fluidG = fluidG;
                 this.fluidB = fluidB;
                 this.fluidExtinction = fluidExtinction;
+                this.hardness = hardness;
+                this.resistance = resistance;
+                this.friction = friction;
             }
         }
 
@@ -135,7 +151,8 @@ public final class BlockIndexData {
             int mass = obj.has("mass") ? obj.get("mass").getAsInt() : 0;
 
             int emissivePacked = 0;
-            if (obj.has("emissive") && obj.get("emissive").isJsonArray() && obj.getAsJsonArray("emissive").size() >= 3) {
+            if (obj.has("emissive") && obj.get("emissive").isJsonArray()
+                    && obj.getAsJsonArray("emissive").size() >= 3) {
                 double er = obj.getAsJsonArray("emissive").get(0).getAsDouble();
                 double eg = obj.getAsJsonArray("emissive").get(1).getAsDouble();
                 double eb = obj.getAsJsonArray("emissive").get(2).getAsDouble();
@@ -144,7 +161,8 @@ public final class BlockIndexData {
             }
 
             int fr = 0, fg = 0, fb = 0;
-            if (obj.has("fluidColor") && obj.get("fluidColor").isJsonArray() && obj.getAsJsonArray("fluidColor").size() >= 3) {
+            if (obj.has("fluidColor") && obj.get("fluidColor").isJsonArray()
+                    && obj.getAsJsonArray("fluidColor").size() >= 3) {
                 double r = obj.getAsJsonArray("fluidColor").get(0).getAsDouble();
                 double g = obj.getAsJsonArray("fluidColor").get(1).getAsDouble();
                 double b = obj.getAsJsonArray("fluidColor").get(2).getAsDouble();
@@ -163,8 +181,25 @@ public final class BlockIndexData {
                 fluidExtinction = obj.get("fluidExtinction").getAsDouble();
             }
 
+            // Parse strength values
+            float hardness = 1.0f; // default hardness
+            float resistance = 1.0f; // default resistance
+
+            if (obj.has("strength") && obj.get("strength").isJsonObject()) {
+                JsonObject strengthObj = obj.get("strength").getAsJsonObject();
+                hardness = strengthObj.has("hardness") ? strengthObj.get("hardness").getAsFloat() : 1.0f;
+                resistance = strengthObj.has("resistance") ? strengthObj.get("resistance").getAsFloat() : 1.0f;
+            }
+
+            // Parse friction value (default 1.0 if missing)
+            float friction = 1.0f;
+            if (obj.has("friction")) {
+                friction = obj.get("friction").getAsFloat();
+            }
+
             if (id >= 0) {
-                entries.add(new Entry(name, id, emissivePacked, category, transparent, fluid, mass, fr, fg, fb, fluidExtinction));
+                entries.add(new Entry(name, id, emissivePacked, category, transparent, fluid, mass, fr, fg, fb,
+                        fluidExtinction, hardness, resistance, friction));
             }
         }
 
@@ -173,6 +208,9 @@ public final class BlockIndexData {
         int[] ids = new int[entries.size()];
         String[] names = new String[entries.size()];
         int[] emissive = new int[entries.size()];
+        float[] blockHardness = new float[entries.size()];
+        float[] blockResistance = new float[entries.size()];
+        float[] blockFriction = new float[entries.size()];
         Map<String, String> categoryByName = new HashMap<>(entries.size() * 2);
 
         Set<Integer> notSolidSet = new HashSet<>();
@@ -183,6 +221,9 @@ public final class BlockIndexData {
             ids[i] = en.id;
             names[i] = en.name;
             emissive[i] = en.emissive;
+            blockHardness[i] = en.hardness;
+            blockResistance[i] = en.resistance;
+            blockFriction[i] = en.friction;
             categoryByName.put(en.name.toLowerCase(Locale.ROOT), en.category == null ? "" : en.category);
 
             if (en.transparent || en.fluid) {
@@ -190,11 +231,13 @@ public final class BlockIndexData {
             }
             if (en.fluid) {
                 int a = 255;
-                long info = (en.fluidR & 255L) | ((en.fluidG & 255L) << 8) | ((en.fluidB & 255L) << 16) | ((a & 255L) << 24);
+                long info = (en.fluidR & 255L) | ((en.fluidG & 255L) << 8) | ((en.fluidB & 255L) << 16)
+                        | ((a & 255L) << 24);
                 fluidsById.put(en.id, new FluidInfo(en.id, en.mass, info, en.fluidExtinction));
             }
         }
 
-        return new BlockIndexData(ids, names, emissive, categoryByName, notSolidSet, fluidsById);
+        return new BlockIndexData(ids, names, emissive, blockHardness, blockResistance, blockFriction, categoryByName,
+                notSolidSet, fluidsById);
     }
 }

@@ -1,6 +1,6 @@
 package com.box3lab.register;
 
-import com.box3lab.Box3Mod;
+import com.box3lab.Box3;
 import com.box3lab.item.ModelDestroyerItem;
 import com.box3lab.register.creative.CreativeTabExtras;
 
@@ -26,7 +26,7 @@ public final class ModelToolRegistrar {
     }
 
     private static void registerDestroyer() {
-        Identifier id = Identifier.fromNamespaceAndPath(Box3Mod.MOD_ID, "model_destroyer");
+        Identifier id = Identifier.fromNamespaceAndPath(Box3.MOD_ID, "model_destroyer");
         ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, id);
         if (BuiltInRegistries.ITEM.containsKey(key)) {
             return;

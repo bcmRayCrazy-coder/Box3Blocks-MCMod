@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.GZIPInputStream;
 
+import static com.box3lab.Box3.MOD_ID;
 import com.box3lab.util.BlockIdResolver;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -27,8 +28,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.phys.Vec3;
 
-import static com.box3lab.Box3Mod.MOD_ID;
-
 public final class VoxelImport {
 
     public static void apply(Object voxels, Object world, String mapName, Vec3 customOrigin,
@@ -36,7 +35,7 @@ public final class VoxelImport {
         JsonObject cfg = loadConfig(mapName);
         if (cfg == null) {
             throw new Exception(Component
-                    .translatable("command.box3mod.box3import.config_invalid")
+                    .translatable("command.box3.box3import.config_invalid")
                     .getString());
         }
 
@@ -88,7 +87,7 @@ public final class VoxelImport {
                     if (progress / 10 > lastProgress / 10) {
                         lastProgress = progress;
                         player.sendSystemMessage(Component.translatable(
-                                "command.box3mod.box3import.progress", mapName, progress));
+                                "command.box3.box3import.progress", mapName, progress));
                     }
                 }
             }
@@ -102,7 +101,7 @@ public final class VoxelImport {
                 return JsonParser.parseString(json).getAsJsonObject();
             } catch (IOException | JsonParseException e) {
                 System.err.println(Component
-                        .translatable("command.box3mod.box3import.config_read_failed", mapName)
+                        .translatable("command.box3.box3import.config_read_failed", mapName)
                         .getString());
                 return null;
             }
@@ -116,7 +115,7 @@ public final class VoxelImport {
 
         if (!Files.exists(configPath)) {
             System.err.println(Component
-                    .translatable("command.box3mod.box3import.config_missing", configPath.toString())
+                    .translatable("command.box3.box3import.config_missing", configPath.toString())
                     .getString());
             return null;
         }
@@ -126,7 +125,7 @@ public final class VoxelImport {
             return JsonParser.parseString(json).getAsJsonObject();
         } catch (IOException | JsonParseException e) {
             System.err.println(Component
-                    .translatable("command.box3mod.box3import.config_read_failed", configPath.toString())
+                    .translatable("command.box3.box3import.config_read_failed", configPath.toString())
                     .getString());
             return null;
         }

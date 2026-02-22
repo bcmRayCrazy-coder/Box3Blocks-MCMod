@@ -35,14 +35,14 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
 
 ### 🏗 Importing Box3 Structures
 
-- **Terrain file import**: supports importing compressed terrain files (`.gz`) from the `config/box3mod/` directory into your world.
+- **Terrain file import**: supports importing compressed terrain files (`.gz`) from the `config/box3/` directory into your world.
 - **Structure migration**: migrate structures from Box3 into Minecraft while keeping the same block appearance.
 - **Get terrain files**: visit https://box3lab.com/build2mc to download Box3 building terrain files (`.gz`).
 - **Import commands**:
   - `/box3import`  
-    List all available terrain files (`.gz`) under `config/box3mod/`.
+    List all available terrain files (`.gz`) under `config/box3/`.
   - `/box3import <fileName>`  
-    Import a structure from `config/box3mod/<fileName>.gz`.  
+    Import a structure from `config/box3/<fileName>.gz`.  
     (You don’t need to type the `.gz` extension in the command.)
   - `/box3import <fileName> <ignoreBarrier>`  
     When `ignoreBarrier = true`, barrier blocks will be skipped (they will not be placed in the world).
