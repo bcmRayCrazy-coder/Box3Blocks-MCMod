@@ -8,15 +8,6 @@
 Import 373 blocks from the Box3 (Magic Code Island) platform into Minecraft, so you can build with the same familiar blocks inside MC.  
 You can also migrate structures from Box3 directly into your Minecraft world, preserving the original building style.
 
-## 📦 Requirements
-
-| Component         | Minimum  | Recommended |
-| ----------------- | -------- | ----------- |
-| **Minecraft**     | >=1.21.8 | 1.21.11     |
-| **Fabric Loader** | >=0.18.4 | 0.18.4      |
-| **Fabric API**    | Any      | 0.119.0+    |
-| **Java**          | >=21     | Java 21     |
-
 ## 🌟 Features
 
 ### 🎨 Rich Block Library
