@@ -35,9 +35,11 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
   - `/box3import <fileName>`  
     Import a structure from `config/box3/<fileName>.gz`.  
     (You don’t need to type the `.gz` extension in the command.)
-  - `/box3import <fileName> <ignoreBarrier>`  
+  - `/box3import <fileName> <offsetY>`  
+    Apply an additional vertical offset of `offsetY` blocks relative to your current position (positive = up, negative = down).
+  - `/box3import <fileName> <offsetY> <ignoreBarrier>`  
     When `ignoreBarrier = true`, barrier blocks will be skipped (they will not be placed in the world).
-  - `/box3import <fileName> <ignoreBarrier> <ignoreWater>`  
+  - `/box3import <fileName> <offsetY> <ignoreBarrier> <ignoreWater>`  
     When `ignoreWater = true`, all fluids are uniformly replaced with air.
 
 ### 🧩 Importing Box3 Model Items

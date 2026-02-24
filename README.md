@@ -33,9 +33,11 @@
     列出 `config/box3/` 目录下所有可导入的地形文件（`.gz`）。
   - `/box3import <fileName>`  
     从 `config/box3/<fileName>.gz` 导入建筑（命令中不需要带后缀，会自动补 `.gz`）。
-  - `/box3import <fileName> <ignoreBarrier>`  
+  - `/box3import <fileName> <offsetY>`  
+    在当前位置基础上在 Y 轴方向额外偏移 `offsetY` 格（正数向上，负数向下）。
+  - `/box3import <fileName> <offsetY> <ignoreBarrier>`  
     当 `ignoreBarrier = true` 时，跳过屏障方块（不会在世界中放置这些方块）。
-  - `/box3import <fileName> <ignoreBarrier> <ignoreWater>`  
+  - `/box3import <fileName> <offsetY> <ignoreBarrier> <ignoreWater>`  
     当 `ignoreWater = true` 时，所有流体统一替换为空气。
 
 ### 🧩 导入神奇代码岛的模型物品
