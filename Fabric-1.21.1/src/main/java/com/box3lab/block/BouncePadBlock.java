@@ -31,4 +31,14 @@ public class BouncePadBlock extends VoxelBlock {
 
         entity.setDeltaMovement(vel);
     }
+
+    @Override
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance) {
+
+        if (entity.isSuppressingBounce()) {
+            super.fallOn(level, state, pos, entity, fallDistance);
+        } else {
+            entity.resetFallDistance();
+        }
+    }
 }
