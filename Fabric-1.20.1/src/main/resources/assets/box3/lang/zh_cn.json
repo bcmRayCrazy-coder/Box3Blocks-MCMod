@@ -399,5 +399,6 @@
   "command.box3.box3barrier.status": "屏障可见状态：%s",
   "command.box3.box3barrier.set": "屏障可见状态已设置为：%s",
   "command.box3.box3barrier.toggled": "屏障可见状态已切换为：%s（重新进入世界以完全生效）",
-  "item.box3.model_destroyer": "模型销毁桶"
+  "item.box3.model_destroyer": "模型销毁桶",
+  "flat_world_preset.box3.box3_plains_world": "神岛平原"
 }

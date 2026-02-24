@@ -411,5 +411,6 @@
   "command.box3.box3barrier.status": "Barrier visible: %s",
   "command.box3.box3barrier.set": "Barrier visibility set to: %s",
   "command.box3.box3barrier.toggled": "Barrier visibility toggled to: %s (re-enter the world to fully apply)",
-  "item.box3.model_destroyer": "Model destruction bucket"
+  "item.box3.model_destroyer": "Model destruction bucket",
+  "flat_world_preset.box3.box3_plains_world": "Box3 Plains"
 }
