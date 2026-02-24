@@ -8,6 +8,7 @@ import com.box3lab.register.VoxelImport;
 import com.box3lab.util.Box3ImportFiles;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.suggestion.SuggestionProvider;
 
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
@@ -46,37 +47,71 @@ public final class ModCommands {
                                                         .executes(context -> listBox3ImportFiles(context.getSource()))
                                                         .then(argument("fileName", StringArgumentType.word())
                                                                         .suggests(BOX3_FILE_SUGGESTIONS)
+                                                                        // /box3import <fileName>
                                                                         .executes(context -> executeBox3Import(
                                                                                         context.getSource(),
                                                                                         StringArgumentType.getString(
                                                                                                         context,
                                                                                                         "fileName"),
+                                                                                        0,
                                                                                         false,
                                                                                         false))
-                                                                        .then(argument("ignoreBarrier",
-                                                                                        BoolArgumentType.bool())
+                                                                        // /box3import <fileName> <offsetY>
+                                                                        .then(argument("offsetY",
+                                                                                        IntegerArgumentType.integer())
                                                                                         .executes(context -> executeBox3Import(
                                                                                                         context.getSource(),
                                                                                                         StringArgumentType
-                                                                                                                        .getString(context,
+                                                                                                                        .getString(
+                                                                                                                                        context,
                                                                                                                                         "fileName"),
-                                                                                                        BoolArgumentType.getBool(
-                                                                                                                        context,
-                                                                                                                        "ignoreBarrier"),
+                                                                                                        IntegerArgumentType
+                                                                                                                        .getInteger(
+                                                                                                                                        context,
+                                                                                                                                        "offsetY"),
+                                                                                                        false,
                                                                                                         false))
-                                                                                        .then(argument("ignoreWater",
+                                                                                        // /box3import <fileName>
+                                                                                        // <offsetY> <ignoreBarrier>
+                                                                                        .then(argument("ignoreBarrier",
                                                                                                         BoolArgumentType.bool())
                                                                                                         .executes(context -> executeBox3Import(
                                                                                                                         context.getSource(),
                                                                                                                         StringArgumentType
-                                                                                                                                        .getString(context,
+                                                                                                                                        .getString(
+                                                                                                                                                        context,
                                                                                                                                                         "fileName"),
+                                                                                                                        IntegerArgumentType
+                                                                                                                                        .getInteger(
+                                                                                                                                                        context,
+                                                                                                                                                        "offsetY"),
                                                                                                                         BoolArgumentType.getBool(
                                                                                                                                         context,
                                                                                                                                         "ignoreBarrier"),
-                                                                                                                        BoolArgumentType.getBool(
-                                                                                                                                        context,
-                                                                                                                                        "ignoreWater")))))));
+                                                                                                                        false))
+                                                                                                        // /box3import
+                                                                                                        // <fileName>
+                                                                                                        // <offsetY>
+                                                                                                        // <ignoreBarrier>
+                                                                                                        // <ignoreWater>
+                                                                                                        .then(argument("ignoreWater",
+                                                                                                                        BoolArgumentType.bool())
+                                                                                                                        .executes(context -> executeBox3Import(
+                                                                                                                                        context.getSource(),
+                                                                                                                                        StringArgumentType
+                                                                                                                                                        .getString(
+                                                                                                                                                                        context,
+                                                                                                                                                                        "fileName"),
+                                                                                                                                        IntegerArgumentType
+                                                                                                                                                        .getInteger(
+                                                                                                                                                                        context,
+                                                                                                                                                                        "offsetY"),
+                                                                                                                                        BoolArgumentType.getBool(
+                                                                                                                                                        context,
+                                                                                                                                                        "ignoreBarrier"),
+                                                                                                                                        BoolArgumentType.getBool(
+                                                                                                                                                        context,
+                                                                                                                                                        "ignoreWater"))))))));
 
                         dispatcher.register(
                                         literal("box3barrier")
@@ -134,13 +169,16 @@ public final class ModCommands {
         }
 
         private static int executeBox3Import(CommandSourceStack source, String fileName,
-                        boolean ignoreBarrier, boolean useVanillaWater) {
+                        int offsetY, boolean ignoreBarrier, boolean useVanillaWater) {
                 ServerLevel level = source.getServer().overworld();
                 try {
                         ServerPlayer player = source.getPlayer();
                         String mapName = resolveMapName(fileName);
+                        var basePos = player != null ? player.position() : new BlockPos(0, 0, 0).getCenter();
+                        var offsetPos = basePos.add(0, offsetY, 0);
+
                         VoxelImport.apply(null, level, mapName,
-                                        player != null ? player.position() : new BlockPos(0, 0, 0).getCenter(),
+                                        offsetPos,
                                         player,
                                         ignoreBarrier,
                                         useVanillaWater);

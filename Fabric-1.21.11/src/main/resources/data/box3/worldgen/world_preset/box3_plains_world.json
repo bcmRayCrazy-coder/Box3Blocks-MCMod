@@ -1,0 +1,20 @@
+{
+  "dimensions": {
+    "minecraft:overworld": {
+      "type": "minecraft:overworld",
+      "generator": {
+        "type": "minecraft:flat",
+        "settings": {
+          "biome": "minecraft:plains",
+          "lakes": false,
+          "features": false,
+          "layers": [
+            { "block": "box3:stone", "height": 1 },
+            { "block": "box3:dirt", "height": 6 },
+            { "block": "box3:grass", "height": 1 }
+          ]
+        }
+      }
+    }
+  }
+}
