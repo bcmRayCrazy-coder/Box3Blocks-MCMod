@@ -1,6 +1,7 @@
 package com.box3lab.block.entity;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -26,6 +27,12 @@ public class PackModelEntityBlock extends Block implements EntityBlock {
     @Override
     protected RenderShape getRenderShape(BlockState state) {
         return RenderShape.INVISIBLE;
+    }
+
+    @Override
+    protected void spawnDestroyParticles(Level level, Player player, BlockPos pos, BlockState state) {
+        // This block is rendered by ItemDisplay instead of block model,
+        // so vanilla block-break particles would resolve to missing textures.
     }
 
     @Nullable
