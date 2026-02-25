@@ -50,6 +50,16 @@ You can also migrate structures from Box3 directly into your Minecraft world, pr
 - **Model Destroyer**: Right-click a model to delete it (item name: Model Destroyer).
 - **Generate model resource pack**: Visit https://box3lab.com/mc-resource-pack to get a pack compatible with this mod.
 
+#### ✨ Model Operation Guide
+
+- **Interactive parameter tuning**:
+  - Right-click the model with an `empty hand`: switch mode (`Scale / Offset X / Offset Y / Offset Z / Rotation`)
+  - Right-click the model with a `Stick`: increase the current mode value
+  - Right-click the model with a `Blaze Rod`: decrease the current mode value
+- **Copy & paste parameters**:
+  - Right-click the model with `Paper`: copy current model parameters
+  - Right-click the model with a `Book`: paste parameters to the target model
+
 ### 🔍 Barrier Visibility Toggle
 
 - **Barrier visibility command `/box3barrier`**:

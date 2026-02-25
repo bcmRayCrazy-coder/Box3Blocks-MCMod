@@ -6,9 +6,6 @@ public final class ModItems {
     }
 
     public static void initialize() {
-        // Register all model-based display items discovered from resource packs
-        ModelItemRegistrar.registerAll();
-
-        ModelToolRegistrar.registerAll();
+        // Reserved for future item registrations.
     }
 }

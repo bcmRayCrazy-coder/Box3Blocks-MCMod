@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import static com.box3lab.register.ModelItemRegistrar.DEFAULT_TAB;
 import com.box3lab.util.BlockIndexData;
 
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
@@ -23,6 +22,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 
 public final class CreativeTabRegistrar {
+    public static final String DEFAULT_MODEL_TAB = "models";
+
     private CreativeTabRegistrar() {
     }
 
@@ -95,7 +96,7 @@ public final class CreativeTabRegistrar {
     }
 
     public static void registerModelTab(String modId) {
-        String categoryPath = sanitizeCategoryPath(DEFAULT_TAB);
+        String categoryPath = sanitizeCategoryPath(DEFAULT_MODEL_TAB);
         if (categoryPath.isBlank()) {
             return;
         }
