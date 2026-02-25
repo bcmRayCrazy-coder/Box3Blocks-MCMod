@@ -27,6 +27,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -71,7 +72,18 @@ public final class PackModelBlockEntityRegistrar {
                     Registries.ITEM,
                     new ResourceLocation(MOD_ID, name));
             if (!BuiltInRegistries.ITEM.containsKey(itemKey)) {
-                Item item = new BlockItem(block, new Item.Properties());
+                final String itemDescriptionId = "item." + MOD_ID + "." + name;
+                Item item = new BlockItem(block, new Item.Properties()) {
+                    @Override
+                    public String getDescriptionId() {
+                        return itemDescriptionId;
+                    }
+
+                    @Override
+                    public String getDescriptionId(ItemStack stack) {
+                        return itemDescriptionId;
+                    }
+                };
                 Registry.register(BuiltInRegistries.ITEM, itemKey, item);
                 CreativeTabExtras.add(CreativeTabRegistrar.DEFAULT_MODEL_TAB, item);
             }

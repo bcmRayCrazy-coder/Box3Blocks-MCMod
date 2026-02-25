@@ -23,10 +23,12 @@ import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityT
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -71,7 +73,13 @@ public final class PackModelBlockEntityRegistrar {
                     Registries.ITEM,
                     ResourceLocation.fromNamespaceAndPath(MOD_ID, name));
             if (!BuiltInRegistries.ITEM.containsKey(itemKey)) {
-                Item item = new BlockItem(block, new Item.Properties());
+                final String itemTranslationKey = "item." + MOD_ID + "." + name;
+                Item item = new BlockItem(block, new Item.Properties()) {
+                    @Override
+                    public Component getName(ItemStack stack) {
+                        return Component.translatable(itemTranslationKey);
+                    }
+                };
                 Registry.register(BuiltInRegistries.ITEM, itemKey, item);
                 CreativeTabExtras.add(CreativeTabRegistrar.DEFAULT_MODEL_TAB, item);
             }
