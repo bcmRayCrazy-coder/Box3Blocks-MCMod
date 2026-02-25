@@ -73,6 +73,9 @@ public class PackModelBlockEntity extends BlockEntity {
         display.setPos(center.x, center.y, center.z);
         display.setNoGravity(true);
         display.setInvulnerable(true);
+        if (state.hasProperty(PackModelEntityBlock.HORIZONTAL_FACING)) {
+            display.setYRot(state.getValue(PackModelEntityBlock.HORIZONTAL_FACING).toYRot());
+        }
         display.getSlot(0).set(new ItemStack(state.getBlock()));
         display.addTag(tag);
 
