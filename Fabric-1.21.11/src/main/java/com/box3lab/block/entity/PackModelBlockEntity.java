@@ -1,6 +1,9 @@
 package com.box3lab.block.entity;
 
 import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.box3lab.register.modelbe.PackModelBlockEntityRegistrar;
 
@@ -32,6 +35,7 @@ public class PackModelBlockEntity extends BlockEntity {
     private static final float SCALE_MAX = 4.0F;
     private static final float OFFSET_STEP = 0.05F;
     private static final float ROTATION_STEP = 15.0F;
+    private static final Map<UUID, ConfigSnapshot> CONFIG_CLIPBOARD = new ConcurrentHashMap<>();
 
     private float scale = 1.0F;
     private float offsetX = 0.0F;
@@ -114,10 +118,31 @@ public class PackModelBlockEntity extends BlockEntity {
 
         this.setChanged();
         player.displayClientMessage(statusComponent(), true);
+        applyToDisplays(level, pos, state);
+    }
 
-        for (Display.ItemDisplay display : findDisplays(level, pos, displayTag(pos))) {
-            applyPose(level, pos, state, display);
+    public void copyConfig(net.minecraft.world.entity.player.Player player) {
+        CONFIG_CLIPBOARD.put(player.getUUID(), new ConfigSnapshot(this.scale, this.offsetX, this.offsetY, this.offsetZ, this.rotationOffset));
+        player.displayClientMessage(Component.translatable("message.box3.model.config.copy.success"), true);
+    }
+
+    public void pasteConfig(ServerLevel level, BlockPos pos, BlockState state, net.minecraft.world.entity.player.Player player) {
+        ConfigSnapshot snapshot = CONFIG_CLIPBOARD.get(player.getUUID());
+        if (snapshot == null) {
+            player.displayClientMessage(Component.translatable("message.box3.model.config.copy.empty"), true);
+            return;
         }
+
+        this.scale = clamp(snapshot.scale, SCALE_MIN, SCALE_MAX);
+        this.offsetX = snapshot.offsetX;
+        this.offsetY = snapshot.offsetY;
+        this.offsetZ = snapshot.offsetZ;
+        this.rotationOffset = normalizeDegrees(snapshot.rotationOffset);
+        this.setChanged();
+
+        applyToDisplays(level, pos, state);
+        player.displayClientMessage(Component.translatable("message.box3.model.config.copy.pasted"), true);
+        player.displayClientMessage(statusComponent(), true);
     }
 
     public static void removeDisplaysAt(Level level, BlockPos pos) {
@@ -187,6 +212,12 @@ public class PackModelBlockEntity extends BlockEntity {
                 display -> display.getTags().contains(tag));
     }
 
+    private void applyToDisplays(ServerLevel level, BlockPos pos, BlockState state) {
+        for (Display.ItemDisplay display : findDisplays(level, pos, displayTag(pos))) {
+            applyPose(level, pos, state, display);
+        }
+    }
+
     private Mode currentMode() {
         return Mode.values()[this.modeIndex];
     }
@@ -231,5 +262,8 @@ public class PackModelBlockEntity extends BlockEntity {
         public String translationKey() {
             return "message.box3.model.config.mode." + this.keyPart;
         }
+    }
+
+    private record ConfigSnapshot(float scale, float offsetX, float offsetY, float offsetZ, float rotationOffset) {
     }
 }

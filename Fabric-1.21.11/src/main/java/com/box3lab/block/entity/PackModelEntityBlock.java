@@ -88,6 +88,30 @@ public class PackModelEntityBlock extends Block implements EntityBlock {
     @Override
     protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player,
             InteractionHand hand, BlockHitResult hitResult) {
+        if (stack.is(Items.PAPER)) {
+            if (level.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            }
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof PackModelBlockEntity modelBe) {
+                modelBe.copyConfig(player);
+                return InteractionResult.SUCCESS;
+            }
+            return InteractionResult.PASS;
+        }
+
+        if (stack.is(Items.BOOK)) {
+            if (level.isClientSide()) {
+                return InteractionResult.SUCCESS;
+            }
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof PackModelBlockEntity modelBe && level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+                modelBe.pasteConfig(serverLevel, pos, state, player);
+                return InteractionResult.SUCCESS;
+            }
+            return InteractionResult.PASS;
+        }
+
         int direction;
         if (stack.is(Items.STICK)) {
             direction = 1;
