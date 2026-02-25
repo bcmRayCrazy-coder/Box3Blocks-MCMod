@@ -399,6 +399,12 @@
   "command.box3.box3barrier.status": "屏障可见状态：%s",
   "command.box3.box3barrier.set": "屏障可见状态已设置为：%s",
   "command.box3.box3barrier.toggled": "屏障可见状态已切换为：%s（重新进入世界以完全生效）",
-  "item.box3.model_destroyer": "模型销毁桶",
+  "message.box3.model.config.mode": "模型配置模式：%s（木棍：增加，烈焰棒：减少）",
+  "message.box3.model.config.status": "模式=%s 缩放=%s 偏移=(%s, %s, %s) 旋转=%s",
+  "message.box3.model.config.mode.scale": "缩放",
+  "message.box3.model.config.mode.offset_x": "X偏移",
+  "message.box3.model.config.mode.offset_y": "Y偏移",
+  "message.box3.model.config.mode.offset_z": "Z偏移",
+  "message.box3.model.config.mode.rotation": "旋转",
   "flat_world_preset.box3.box3_plains_world": "神岛平原"
 }
