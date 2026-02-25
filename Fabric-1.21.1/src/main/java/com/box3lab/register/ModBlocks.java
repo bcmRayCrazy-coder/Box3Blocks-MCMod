@@ -6,6 +6,7 @@ import java.util.Map;
 import com.box3lab.Box3;
 import com.box3lab.register.core.BlockRegistrar;
 import com.box3lab.register.creative.CreativeTabRegistrar;
+import com.box3lab.register.modelbe.PackModelBlockEntityRegistrar;
 import com.box3lab.register.sound.CategorySoundTypes;
 import com.box3lab.register.voxel.VoxelBlockFactories;
 import com.box3lab.register.voxel.VoxelBlockPropertiesFactory;
@@ -62,6 +63,7 @@ public class ModBlocks {
         }
 
         CreativeTabRegistrar.registerCreativeTabs(Box3.MOD_ID, BLOCKS, data);
+        PackModelBlockEntityRegistrar.registerAll();
     }
 
 }
