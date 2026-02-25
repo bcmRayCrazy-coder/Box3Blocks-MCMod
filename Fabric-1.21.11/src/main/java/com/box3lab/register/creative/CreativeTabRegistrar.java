@@ -21,9 +21,9 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.ItemLike;
 
-import static com.box3lab.register.ModelItemRegistrar.DEFAULT_TAB;
-
 public final class CreativeTabRegistrar {
+    public static final String DEFAULT_MODEL_TAB = "models";
+
     private CreativeTabRegistrar() {
     }
 
@@ -96,7 +96,7 @@ public final class CreativeTabRegistrar {
     }
 
     public static void registerModelTab(String modId) {
-        String categoryPath = sanitizeCategoryPath(DEFAULT_TAB);
+        String categoryPath = sanitizeCategoryPath(DEFAULT_MODEL_TAB);
         if (categoryPath.isBlank()) {
             return;
         }
