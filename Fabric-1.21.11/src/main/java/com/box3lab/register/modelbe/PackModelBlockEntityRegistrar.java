@@ -15,7 +15,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import com.box3lab.block.entity.PackModelEntityBlock;
-import com.box3lab.register.core.BlockRegistrar;
 import com.box3lab.register.creative.CreativeTabExtras;
 import com.box3lab.register.creative.CreativeTabRegistrar;
 
@@ -26,6 +25,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -56,18 +57,25 @@ public final class PackModelBlockEntityRegistrar {
                 continue;
             }
 
-            Block block = BlockRegistrar.register(
-                    MOD_ID,
-                    name,
-                    PackModelEntityBlock::new,
+            Block block = new PackModelEntityBlock(
                     BlockBehaviour.Properties.of()
+                            .setId(blockKey)
                             .mapColor(MapColor.STONE)
                             .strength(1.5F, 6.0F)
                             .noOcclusion()
                             .isViewBlocking((state, level, pos) -> false)
                             .isSuffocating((state, level, pos) -> false)
-                            .isRedstoneConductor((state, level, pos) -> false),
-                    true);
+                            .isRedstoneConductor((state, level, pos) -> false));
+            Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
+
+            ResourceKey<Item> itemKey = ResourceKey.create(
+                    Registries.ITEM,
+                    Identifier.fromNamespaceAndPath(MOD_ID, name));
+            if (!BuiltInRegistries.ITEM.containsKey(itemKey)) {
+                Item item = new BlockItem(block, new Item.Properties().setId(itemKey).useItemDescriptionPrefix());
+                Registry.register(BuiltInRegistries.ITEM, itemKey, item);
+                CreativeTabExtras.add(CreativeTabRegistrar.DEFAULT_MODEL_TAB, item);
+            }
 
             ResourceKey<BlockEntityType<?>> blockEntityKey = ResourceKey.create(Registries.BLOCK_ENTITY_TYPE, id);
             if (BuiltInRegistries.BLOCK_ENTITY_TYPE.containsKey(blockEntityKey)) {
@@ -80,7 +88,6 @@ public final class PackModelBlockEntityRegistrar {
 
             Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE, blockEntityKey, type);
             TYPES_BY_BLOCK.put(block, type);
-            CreativeTabExtras.add(CreativeTabRegistrar.DEFAULT_MODEL_TAB, block.asItem());
         }
 
         CreativeTabRegistrar.registerModelTab(MOD_ID);
