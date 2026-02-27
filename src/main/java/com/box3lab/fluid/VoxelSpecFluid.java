@@ -133,5 +133,10 @@ public abstract class VoxelSpecFluid extends FlowingFluid {
         public int getAmount(FluidState state) {
             return 8;
         }
+
+        @Override
+        protected void spread(ServerLevel serverLevel, BlockPos blockPos, BlockState blockState, FluidState fluidState) {
+
+        }
     }
 }
